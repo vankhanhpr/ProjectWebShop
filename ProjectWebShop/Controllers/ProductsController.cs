@@ -21,8 +21,7 @@ namespace ProjectWebShop.Controllers
         [HttpGet]
         public IEnumerable<Products> GetAll()
         {
-            IEnumerable<Products> list= _iproductResponsitory.GetAllWidthProducts();
-            return list;
+            return _iproductResponsitory.GetAllWidthProducts();
         }
     }
 }
