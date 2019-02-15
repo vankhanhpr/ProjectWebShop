@@ -30,3 +30,5 @@ E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\WebApplication.V
 E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\WebApplication.dll
 E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\WebApplication.pdb
 E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\WebApplication.csproj.CopyComplete
+E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Admin\Index.g.cshtml.cs
+E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LayoutAdmin.g.cshtml.cs
