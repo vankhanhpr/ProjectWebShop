@@ -35,9 +35,9 @@ namespace ProjectWebShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<MyDBContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<MyDBContext>(options =>
-            options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<MyDBContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<MyDBContext>(options =>
+            //options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSingleton<IFileProvider>(
                new PhysicalFileProvider(

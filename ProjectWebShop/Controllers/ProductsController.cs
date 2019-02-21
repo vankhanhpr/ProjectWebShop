@@ -18,10 +18,15 @@ namespace ProjectWebShop.Controllers
         {
             this._iproductResponsitory = iproductResponsitory;
         }
-        [HttpGet]
+        [HttpGet("GetAllProduct")]
         public IEnumerable<Products> GetAll()
         {
             return _iproductResponsitory.GetAllWidthProducts();
+        }
+        [HttpPost("InsertProduct")]
+        public void  UpdateProducte([FromBody]Products pdt)
+        {
+             _iproductResponsitory.SaveProduct(pdt);
         }
     }
 }

@@ -8,16 +8,15 @@ using System.Collections.Generic;
 
 namespace ProjectWebShop.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    //[Route("api/[controller]")]
+    //[ApiController]
     public class FileController : Controller
     {
-        [HttpPost("UploadFile")]
+        //[HttpPost("UploadFile")]
         public async Task<IActionResult> UploadFile(IFormFile file)
         {
             if (file == null || file.Length == 0)
                 return Content("file not selected");
-
             var path = Path.Combine(
                         Directory.GetCurrentDirectory(), "wwwroot/image",
                         file.GetFilename());
@@ -30,7 +29,6 @@ namespace ProjectWebShop.Controllers
             //var s = "afasdfsdffs";
             return Ok(file.GetFilename());
         }
-
         [HttpPost("UploadListFile")]
         public async Task<IActionResult> UploadFiles(List<IFormFile> files)
         {

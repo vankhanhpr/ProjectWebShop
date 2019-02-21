@@ -11,5 +11,8 @@ namespace ProjectWebShop.Interface.product
     {
         IEnumerable<Products> GetAllWidthProducts();
         Products GetProductById(int id);
+        void SaveProduct(Products product);
+        void DeleteProduct(int id);
+        void UpdateProduct(Products product);
     }
 }
