@@ -1,14 +1,139 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/_layout.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/font/font-awesome.min.css">
 </head>
 <body>
 
-    <div class="container">
+    <div class="container-fluid">
+        <div class="k f-search">
+            <span class="k t t-nt-hotline">Hotline:</span>
+            <span class="k t t-hotline">0969.696.696</span>
+            <div class="f-lg-lu">
+                <span class="k t t-lg">Đăng nhập</span>
+                <span class="k t t-lg">&</span>
+                <span class="k t t-lg">Đăng ký</span>
+            </div>
+            <form class="search_form" action="/search" method="get" role="search">
+                <input type="text" class="form-control" name="query" value="" autocomplete="off" placeholder="Tìm sản phẩm">
+                <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <div class="k f-head">
+            <div class="k logo"></div>
+            <div class="k bd-menu">
+                <div class="k main-menu">
+                    <ul class="k main-menu">
+                        <li class="k item-mn">
+                            <a class="t-link" href="/">
+                                <i class="fa fa-home"></i>
+                                Trang chủ
+                            </a>
+                        </li>
+                        <li class="k item-mn list-product">
+                            <a href="/collections/all" class="t-link">
+                                <i class="fa fa-birthday-cake"></i>
+                                Sản phẩm
+                            </a>
+                            <ul class="list-unstyled">
+                                <li class="f-it-lv2"><span class="t item-lv2">Món ăn nổi bật</span></li>
+                                @*<li>
+                                    <a href="/mon-an-ua-chuong">Món ăn ưa chuộng</a>
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    <ul class="list-unstyled menu_child_2">
+                                        <li>
+                                            <a href="/tra">Trà</a>
+                                        </li>
+                                        <li>
+                                            <a href="/banh">Bánh</a>
+                                        </li>
+                                    </ul>
+                                </li>*@
+                                <li class="f-it-lv2"><a class="t item-lv2" href="/mon-an-moi">Món ăn mới</a></li>
+                                <li class="f-it-lv2"><a class="t item-lv2" href="/mon-an-moi">Món được ưa chuộng</a></li>
+                            </ul>
+                        </li>
+                        <li class="k item-mn">
+                            <a class="t-link" href="/gioi-thieu">
+                                <i class="fa fa-info-circle"></i>
+                                Giới thiệu
+                            </a>
+                        </li>
+                        <li class="k item-mn">
+                            <a class="t-link" href="/lien-he">
+                                <i class="fa fa-phone"></i>
+                                Liên hệ
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="k f-cart">
+                <div class="k bd-tt-cart">
+                    <span class="k tt_pdt">0</span>
+                    <i class="shopping-bag"></i>
+                </div>
+                <span class="k bd-note-cart">
+                    <span class="k t t-cart2">GIỎ HÀNG</span>
+                    <span class="k t t-count_item">(0) Sản phẩm</span>
+                </span>
+            </div>
+            <div class="k ic_bt_head"></div>
+        </div>
         @RenderBody()
         <footer>
-            <p>&copy; 2019 - WebApplication</p>
+            <div class="k f-ft">
+                <div class="k it-f-ft">
+                    <span class="k t tt-ft">LIÊN HỆ</span>
+                    <div class="k f-dt-ft">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <span class="k t t-inf">Km17, QL 27 Cưkuin Đắk Lắk</span>
+                    </div>
+                    <div class="k f-dt-ft">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <span class="k t t-inf">0983.975.408</span>
+                        <span class="k t t-inf"> Thứ 2- Chủ Nhật : 8h-23h</span>
+                    </div>
+                    <div class="k f-dt-ft">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <span class="k t t-inf">khanhnv@hcmute.edu.vn</span>
+                    </div>
+                </div>
+                <div class="k it-f-ft">
+                    <span class="k t tt-ft">HỖ TRỢ KHÁCH HÀNG</span>
+                    <div class="k f-dt-ft">
+                        <span class="k t t-inf-cus">Trang chủ</span>
+                    </div>
+                    <div class="k f-dt-ft">
+                        <span class="k t t-inf-cus">Sản phẩm</span>
+                    </div>
+                    <div class="k f-dt-ft">
+                        <span class="k t t-inf-cus">Giới thiệu</span>
+                    </div>
+                    <div class="k f-dt-ft">
+                        <span class="k t t-inf-cus">Liên hệ</span>
+                    </div>
+                </div>
+                <div class="k it-f-ft">
+                    <span class="k t tt-ft">CHÍNH SÁCH MUA HÀNG</span>
+                    <div class="k f-dt-ft">
+                        <span class="k t t-inf-cus">Khiếu nại</span>
+                    </div>
+                    <div class="k f-dt-ft">
+                        <span class="k t t-inf-cus">Đổi trả</span>
+                    </div>
+                </div>
+                <div class="k it-f-ft">
+                    <span class="k t tt-ft">ĐĂNG KÍ NHẬN TIN</span>
+                    <div class="k f-dt-ft">
+                        <span class="k t t-inf">Đăng kí nhận thông tin khuyển mãi và món ăn mới</span>
+                        <input class="form-email" type="email" id="mail" placeholder="Email của bạn">
+                        <span class="k bnt_submit">ĐĂNG KÝ</span>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
     @RenderSection("Scripts", required: false)

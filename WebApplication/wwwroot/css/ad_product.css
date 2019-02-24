@@ -97,6 +97,38 @@
         cursor:pointer;
         font-weight:500;
     }
+    .f-add-ctl{
+        width:30%;
+        text-align:center;
+    }
+    .ctl-tt {
+        color:var(--c-dt-bl);
+        font-weight:500;
+    }
+    .input-ctg {
+        color: var(--c-dt-bl);
+        border:1px solid rgba(51,51,51,0.12);
+
+    }
+    .input-pdt {
+        color: var(--c-dt-bl);
+        border: 1px solid rgba(51,51,51,0.12);
+    }
+    .bnt_add_ctg {
+        color: var(--c-dt-bl);
+        text-align: center;
+        width: 100%;
+        padding: 5px;
+        background-color: #fbedbb;
+        font-weight:600;
+        border-radius:4px;
+        cursor:pointer;
+    }
+    .pdt-tt {
+        color: var(--c-dt-bl);
+        font-weight: 500;
+        text-align:left;
+    }
 }
 
 @media only screen and (min-width:1200px) {
@@ -129,6 +161,7 @@
         width: 20%;
         height: 20px;
         margin-top: 15px;
+        cursor:pointer;
     }
     .ic-add-pdt {
         width: 20px;
@@ -136,6 +169,7 @@
         margin-top: 10px;
         margin-bottom: 20px;
         margin-right: 10px;
+        cursor:pointer;
     }
 
     .bd-prd {
@@ -200,5 +234,33 @@
     .t-add-pdt {
         font-size: var(--font-title);
         width: auto;
+    }
+    .ctl-tt {
+        font-size:var(--font-detail);
+        width:40%;
+    }
+    .input-ctg {
+        font-size: var(--font-detail);
+        width: 60%;
+        margin-top: 5px;
+        padding:5px;
+    }
+    .bnt_add_ctg {
+        font-size:var(--font-detail);
+        margin-top:20px;
+
+    }
+    .pdt-tt {
+        font-size: var(--font-detail);
+        width:30%;
+    }
+    .input-pdt {
+        width: 70%;
+        font-size: var(--font-detail);
+        margin-top: 5px;
+        padding: 5px;
+    }
+    .bd-add-pdt{
+        width:100%;
     }
 }
