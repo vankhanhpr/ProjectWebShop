@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -33,12 +35,17 @@ namespace ProjectWebShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<MyDBContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<MyDBContext>(options =>
-            options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddTransient<IProductResponsitory, ProductResponsitory>();
-            services.AddMvc();
-           
+            services.AddDbContext<MyDBContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<MyDBContext>(options =>
+            //options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddSingleton<IFileProvider>(
+               new PhysicalFileProvider(
+                   Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));//image
+            services.AddTransient<IProductResponsitory, ProductResponsitory>();//prodcut
+            //services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
