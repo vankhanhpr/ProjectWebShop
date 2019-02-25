@@ -1,0 +1,406 @@
+﻿@import url("config.css");
+
+:root {
+    --bg-head: white;
+    --cl-head: #333;
+    --cl-yl: #ef7147;
+    --fs-tt-big: 20px;
+    --fs-small: 14px;
+}
+
+@media only screen and (min-width:0) {
+    .container-fluid {
+        padding: 0;
+    }
+
+    .f-head {
+        background-color: var(--bg-head);
+        border-top: 1px dashed #c3c3c3;
+    }
+
+    .t-nt-hotline {
+        color: var(--c-dt-bl);
+        opacity: 0.6;
+        text-decoration: none;
+        line-height: 45px;
+        padding-right: 5px;
+    }
+
+    .t-hotline {
+        color: var(--cl-yl);
+        text-decoration: none;
+        line-height: 45px;
+        font-weight: 700;
+    }
+
+    .f-lg-lu {
+        position: relative;
+        float: right;
+    }
+
+    .t-lg {
+        color: var(--c-dt-bl);
+        opacity: 0.6;
+        text-decoration: none;
+        padding: 0 3px;
+        font-weight: 400;
+        font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+    }
+
+    .search_form {
+        float: right;
+        position: relative;
+    }
+
+    .form-control {
+        float: right;
+        position: relative;
+    }
+
+    .ic_bt_head {
+        background-image: url(/images/user/ic_saw.png);
+        background-repeat: repeat-x;
+        height: 7px;
+        width: 100%;
+        display: block;
+        background-size: unset;
+        z-index: 3;
+        margin-top: 5px;
+        position: relative;
+        display: inline-block;
+        bottom: 0;
+    }
+
+    .logo {
+        background-image: url(/images/user/logo.jpg);
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .main-menu {
+        list-style-type: none;
+        text-decoration: none;
+    }
+
+    .item-mn {
+        text-align: center;
+        color: var(--cl-head);
+        list-style-type: none;
+    }
+
+    .t-link {
+        color: var(--cl-head);
+        text-decoration: none;
+    }
+
+    .fa {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .fa-home:before {
+        content: "\f015";
+    }
+
+    .t-link:hover {
+        color: #ef7147;
+        list-style-type: none;
+    }
+
+    .t-link:hover {
+        color: #ef7147;
+        text-decoration: none;
+    }
+
+    .shopping-bag:before {
+        content: "";
+        display: inline-block;
+        height: 25px;
+        width: 28px;
+        background-image: url(//bizweb.dktcdn.net/100/332/765/themes/699171/assets/shopping-bag.png?1548661859354);
+        background-repeat: no-repeat;
+        margin-top: 5px;
+    }
+
+    .count_item {
+        height: 24px;
+        width: 24px;
+        background-color: #000;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+        right: 100px;
+        top: -5px;
+        line-height: 24px;
+        font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+    }
+
+    .tt_pdt {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #000;
+        border-radius: 50%;
+        height: 24px;
+        width: 24px;
+        color: var(--c-dt-wt);
+        font-size: var(--font-detail);
+        text-align: center;
+        line-height: 24px;
+    }
+
+    .t-cart2 {
+        color: var(--c-tt-bl);
+    }
+
+    .t-count_item {
+        color: var(--c-tt-bl);
+    }
+
+    .list-product:hover .list-unstyled {
+        display: block;
+    }
+
+    .list-unstyled {
+        display: none;
+        z-index: 500;
+        border: 1px solid rgba(51,51,51,0.2);
+        position: absolute;
+        margin: auto;
+        border-radius: 4px;
+        background-color: white;
+        list-style-type: none;
+    }
+
+    .item-lv2 {
+        color: var(--c-dt-bl);
+        font-weight: 500;
+        cursor: pointer;
+        text-align: left;
+    }
+
+        .item-lv2:hover {
+            color: #ef7147;
+            font-weight: 500;
+            text-decoration: none
+        }
+
+    .f-it-lv2 {
+        border-bottom: 1px solid rgba(51,51,51,0.12);
+        text-align: left;
+    }
+    .f-ft{
+        background-image:url(/images/user/background_footer.png);
+    }
+    .tt-ft {
+        color: var(--c-tt-wt);
+        font-family: "UTMBryantLGBold",sans-serif;
+        text-align:left;
+    }
+    .fa{
+        color:var(--cl-yl);
+        text-align:left;
+        position:relative;
+        float:left;
+        margin-top:10px;
+        margin-right:10px;
+    }
+    .t-inf{
+        color:var(--c-dt-wt);
+        text-align:left;
+        opacity:0.6;
+    }
+    .t-inf-cus {
+        color: var(--c-dt-wt);
+        text-align: left;
+        opacity: 0.6;
+        display: list-item;
+        cursor:pointer;
+    }
+    .form-email{
+        position:relative;
+        float:left;
+        width:100%;
+        padding:5px;
+        border-radius:4px;
+        border:none;
+        margin-top:5px;
+    }
+    .bnt_submit{
+        background-color:var(--cl-yl);
+        color:var(--c-dt-wt);
+        text-align:center;
+        border-radius:4px;
+    }
+}
+
+@media only screen and (min-width:1200px) {
+    .f-head {
+        height: 95px;
+        width: 100%;
+    }
+
+    .f-search {
+        width: 100%;
+        padding-left: 5%;
+    }
+
+    .t-nt-hotline {
+        font-size: var(--fs-small);
+    }
+
+    .t-hotline {
+        font-size: var(--font-title);
+    }
+
+    .f-lg-lu {
+        width: 20%;
+    }
+
+    .search_form {
+        width: 20%;
+    }
+
+    .form-control {
+        padding: 0 35px 0 15px;
+        background: #eeeeee;
+        border-color: #eeeeee;
+        box-shadow: none;
+        height: 30px;
+        font-size: var(--fs-small);
+        font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+        width: 80%;
+        position:relative;
+        float:left;
+        top:8px;
+    }
+
+    .btn-search {
+        color: #ef7147;
+        background: #eeeeee;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 20%;
+        height: 30px;
+        top: 8px;
+        right: 10px;
+
+        display: inline-block;
+        padding: 0 20px;
+        text-align: center;
+        white-space: nowrap;
+        outline: none !important;
+        cursor: pointer;
+        border: none;
+        font-weight: 400;
+        letter-spacing: 0;
+        position:relative;
+        float:left;
+    }
+
+    .t-lg {
+        font-size: var(--fs-small);
+        line-height: 25px;
+    }
+
+    .logo {
+        width: 25%;
+        height: 45px;
+        margin-top: 25px;
+    }
+
+    .bd-menu {
+        width: 50%;
+    }
+
+    .main-menu {
+        width: 100%;
+    }
+
+    .item-mn {
+        width: 25%;
+        padding-top: 25px;
+        font-size: var(--font-title);
+    }
+
+    .f-cart {
+        width: 25%;
+        padding-left: 5%;
+    }
+
+    .bd-tt-cart {
+        width: 40px;
+        margin-top: 20px;
+    }
+
+    .bd-note-cart {
+        width: auto;
+        padding-left: 5px;
+    }
+
+    .t-cart2 {
+        font-size: 14px;
+        width: 100%;
+        margin-top: 20px;
+        font-weight: 500;
+    }
+
+    .t-count_item {
+        font-size: var(--font-detail);
+    }
+
+    .item-lv2 {
+        font-size: var(--font-detail);
+        width: 100%;
+    }
+
+    .list-product {
+        padding-bottom: 10px;
+    }
+
+    .f-it-lv2 {
+        padding: 10px 0;
+        width: 100%;
+        padding-left: 20px;
+    }
+
+    .list-unstyled {
+        width: 200px;
+        margin-top: 5px;
+    }
+
+    .f-ft{
+        width:100%;
+        padding:20px 5%;
+    }
+    .it-f-ft{
+        width:25%;
+    }
+    .tt-ft {
+        font-size:var(--font-title);
+        width:100%;
+    }
+    .f-dt-ft{
+        width:100%;
+        padding:5px 0;
+    }
+    .fa-map-marker {
+       font-size:var(--font-detail);
+    }
+    .t-inf {
+        font-size: var(--fs-small);
+    }
+    .t-inf-cus {
+        font-size: var(--fs-small);
+    }
+    .bnt_submit {
+        font-size:var(--font-detail);
+        margin-top:20px;
+        padding:5px 10px;
+    }
+}

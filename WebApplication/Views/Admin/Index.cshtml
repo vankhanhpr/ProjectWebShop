@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/css/feather.css">
+    <link rel="stylesheet" type="text/css" href="~/css/dashboard.css">
+</head>
+<body>
+    <div class="k main-form">
+        <div class="k f-head">
+            <div class="k l-form">
+                <div class="k img-avt"></div>
+                <label class="k bnt-swt switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+
+            </div>
+            <div class="k r-form">
+                @*//here*@
+            </div>
+        </div>
+
+        <div class="k body-form">
+            <div class="k l-form">
+                <span class="k ngvt">Navigation</span>
+                <div class="k f-it">
+                    <div class="k ic_home"></div>
+                    <span class="k text-dt">Dashboard</span>
+                    <div class="ic-show" onclick="showListItem()" id="icon_show-l-it"></div>
+                </div>
+                <div class="k bd-l-it" id="catalogy">
+                    <div class="k f-l-it">
+                        <div class="k ic-down"></div>
+                        <span class="k text-dt">Product</span>
+                    </div>
+                    <div class="k f-l-it">
+                        <div class="k ic-down"></div>
+                        <span class="k text-dt">User</span>
+                    </div>
+                </div>
+
+                <div class="k f-it">
+                    <div class="k ic_gear"></div>
+                    <span class="k text-dt">Custom</span>
+                    <div class="ic-show" onclick="showListItem()" id="icon_show-l-it"></div>
+                </div>
+
+            </div>
+            <div class="k r-form">
+                <div class="k h-table">
+                    <a href="/admin/product">
+                        <div class="k bd-it-table">
+                            <div class="k f-it-table">
+                                <span class="k t-number">200</span>
+                                <div class="k bd-note">
+                                    <span class="k t-name-it">Product</span>
+                                    <div class="k ic-product"></div>
+                                </div>
+                                <div class="k ic_clock"></div>
+                                <span class="k t-status">update today</span>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <div class="k bd-it-table">
+                        <div class="k sd-it-table">
+                            <span class="k t-number">10</span>
+                            <div class="k bd-note">
+                                <span class="k t-name-it">Account</span>
+                                <div class="k ic-product"></div>
+                            </div>
+                            <div class="k ic_clock"></div>
+                            <span class="k t-status">update today</span>
+                        </div>
+                    </div>
+                    <div class="k bd-it-table">
+                        <div class="k th-it-table">
+                            <span class="k t-number">2.000$</span>
+                            <div class="k bd-note">
+                                <span class="k t-name-it">Revanue</span>
+                                <div class="k ic-product"></div>
+                            </div>
+                            <div class="k ic_clock"></div>
+                            <span class="k t-status">update today</span>
+                        </div>
+                    </div>
+                    <div class="k bd-it-table">
+                        <div class="k four-it-table">
+                            <span class="k t-number">200</span>
+                            <div class="k bd-note">
+                                <span class="k t-name-it">More+</span>
+                                <div class="k ic-product"></div>
+                            </div>
+                            <div class="k ic_clock"></div>
+                            <span class="k t-status">update today</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/dashboard.js"></script>
+</body>
+</html>
