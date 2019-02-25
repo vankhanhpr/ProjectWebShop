@@ -1,0 +1,21 @@
+﻿:root{
+    --font-title:18px;
+    --font-detail:16px;
+    --c-tt-bl:#333333;
+    --c-tt-wt:white;
+    --c-dt-bl:#333333;
+    --c-dt-wt:white;
+
+}
+.k {
+    position: relative;
+    float: left;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.t {
+    font-family: inherit;
+    line-height: 1.1;
+    margin-top: 10px;
+}

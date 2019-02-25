@@ -1,0 +1,266 @@
+﻿@import url("adminconfig.css");
+
+:root {
+    --cl-bg-l: #404e67;
+    --cl-bg-r: #f3f3f3;
+    --h-image-pdt: 135px;
+}
+
+@media only screen and (min-width:0) {
+    .main-form {
+        width: 100%;
+    }
+
+    .bd-catagory {
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .t-nt-tt-pr {
+        color: var(--c-tt-wt);
+    }
+
+    .ic-add-category {
+        background-size: contain;
+        background-image: url(/images/admin/ic_plus.png);
+    }
+    .ic-add-pdt {
+        background-size: contain;
+        background-image: url(/images/admin/ic_add.png);
+    }
+
+    .t-name-pr {
+        color: var(--c-dt-wt);
+    }
+
+    .bd-prd {
+        width: 100%;
+        cursor: pointer;
+    }
+    .bd-prd:hover {
+        background-color: #fbedbb;
+    }
+    
+    .ic-pdt {
+        background-size: contain;
+        background-image: url(/images/admin/ic_l_product.png);
+    }
+
+    .ic-next {
+        background-size: contain;
+        background-image: url(/images/admin/ic_next.png);
+    }
+
+    .item-pr-form {
+        width: 100%;
+        background-color: #fbedbb;
+        margin-bottom: 5px;
+        border-radius: 4px;
+    }
+
+    .img-pdt {
+        background-image: url(/images/admin/tea.jpg);
+    }
+
+    .name-product {
+        text-align: left;
+        font-weight: 600;
+        color: var(--c-tt-bl);
+        width: 100%;
+    }
+
+    .total-pdt {
+        text-align: left;
+        color: var(--c-tt-bl);
+    }
+
+    .t-warning {
+        text-align: left;
+        color: red;
+    }
+
+    .ic_edit_pdt {
+        background-size: contain;
+        background-image: url(/images/admin/ic_edit.png);
+        float: right;
+    }
+
+    .ic_delete_pdt {
+        background-size: contain;
+        background-image: url(/images/admin/ic_delete.png);
+        float: right;
+    }
+
+    .t-add-pdt {
+        color: var(--c-tt-bl);
+        text-align: left;
+        cursor:pointer;
+        font-weight:500;
+    }
+    .f-add-ctl{
+        width:30%;
+        text-align:center;
+    }
+    .ctl-tt {
+        color:var(--c-dt-bl);
+        font-weight:500;
+    }
+    .input-ctg {
+        color: var(--c-dt-bl);
+        border:1px solid rgba(51,51,51,0.12);
+
+    }
+    .input-pdt {
+        color: var(--c-dt-bl);
+        border: 1px solid rgba(51,51,51,0.12);
+    }
+    .bnt_add_ctg {
+        color: var(--c-dt-bl);
+        text-align: center;
+        width: 100%;
+        padding: 5px;
+        background-color: #fbedbb;
+        font-weight:600;
+        border-radius:4px;
+        cursor:pointer;
+    }
+    .pdt-tt {
+        color: var(--c-dt-bl);
+        font-weight: 500;
+        text-align:left;
+    }
+}
+
+@media only screen and (min-width:1200px) {
+    .l-form {
+        width: 20%;
+        border-right: 1px solid rgba(51,51,15,0.2);
+        background-color: var(--cl-bg-l);
+        padding-bottom: 50px;
+    }
+
+    .r-form {
+        width: 80%;
+        padding: 20px;
+        background-color: var(--cl-bg-r);
+        padding-bottom: 50px;
+    }
+
+    .bd-catagory {
+        width: 100%;
+        padding: 10px 20px;
+    }
+
+    .t-nt-tt-pr {
+        font-size: var(--font-title);
+        padding: 5px 0;
+        width: 80%;
+    }
+
+    .ic-add-category {
+        width: 20%;
+        height: 20px;
+        margin-top: 15px;
+        cursor:pointer;
+    }
+    .ic-add-pdt {
+        width: 20px;
+        height: 15px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-right: 10px;
+        cursor:pointer;
+    }
+
+    .bd-prd {
+        padding: 5px 0;
+    }
+
+    .t-name-pr {
+        width: 100%;
+        font-size: var(--font-detail);
+        padding: 5px 0;
+        width: 60%;
+    }
+
+    .ic-pdt {
+        width: 20%;
+        height: 18px;
+        margin-top: 14px;
+    }
+
+    .ic-next {
+        width: 20%;
+        height: 16px;
+        margin-top: 15px;
+    }
+
+    .img-pdt {
+        width: 30%;
+        height: var(--h-image-pdt);
+    }
+
+    .f-pdt-name {
+        width: 35%;
+        padding: 10px 20px;
+    }
+
+    .name-product {
+        font-size: var(--font-title);
+    }
+
+    .total-pdt {
+        font-size: var(--font-detail);
+        width: 100%;
+    }
+
+    .t-warning {
+        font-size: var(--font-detail);
+        width: 100%;
+    }
+
+    .ic_edit_pdt {
+        width: 15%;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    .ic_delete_pdt {
+        width: 15%;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    .t-add-pdt {
+        font-size: var(--font-title);
+        width: auto;
+    }
+    .ctl-tt {
+        font-size:var(--font-detail);
+        width:40%;
+    }
+    .input-ctg {
+        font-size: var(--font-detail);
+        width: 60%;
+        margin-top: 5px;
+        padding:5px;
+    }
+    .bnt_add_ctg {
+        font-size:var(--font-detail);
+        margin-top:20px;
+
+    }
+    .pdt-tt {
+        font-size: var(--font-detail);
+        width:30%;
+    }
+    .input-pdt {
+        width: 70%;
+        font-size: var(--font-detail);
+        margin-top: 5px;
+        padding: 5px;
+    }
+    .bd-add-pdt{
+        width:100%;
+    }
+}
