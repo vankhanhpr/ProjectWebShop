@@ -12,9 +12,9 @@ namespace ProjectWebShop.Model
         public int prid { get; set; }
         public string prname { get; set; }
         public int total { get; set; }
-        public string image1 { get; set; }
-        public int importprice { get; set; }
-        public int price { get; set; }
-        public string lineprid { get; set; }
+        public string image { get; set; }
+        public long importprice { get; set; }
+        public long price { get; set; }
+        public int lineprid { get; set; }
     }
 }

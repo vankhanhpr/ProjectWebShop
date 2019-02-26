@@ -26,9 +26,42 @@ namespace ProjectWebShop.Controllers
             return _iproductResponsitory.GetAllWidthProducts();
         }
         [HttpPost("InsertProduct")]
-        public void UpdateProducte([FromBody]Products pdt)
+        public void SaveProduct([FromBody]Products pdt)
         {
             _iproductResponsitory.SaveProduct(pdt);
+        }
+        [HttpPost("UpdateProduct")]
+        public object UpdateProduct([FromBody]Products pdt)
+        {
+            if (pdt == null)
+            {
+                return Ok(new { data = "Error" }); ;
+            }
+            else
+            {
+                _iproductResponsitory.UpdateProduct(pdt);
+                return Ok(new { data = "Success" });
+            }
+        }
+        //https://localhost:44337/api/products/DeleteProduct?id=1
+        [HttpPost("DeleteProduct")]
+        public object DeleteProduct(int id)
+        {
+            try
+            {
+                _iproductResponsitory.DeleteProduct(id);
+                return Ok(new { data = "Success" });
+            }
+            catch(Exception e)
+            {
+               return Ok(new { data = "Error" });
+            }
+        }
+        //https://localhost:44337/api/products/GetByuLine?id=2
+        [HttpPost("GetByuLine")]
+        public dynamic GetByuLine(int id)
+        {
+            return _iproductResponsitory.GetProductByLinePr(id);
         }
     }
 }

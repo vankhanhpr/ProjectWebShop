@@ -20,10 +20,17 @@ namespace ProjectWebShop.Responsitory
         {
             return context.Products.ToList();
         }
+        public dynamic GetProductByLinePr(int id)
+        {
+           var ab =  context.Products
+                .Join(context.LineProducts, a => a.lineprid, b => b.lineprid , (a, b) => new {a}).Where(p=>p.a.lineprid==id);
+
+            return ab.ToList();
+        }
         public Products GetProductById(int id)
         {
             return context.Products
-                .Where(p=> p.prid == id)
+                .Where(p => p.prid == id)
                 .FirstOrDefault();
         }
         public void SaveProduct(Products product)
@@ -39,7 +46,16 @@ namespace ProjectWebShop.Responsitory
         }
         public void UpdateProduct(Products product)
         {
+            context.Update(product);
             context.SaveChanges();
         }
+
+        //public IEnumerable<Products> IProductResponsitory.GetProductByLinePr(string id)
+        //{
+        //    var ab = context.Products
+        //         .Join(context.LineProducts, a => a.lineprid, b => b.lineprid, (a, b) => new { a });
+
+        //    return ab.toI;
+        //}
     }
 }

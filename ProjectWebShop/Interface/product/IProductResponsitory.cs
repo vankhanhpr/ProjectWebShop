@@ -14,5 +14,6 @@ namespace ProjectWebShop.Interface.product
         void SaveProduct(Products product);
         void DeleteProduct(int id);
         void UpdateProduct(Products product);
+        dynamic GetProductByLinePr(int id);
     }
 }

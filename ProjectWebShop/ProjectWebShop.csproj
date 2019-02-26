@@ -6,8 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Upload\h2c35o1foo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Interface\file\" />
-    <Folder Include="wwwroot\image\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>
