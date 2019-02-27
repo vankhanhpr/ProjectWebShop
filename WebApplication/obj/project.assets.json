@@ -5523,7 +5523,6 @@
       "sha512": "ab4+TZw3Sxqrr5TwrwVyABeQkhSxYMJXgG6yZw7T+r6Vz+hcOt+pK79o15ESG7kZvWAK9wRG7emnTIia5O6R1Q==",
       "type": "package",
       "path": "microsoft.aspnetcore.razor.design/2.1.2",
-      "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5887,7 +5886,6 @@
       "sha512": "HS3iRWZKcUw/8eZ/08GXKY2Bn7xNzQPzf8gRPHGSowX7u7XXu9i9YEaBeBNKUXWfI7qjvT2zXtLUvbN0hds8vg==",
       "type": "package",
       "path": "microsoft.codeanalysis.analyzers/1.1.0",
-      "hasTools": true,
       "files": [
         ".nupkg.metadata",
         "ThirdPartyNotices.rtf",
@@ -6159,7 +6157,6 @@
       "sha512": "OYHhKbFNJCSHpkLAKI9yqTx3+SZ7aHKZaCP+G5ctlL/rZm5Y37Ke00abUhp5mFEJlvEueYfOGDx/GjltEs210A==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.tools/2.1.1",
-      "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",

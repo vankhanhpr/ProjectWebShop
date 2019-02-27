@@ -1,0 +1,294 @@
+﻿@import url("config.css");
+
+:root {
+    --cl-orange: #ef7147;
+}
+
+@media only screen and (min-width:0) {
+    .container-fluid {
+        padding: 0;
+    }
+
+    .main-form {
+        background-image: url(/images/home/bg_home.png);
+        background-repeat: repeat;
+        width: 100%;
+        background-size: auto;
+    }
+
+    .bg-slider {
+        background-image: url(/images/home/test.png);
+        background-size: cover;
+        width: 100%;
+    }
+
+    .f-dt-note {
+        text-align: center;
+    }
+
+    .t-f-favr {
+        font-weight: 500;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        display: inline-block;
+        margin: auto;
+        position: relative;
+    }
+
+    .bf-t-note {
+        content: "";
+        width: 215px;
+        border: 0.75px dashed #c3c3c3;
+        display: inline-block;
+        margin: auto;
+        position: relative;
+        margin-bottom: 5px;
+    }
+    .db-it-prd {
+        border-radius: 5px;
+    }
+    .main-it {
+        border: 1px solid white;
+        background-color: white;
+        border-radius: 5px;
+    }
+    .bd-img {
+        width: 100%;
+    }
+    .db-it-prd :hover .bd-img {
+        -webkit-transform: scale(1.03);
+        transform: scale(1.03);
+        -webkit-transition: all 0.7s ease;
+        transition: all 0.5s ease;
+    }
+    .img-product {
+        background-image: url(/images/home/testpdt.jpg);
+        background-size: cover;
+        width: 100%;
+    }
+    .img-product{
+        width:100%;
+    }
+    .t-name-it {
+        color: var(--c-tt-bl);
+        font-weight: 400;
+        text-align: left;
+        background: transparent;
+        font-family: "UTMBryantLGBold",sans-serif;
+        word-wrap: break-word;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        line-height: 1.412;
+        font-weight:500;
+    }
+    .t-price-it {
+        color: var(--cl-orange);
+        font-weight: 400;
+        text-align: left;
+        background: transparent;
+        font-family: "UTMBryantLGBold",sans-serif;
+        word-wrap: break-word;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        line-height: 1.412;
+        font-weight:500;
+    }
+    .t-price-pro-it {
+        color: var(--c-tt-bl);
+        font-weight: 400;
+        text-align: left;
+        background: transparent;
+        font-family: "UTMBryantLGBold",sans-serif;
+        word-wrap: break-word;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        line-height: 1.412;
+        font-weight: 500;
+        text-decoration: line-through;
+        opacity:0.6;
+    }
+    .f-dt-pdt{
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        margin:auto;
+        text-align:center;
+    }
+    .fa-shopping-cart {
+        font-size: 25px;
+        padding: 8px 10px;
+        background-color: rgba(255,255,255,0.9);
+        border-radius: 5px;
+        display: none;
+        cursor: pointer;
+    }
+    .db-it-prd :hover .fa-shopping-cart{
+        display:block;
+    }
+    .fa-info {
+        font-size: 25px;
+        padding: 8px 18px;
+        background-color: rgba(255,255,255,0.9);
+        border-radius: 5px;
+        display: none;
+        cursor:pointer;
+    }
+    .fa-shopping-cart:hover {
+        color: white;
+        background-color: var(--cl-orange);
+    }
+    .fa-info:hover {
+        color: white;
+        background-color: var(--cl-orange);
+    }
+    .db-it-prd :hover .fa-info {
+        display: block;
+    }
+    .owl-dots {
+        width: 100%;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+    .owl-dot {
+        background: #ef7147;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        /*background: #d1d1d1;*/
+        border-radius: 50%;
+        margin: 0 3px;
+    }
+    .f-new-pdt{
+        width:100%;
+        background-color:rgba(51,51,51,0.2);
+    }
+    .t-new-pdt {
+        color: var(--c-dt-wt);
+    }
+    .t-new-pdt-line {
+        border: 0.75px dashed white;
+    }
+    .body-it-new{
+        width:100%;
+        background-color:rgba(51,51,51,0.2);
+        border-radius:4px;
+        padding:10px;
+    }
+    .img-it-new{
+        background-image:url(/images/home/testpdt.jpg);
+        width:20%;
+        height:120px;
+        border-radius:4px;
+    }
+    .f-note-inf{
+        width:80%;
+        padding-left:10px;
+    }
+    .t-name-it-new {
+        color: var(--c-dt-wt);
+        text-align: left;
+        background: transparent;
+        font-family: "UTMBryantLGBold",sans-serif;
+        word-wrap: break-word;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        line-height: 1.412;
+        font-weight: 500 ;
+        width:100%;
+    }
+    .t-inf-it {
+        color: var(--c-dt-wt);
+        text-align: left;
+        background: transparent;
+        font-family: "UTMBryantLGBold",sans-serif;
+        word-wrap: break-word;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        line-height: 1.412;
+        font-weight: 500 ;
+        width:100%;
+    }
+}
+
+@media only screen and (min-width:1200px) {
+    .bg-slider {
+        height: 365px;
+        margin-bottom: 50px;
+    }
+
+    .f-dt-note {
+        width: 100%;
+        padding: 5px 0;
+    }
+
+    .t-f-favr {
+        font-size: 20px;
+    }
+
+    .bd-main-it {
+        width: 100%;
+        padding: 0 5%;
+        margin-top:20px;
+        margin-bottom:20px;
+    }
+
+    .db-it-prd {
+        width: 33.33333%;
+        margin-bottom: 50px;
+        padding-left:10px;
+        padding-right:10px;
+    }
+    .main-it {
+        width: 100%;
+        padding: 6px;
+        
+    }
+    .bd-img {
+        height:290px;
+    }
+    .img-product {
+        height: 290px;
+    }
+    .t-name-it {
+        font-size: var(--font-title);
+        width: 100%;
+    }
+    .t-price-it{
+        width:auto;
+        margin-right:30px;
+        font-size:var(--font-title);
+    }
+    .t-price-pro-it {
+        width: auto;
+        font-size: var(--font-detail);
+    }
+    .f-dt-pdt {
+        width: max-content;
+        height: 60px;
+    }
+    .it-fvr{
+        width:25%;
+    }
+    .bd-id-new{
+        width:50%;
+        padding:10px;
+    }
+    .t-name-it-new {
+        font-size: var(--font-detail);
+    }
+    .t-inf-it {
+        font-size: var(--font-detail);
+    }
+    .f-new-pdt{
+        padding-top:40px;
+        margin-bottom:50px;
+    }
+}

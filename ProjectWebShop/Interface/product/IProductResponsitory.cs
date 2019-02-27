@@ -10,6 +10,9 @@ namespace ProjectWebShop.Interface.product
     public interface IProductResponsitory:IResponsitory<Products>
     {
         IEnumerable<Products> GetAllWidthProducts();
-        Products GetProductById(int id);
+        Products GetProductById(string id);
+        void SaveProduct(Products product);
+        void DeleteProduct(string id);
+        void UpdateProduct(Products product);
     }
 }

@@ -4,9 +4,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>302218dc-db32-40e1-af8b-510b459a8f39</UserSecretsId>
   </PropertyGroup>
-
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Folder Include="Interface\file\" />
+    <Folder Include="wwwroot\image\" />
   </ItemGroup>
 
   <ItemGroup>

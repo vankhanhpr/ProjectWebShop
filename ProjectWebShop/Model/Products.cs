@@ -8,9 +8,13 @@ namespace ProjectWebShop.Model
 {
     public class Products
     {
-
         [Key]
-        public int id { get; set; }
-        public string name { get; set; }
+        public string prid { get; set; }
+        public string prname { get; set; }
+        public int total { get; set; }
+        public string image { get; set; }
+        public int importprice { get; set; }
+        public int price { get; set; }
+        public string lineprid { get; set; }
     }
 }
