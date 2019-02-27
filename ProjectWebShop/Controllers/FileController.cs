@@ -1,5 +1,5 @@
 ﻿
-using System.IO;
+
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +7,7 @@ using ProjectWebShop.Model;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.IO;
 
 namespace ProjectWebShop.Controllers
 {
@@ -49,6 +50,30 @@ namespace ProjectWebShop.Controllers
             return RedirectToAction("Files");
         }
 
+        [HttpPost("RemoveListFile")]
+        public object RemoveListFiles(List<string> files)
+        {
+            if (files == null || files.Count == 0)
+                return Content("files not selected");
+            foreach (var f in files)
+            {
+                try
+                {
+                    if (System.IO.File.Exists(f))
+                    {
+                        System.IO.File.Delete(f);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                   
+                }
+            }
+            return "OK";
+        }
+
+        //random image 
         private static Random random = new Random();
         public static string RandomString(int length)
         {

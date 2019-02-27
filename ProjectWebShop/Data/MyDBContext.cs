@@ -9,6 +9,6 @@ namespace WebApiMyShop.Data
         }
         public MyDBContext() { }
         public DbSet<Products> Products { get; set; }
-
+        public DbSet<LineProducts> LineProducts { get; set; }
     }
 }
