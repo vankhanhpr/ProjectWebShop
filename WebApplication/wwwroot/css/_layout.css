@@ -7,7 +7,19 @@
     --fs-tt-big: 20px;
     --fs-small: 14px;
 }
+.k {
+    position: relative;
+    float: left;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+}
 
+.t {
+    font-family: inherit;
+    line-height: 1.1;
+    margin-top: 10px;
+}
 @media only screen and (min-width:0) {
     .container-fluid {
         padding: 0;
@@ -65,10 +77,9 @@
         display: block;
         background-size: unset;
         z-index: 3;
-        margin-top: 5px;
         position: relative;
         display: inline-block;
-        bottom: 0;
+        bottom: -22px;
     }
 
     .logo {
@@ -89,6 +100,8 @@
     }
 
     .t-link {
+        position:relative;
+        float:left;
         color: var(--cl-head);
         text-decoration: none;
     }
@@ -207,7 +220,7 @@
         text-align:left;
         position:relative;
         float:left;
-        margin-top:10px;
+        margin-top:4px;
         margin-right:10px;
     }
     .t-inf{
@@ -248,6 +261,7 @@
     .f-search {
         width: 100%;
         padding-left: 5%;
+        height:45px;
     }
 
     .t-nt-hotline {
