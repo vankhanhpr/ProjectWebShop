@@ -21,7 +21,7 @@ namespace ProjectWebShop.Controllers
             this._iproductResponsitory = iproductResponsitory;
         }
         [HttpGet("GetAllProduct")]
-        public IEnumerable<Products> GetAll()
+        public dynamic GetAll()
         {
             return _iproductResponsitory.GetAllWidthProducts();
         }

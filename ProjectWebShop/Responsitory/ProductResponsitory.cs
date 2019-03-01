@@ -9,27 +9,36 @@ using WebApiMyShop.Data;
 
 namespace ProjectWebShop.Responsitory
 {
-    public class ProductResponsitory : Responsitory<Products>,IProductResponsitory
+    public class ProductResponsitory : Responsitory<Products>, IProductResponsitory
     {
         private DbSet<Products> productEntity;
-        public ProductResponsitory(MyDBContext context):base (context)
+        public ProductResponsitory(MyDBContext context) : base(context)
         {
             productEntity = context.Set<Products>();
         }
-        public IEnumerable<Products> GetAllWidthProducts()
+        public dynamic GetAllWidthProducts()
         {
-            return context.Products.ToList();
+            //var pdt = context.Products
+            //    .Join(context.ImageProducts, product => product.prid,
+            //    images => images.prid, (product, images) => new { product, images });
+
+            var pdt = context.Products.Select(product => new
+            {
+                product,
+                images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
+            });
+            return pdt.ToList();
         }
         public dynamic GetProductByLinePr(int id)
         {
-           var ab =  context.Products
-                .Join(context.LineProducts, a => a.lineprid, b => b.lineprid , (a, b) => new {a}).Where(p=>p.a.lineprid==id);
+            var ab = context.Products
+                 .Join(context.LineProducts, a => a.lineprid, b => b.lineprid, (a, b) => new { a }).Where(p => p.a.lineprid == id);
 
             return ab.ToList();
         }
         public Products GetProductById(int id)
         {
-            return context.Products
+            return context.Products  
                 .Where(p => p.prid == id)
                 .FirstOrDefault();
         }
@@ -49,13 +58,5 @@ namespace ProjectWebShop.Responsitory
             context.Update(product);
             context.SaveChanges();
         }
-
-        //public IEnumerable<Products> IProductResponsitory.GetProductByLinePr(string id)
-        //{
-        //    var ab = context.Products
-        //         .Join(context.LineProducts, a => a.lineprid, b => b.lineprid, (a, b) => new { a });
-
-        //    return ab.toI;
-        //}
     }
 }

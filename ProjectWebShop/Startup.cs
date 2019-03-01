@@ -41,14 +41,18 @@ namespace ProjectWebShop
 
             services.AddSingleton<IFileProvider>(
                new PhysicalFileProvider(
-                   Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));//image
+                   Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images")));//image
             services.AddTransient<IProductResponsitory, ProductResponsitory>();//prodcut
+            services.AddTransient<IImageProductResponsitory, ImageProductResponsitory>();//imageproduct
+            services.AddTransient<IEvaluateResponsitory, EvaluateResponsitory>();//evaluate
             //services.AddMvc();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+             app.UseStaticFiles();//show image
+            app.UseDefaultFiles();//show image
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace ProjectWebShop.Model
 {
-    public class LineProducts
+    public class ImageProducts
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int lineprid { get; set; }
-        public string linename { get; set; }
+        public int imgid { get; set; }
+        public string image { get; set; }
+        public int prid { get; set; }
     }
 }

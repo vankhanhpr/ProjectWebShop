@@ -4,24 +4,48 @@ use mydatabase;
 
 
 Create table lineproducts(
-lineprid nvarchar(50) primary key not null,
+lineprid int primary key not null  IDENTITY(1, 1),
 linename nvarchar(100)
 );
+create table imageproducts(
+	imgid int not null  IDENTITY(1, 1),
+	image nvarchar(max),
+	prid int ,
+	foreign key (prid) references products
+)
 Create table products (
- prid nvarchar(50),
+ prid int not null  IDENTITY(1, 1),
  prname nvarchar(100),
  total int ,
- image nvarchar(100),
- importprice double,
- price double,
- lineprid nvarchar(50) ,
+ importprice bigint,
+ price bigint,
+ lineprid int ,
+ totalview int,
+ totallike int,
+ evaluate float,
  primary key (prid),
  foreign key (lineprid) references lineproducts(lineprid)
 );
+Create table evaluates(
+	evaid int not null  IDENTITY(1, 1),
+	comment nvarchar(500),
+	evaluate int,
+	usid int,
+	prid int ,
+	primary key (evaid),
+	foreign key (usid) references users,
+	foreign key (prid) references products
+)
+Create table imgcomments(
+icmtid int Identity ( 1,1) primary key,
+image nvarchar(max),
+evaid int,
+foreign key(evaid) references evaluates
+)
 Create table carts(
 cartid nvarchar(50) primary key,
 money double,
-prid nvarchar(50),
+prid nvarchar(50), 
 foreign key (prid) references products(prid)
 );
 Create table users (
