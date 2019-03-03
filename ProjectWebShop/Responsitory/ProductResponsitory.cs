@@ -29,9 +29,7 @@ namespace ProjectWebShop.Responsitory
             });
             return pdt.ToList();
         }
-<<<<<<< HEAD
-        public Products GetProductById(string id)
-=======
+
         public dynamic GetProductByLinePr(int id)
         {
             var ab = context.Products
@@ -40,7 +38,6 @@ namespace ProjectWebShop.Responsitory
             return ab.ToList();
         }
         public Products GetProductById(int id)
->>>>>>> 812a570574fd07dafcc527858df96b137123a2d6
         {
             return context.Products  
                 .Where(p => p.prid == id)
@@ -51,7 +48,7 @@ namespace ProjectWebShop.Responsitory
             context.Entry(product).State = EntityState.Added;
             context.SaveChanges();
         }
-        public void DeleteProduct(string id)
+        public void DeleteProduct(int id)
         {
             Products product = GetProductById(id);
             productEntity.Remove(product);

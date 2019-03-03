@@ -31,7 +31,7 @@ namespace WebApplication
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -50,7 +50,7 @@ namespace WebApplication
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseCors(options => options.WithOrigins("https://localhost:44328").AllowAnyMethod());
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

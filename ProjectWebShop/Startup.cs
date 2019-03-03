@@ -16,6 +16,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using ProjectWebShop.Interface.lineproduct;
 using ProjectWebShop.Interface.product;
 using ProjectWebShop.Responsitory;
 using WebApiMyShop.Data;
@@ -42,16 +43,18 @@ namespace ProjectWebShop
             services.AddSingleton<IFileProvider>(
                new PhysicalFileProvider(
                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images")));//image
+            services.AddTransient<ILineProductResponsitory, LineProductResponsitory>();//prodcut
             services.AddTransient<IProductResponsitory, ProductResponsitory>();//prodcut
             services.AddTransient<IImageProductResponsitory, ImageProductResponsitory>();//imageproduct
             services.AddTransient<IEvaluateResponsitory, EvaluateResponsitory>();//evaluate
             //services.AddMvc();
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-             app.UseStaticFiles();//show image
+            app.UseStaticFiles();//show image
             app.UseDefaultFiles();//show image
             if (env.IsDevelopment())
             {
@@ -66,6 +69,9 @@ namespace ProjectWebShop
             app.UseAuthentication();//add token
             app.UseDeveloperExceptionPage();//filter user
             app.UseMvcWithDefaultRoute();///filter user
+            app.UseCors(options => options.WithOrigins("https://localhost:44337").AllowAnyMethod()
+    );
+
         }
     }
 }

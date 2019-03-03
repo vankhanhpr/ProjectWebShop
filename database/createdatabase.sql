@@ -4,17 +4,17 @@ use mydatabase;
 
 
 Create table lineproducts(
-lineprid int primary key not null  IDENTITY(1, 1),
+lineprid int primary key not null  AUTO_INCREMENT,
 linename nvarchar(100)
 );
 create table imageproducts(
-	imgid int not null  IDENTITY(1, 1),
-	image nvarchar(max),
+	imgid int primary key not null  AUTO_INCREMENT ,
+	image nvarchar(100),
 	prid int ,
 	foreign key (prid) references products
-)
-Create table products (
- prid int not null  IDENTITY(1, 1),
+);
+create table products (
+ prid int not null  AUTO_INCREMENT,
  prname nvarchar(100),
  total int ,
  importprice bigint,
@@ -27,7 +27,7 @@ Create table products (
  foreign key (lineprid) references lineproducts(lineprid)
 );
 Create table evaluates(
-	evaid int not null  IDENTITY(1, 1),
+	evaid int not null  AUTO_INCREMENT,
 	comment nvarchar(500),
 	evaluate int,
 	usid int,
@@ -35,13 +35,13 @@ Create table evaluates(
 	primary key (evaid),
 	foreign key (usid) references users,
 	foreign key (prid) references products
-)
+);
 Create table imgcomments(
-icmtid int Identity ( 1,1) primary key,
+icmtid int AUTO_INCREMENT primary key,
 image nvarchar(max),
 evaid int,
 foreign key(evaid) references evaluates
-)
+);
 Create table carts(
 cartid nvarchar(50) primary key,
 money double,
