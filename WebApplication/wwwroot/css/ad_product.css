@@ -60,6 +60,7 @@
 
     .img-pdt {
         background-image: url(/images/admin/tea.jpg);
+        background-size: contain;
     }
 
     .name-product {

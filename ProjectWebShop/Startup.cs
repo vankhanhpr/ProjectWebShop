@@ -36,9 +36,9 @@ namespace ProjectWebShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<MyDBContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<MyDBContext>(options =>
-            options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<MyDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<MyDBContext>(options =>
+            //options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSingleton<IFileProvider>(
                new PhysicalFileProvider(
@@ -64,13 +64,19 @@ namespace ProjectWebShop
             {
                 app.UseHsts();
             }
+            //app.UseCors(options => options.WithOrigins("https://localhost:44328").AllowAnyMethod());
+
+            app.UseCors(builder => builder
+                                    .AllowAnyOrigin()
+                                    .AllowAnyMethod()
+                                    .AllowAnyHeader()
+                                    .AllowCredentials());
             app.UseHttpsRedirection();
             app.UseMvc();
             app.UseAuthentication();//add token
             app.UseDeveloperExceptionPage();//filter user
             app.UseMvcWithDefaultRoute();///filter user
-            app.UseCors(options => options.WithOrigins("https://localhost:44337").AllowAnyMethod()
-    );
+
 
         }
     }

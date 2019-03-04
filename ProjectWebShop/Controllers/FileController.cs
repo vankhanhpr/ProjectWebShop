@@ -77,13 +77,35 @@ namespace ProjectWebShop.Controllers
         {
             if (pd == null)
                 return Ok("Error");
+            var i = pd.imagerq.GetFilename().Split(".");
+            var nameimg = RandomString(10) + "." + i[1];
+            var fpath = Path.Combine(
+                        Directory.GetCurrentDirectory(), "wwwroot/images",
+                        nameimg);
+            using (var stream = new FileStream(fpath, FileMode.Create))
+            {
+                await pd.imagerq.CopyToAsync(stream);
+            }
+
             var prod = new Products();
             prod.prname = pd.prname;
             prod.total = pd.total;
             prod.lineprid = pd.lineprid;
             prod.importprice = pd.importprice;
             prod.price = pd.price;
-            _iproductResponsitory.SaveProduct(prod);
+            prod.image = nameimg;
+            prod.mnday = pd.mnday;
+            prod.expirydate = pd.expirydate;
+            try
+            {
+                _iproductResponsitory.SaveProduct(prod);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
             foreach (var file in pd.files)
             {
                 var x = file.GetFilename().Split(".");

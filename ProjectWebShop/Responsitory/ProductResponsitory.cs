@@ -32,16 +32,17 @@ namespace ProjectWebShop.Responsitory
 
         public dynamic GetProductByLinePr(int id)
         {
+            //var ab = context.Products
+            //  .Join(context.LineProducts, a => a.lineprid, b => b.lineprid, (a, b) => new { a }).Where(p => p.a.lineprid == id);
             var ab = context.Products
-                 .Join(context.LineProducts, a => a.lineprid, b => b.lineprid, (a, b) => new { a }).Where(p => p.a.lineprid == id);
+              .Join(context.LineProducts, a => a.lineprid, b => b.lineprid, (a, b) => new { a }).Where(p => p.a.lineprid == id);
 
             return ab.ToList();
         }
-        public Products GetProductById(int id)
+        public dynamic GetProductById(int id)
         {
-            return context.Products  
-                .Where(p => p.prid == id)
-                .FirstOrDefault();
+            return context.Products
+                .Where(p => p.lineprid == id).ToList();
         }
         public void SaveProduct(Products product)
         {

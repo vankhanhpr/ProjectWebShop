@@ -31,19 +31,19 @@ namespace WebApplication.Controllers
 
             return View();
         }
-        public async Task<IActionResult> SendRequestAsyncSchedule()
-        {
-            List<LineProducts> list = new List<LineProducts>();
-            HttpClient client = data.Initial();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage res = await client.GetAsync("LineProduct/GetAllLineProduct").ConfigureAwait(false); ;
-            if (res.IsSuccessStatusCode)
-            {
-                var result = res.Content.ReadAsStringAsync().Result;
-                list = JsonConvert.DeserializeObject<List<LineProducts>>(result);
-            }
-            return View(list);
-        }
+        //public async Task<IActionResult> SendRequestAsyncSchedule()
+        //{
+        //    List<LineProducts> list = new List<LineProducts>();
+        //    HttpClient client = data.Initial();
+        //    client.DefaultRequestHeaders.Accept.Clear();
+        //    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+        //    HttpResponseMessage res = await client.GetAsync("LineProduct/GetAllLineProduct").ConfigureAwait(false); ;
+        //    if (res.IsSuccessStatusCode)
+        //    {
+        //        var result = res.Content.ReadAsStringAsync().Result;
+        //        list = JsonConvert.DeserializeObject<List<LineProducts>>(result);
+        //    }
+        //    return View(list);
+        //}
     }
 }

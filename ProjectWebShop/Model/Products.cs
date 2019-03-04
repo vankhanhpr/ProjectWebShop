@@ -21,5 +21,7 @@ namespace ProjectWebShop.Model
         public int totallike { get; set; }
         public double evaluate { get; set; }
         public string image { get; set; }
+        public DateTime mnday { get; set; }
+        public DateTime expirydate { get; set; }
     }
 }

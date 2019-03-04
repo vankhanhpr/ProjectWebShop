@@ -1,14 +1,15 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<link rel="stylesheet" type="text/css" href="~/css/ad_product.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="~/css/ad_product.css"> 
 <div class="k main-form">
-    <div class="k l-form">
+    <div class="k l-form" id="f-ln-prd">
         <div class="k bd-catagory">
             <span class="k t t-nt-tt-pr">Product Category</span>
             <div class="k ic-add-category" onclick="showdialog()"></div>
         </div>
-        <div class="k bd-prd">
+        @*<div class="k bd-prd">
             <div class="k ic-pdt"></div>
             <span class="k t t-name-pr">Milk tea</span>
             <div class="k ic-next"></div>
@@ -22,12 +23,12 @@
             <div class="k ic-pdt"></div>
             <span class="k t  t-name-pr">Yaourt</span>
             <div class="k ic-next"></div>
-        </div>
+        </div>*@
     </div>
-    <div class="k r-form">
+    <div class="k r-form" id="f-it-products">
         <div class="k ic-add-pdt" onclick="showdialogPrduct()"></div>
         <span class="k t t-add-pdt" onclick="showdialogPrduct()">Add Product</span>
-        <div class="k item-pr-form">
+        @*<div class="k item-pr-form">
             <div class="k img-pdt"></div>
             <div class="k f-pdt-name">
                 <span class="k t name-product">Trà sữa trân châu đường đen</span>
@@ -41,37 +42,7 @@
                 <div class="k ic_delete_pdt"></div>
                 <div class="k ic_edit_pdt"></div>
             </div>
-        </div>
-        <div class="k item-pr-form">
-            <div class="k img-pdt"></div>
-            <div class="k f-pdt-name">
-                <span class="k t name-product">Trà sữa thạch trái cây</span>
-                <span class="k t total-pdt">Total: 35</span>
-            </div>
-            <div class="k f-pdt-name">
-                <span class="k t name-product">Saleprice: 20.000 Đ</span>
-                <span class="k t total-pdt">Import price: 10.000 Đ</span>
-                <span class="k t total-pdt">Manufacturing date: 12/01/2019</span>
-                <span class="k t t-warning">Expiry date: 12/12/2019</span>
-                <div class="k ic_delete_pdt"></div>
-                <div class="k ic_edit_pdt"></div>
-            </div>
-        </div>
-        <div class="k item-pr-form">
-            <div class="k img-pdt"></div>
-            <div class="k f-pdt-name">
-                <span class="k t name-product">Trà sữa vị đào</span>
-                <span class="k t total-pdt">Total: 35</span>
-            </div>
-            <div class="k f-pdt-name">
-                <span class="k t name-product">Saleprice: 20.000 Đ</span>
-                <span class="k t total-pdt">Import price: 10.000 Đ</span>
-                <span class="k t total-pdt">Manufacturing date: 12/01/2019</span>
-                <span class="k t t-warning">Expiry date: 12/12/2019</span>
-                <div class="k ic_delete_pdt"></div>
-                <div class="k ic_edit_pdt"></div>
-            </div>
-        </div>
+        </div>*@
     </div>
 </div>
 
@@ -121,14 +92,12 @@
     </div>
     <span class="k bnt_add_ctg">Save</span>
 </div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="~/lib/jquery/dist/jquery-1.11.1.min.js"></script>
 <script src="~/lib/jquery/dist/jquery-ui.min.js"></script>
 <script src="~/js/adproducts.js"></script>
-
+<script src="~/lib/jquery/dist/jquery_popup.js"></script>
 
 <script>
     function showdialog() {

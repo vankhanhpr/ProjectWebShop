@@ -23,6 +23,8 @@ create table products (
  totalview int,
  totallike int,
  evaluate float,
+ mnday date,
+ expirydate date,
  primary key (prid),
  foreign key (lineprid) references lineproducts(lineprid)
 );

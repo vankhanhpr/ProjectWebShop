@@ -14,6 +14,7 @@ namespace ProjectWebShop.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int prid { get; set; }
         public string prname { get; set; }
+        public string image { get; set; }
         public int total { get; set; }
         public long importprice { get; set; }
         public long price { get; set; }
@@ -21,6 +22,9 @@ namespace ProjectWebShop.Model
         public int totalview { get; set; }
         public int totallike { get; set; }
         public double evaluate { get; set; }
+        public DateTime mnday { get; set; }
+        public DateTime expirydate { get; set; }
+        public IFormFile imagerq { get; set; }
         public List<IFormFile> files { get; set; }
     }
 }

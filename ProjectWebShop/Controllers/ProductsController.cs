@@ -58,10 +58,10 @@ namespace ProjectWebShop.Controllers
             }
         }
         //https://localhost:44337/api/products/GetByuLine?id=2
-        [HttpPost("GetByuLine")]
-        public dynamic GetByuLine(int id)
+        [HttpGet("GetByLine")]
+        public dynamic GetByLine(int id)
         {
-            return _iproductResponsitory.GetProductByLinePr(id);
+            return _iproductResponsitory.GetProductById(id);
         }
     }
 }
