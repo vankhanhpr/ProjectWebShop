@@ -2,130 +2,118 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="~/css/ad_product.css"> 
+<link rel="stylesheet" type="text/css" href="~/css/ad_product.css">
 <div class="k main-form">
     <div class="k l-form" id="f-ln-prd">
         <div class="k bd-catagory">
             <span class="k t t-nt-tt-pr">Product Category</span>
-            <div class="k ic-add-category" onclick="showdialog()"></div>
+            <div class="k ic-add-category" data-toggle="modal" data-target="#myModal2"></div>
         </div>
         @*<div class="k bd-prd">
-            <div class="k ic-pdt"></div>
-            <span class="k t t-name-pr">Milk tea</span>
-            <div class="k ic-next"></div>
-        </div>
-        <div class="k bd-prd">
-            <div class="k ic-pdt"></div>
-            <span class="k t t-name-pr">Tea</span>
-            <div class="k ic-next"></div>
-        </div>
-        <div class="k bd-prd">
-            <div class="k ic-pdt"></div>
-            <span class="k t  t-name-pr">Yaourt</span>
-            <div class="k ic-next"></div>
-        </div>*@
+                <div class="k ic-pdt"></div>
+                <span class="k t t-name-pr">Milk tea</span>
+                <div class="k ic-next"></div>
+            </div>*@
     </div>
     <div class="k r-form" id="f-it-products">
-        <div class="k ic-add-pdt" onclick="showdialogPrduct()"></div>
-        <span class="k t t-add-pdt" onclick="showdialogPrduct()">Add Product</span>
+        <div class="k ic-add-pdt" data-toggle="modal" data-target="#myModal1"></div>
+        <span class="k t t-add-pdt" data-toggle="modal" data-target="#myModal1">Add Product</span>
         @*<div class="k item-pr-form">
-            <div class="k img-pdt"></div>
-            <div class="k f-pdt-name">
-                <span class="k t name-product">Trà sữa trân châu đường đen</span>
-                <span class="k t total-pdt">Total: 35</span>
-            </div>
-            <div class="k f-pdt-name">
-                <span class="k t name-product">Saleprice: 20.000 Đ</span>
-                <span class="k t total-pdt">Import price: 10.000 Đ</span>
-                <span class="k t total-pdt">Manufacturing date: 12/01/2019</span>
-                <span class="k t t-warning">Expiry date: 12/12/2019</span>
-                <div class="k ic_delete_pdt"></div>
-                <div class="k ic_edit_pdt"></div>
-            </div>
-        </div>*@
+                <div class="k img-pdt"></div>
+                <div class="k f-pdt-name">
+                    <span class="k t name-product">Trà sữa trân châu đường đen</span>
+                    <span class="k t total-pdt">Total: 35</span>
+                </div>
+                <div class="k f-pdt-name">
+                    <span class="k t name-product">Saleprice: 20.000 Đ</span>
+                    <span class="k t total-pdt">Import price: 10.000 Đ</span>
+                    <span class="k t total-pdt">Manufacturing date: 12/01/2019</span>
+                    <span class="k t t-warning">Expiry date: 12/12/2019</span>
+                    <div class="k ic_delete_pdt"></div>
+                    <div class="k ic_edit_pdt"></div>
+                </div>
+            </div>*@
     </div>
 </div>
 
 @*add category*@
-<div id="f-add-category" class="f-add-ctl" style="display:none">
-    @*<div class="login-page">
-            <div class="formlogin">
-                <form class="login-form">
-                    <input type="text" placeholder="Username" />
-                    <input type="password" placeholder="Password" />
-                    <input class="submit signin_btn fg-btn blue large inline fg-fw bold" type="submit" value="Login">
-                    <p class="message">
-                        Not registered? <a href="#">Create an account</a>
-                        <a href="#" style="margin-left:50px">Forget password</a>
-                    </p>
-                </form>
-            </div>
-        </div>*@
-    <span class="k t ctl-tt">Category name</span>
-    <input class="k input-ctg" type="text" />
-    <span class="k bnt_add_ctg">Save</span>
-</div>
-<div id="f-add-product" class="f-add-ctl" style="display:none">
-    <div class="k bd-add-pdt">
-        <span class="k t pdt-tt">Product name</span>
-        <input class="k input-pdt" type="text" />
-    </div>
-    <div class="k bd-add-pdt">
-        <span class="k t pdt-tt">Total</span>
-        <input class="k input-pdt" type="text" />
-    </div>
-    <div class="k bd-add-pdt">
-        <span class="k t pdt-tt">Saleprice</span>
-        <input class="k input-pdt" type="text" placeholder="VNĐ" />
-    </div>
-    <div class="k bd-add-pdt">
-        <span class="k t pdt-tt">Import price</span>
-        <input class="k input-pdt" type="text" placeholder="VNĐ" />
-    </div>
-    <div class="k bd-add-pdt">
-        <span class="k t pdt-tt">Manufacturing date</span>
-        <input class="k input-pdt" type="text" />
-    </div>
-    <div class="k bd-add-pdt">
-        <span class="k t pdt-tt">Expiry date</span>
-        <input class="k input-pdt" type="text" />
-    </div>
-    <span class="k bnt_add_ctg">Save</span>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="~/lib/jquery/dist/jquery-1.11.1.min.js"></script>
-<script src="~/lib/jquery/dist/jquery-ui.min.js"></script>
-<script src="~/js/adproducts.js"></script>
-<script src="~/lib/jquery/dist/jquery_popup.js"></script>
 
-<script>
-    function showdialog() {
-        $("#f-add-category").dialog({
-            autoOpen: false,
-            width: 400,
-            maxHeight: 300,
-            fluid: false,
-            title: "Add category",
-            draggable: false,
-            resizable: false,
-            modal: true,
-            position: { my: "center", at: "center" }
-        });
-        $("#f-add-category").dialog("open");
-    }
-    function showdialogPrduct() {
-        $("#f-add-product").dialog({
-            autoOpen: false,
-            width: 600,
-            maxHeight: 500,
-            fluid: false,
-            title: "Add Product",
-            draggable: false,
-            resizable: false,
-            modal: true,
-            position: { my: "center", at: "center" }
-        });
-        $("#f-add-product").dialog("open");
-    }
-</script>
+<!-- Modal -->
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add category</h4>
+            </div>
+            <div class="modal-body">
+                <span class="k t ctl-tt">Category name</span>
+                <input class="k input-ctg" type="text" />
+                <span class="k bnt_add_ctg">Save</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add products</h4>
+            </div>
+            <div class="modal-body">
+                <div class="k bd-add-pdt">
+                    <span class="k t pdt-tt">Product name</span>
+                    <input class="k input-pdt" type="text" />
+                </div>
+                <div class="k bd-add-pdt">
+                    <span class="k t pdt-tt">Total</span>
+                    <input class="k input-pdt" type="text" />
+                </div>
+
+                <div class="k bd-add-pdt">
+                    <span class="k t pdt-tt">Manufacturing date</span>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="k bd-add-pdt">
+                    <span class="k t pdt-tt">Expiry date</span>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="k bd-add-pdt-pc">
+                    <span class="k t pdt-tt-pc">Saleprice</span>
+                    <input class="k input-pdt-pc" type="text" placeholder="đ" />
+                </div>
+                <div class="k bd-add-pdt-pc">
+                    <span class="k t pdt-tt-pc" style="padding-right:0;">Import price</span>
+                    <input class="k input-pdt-pc" type="text" placeholder="đ" />
+                </div>
+                <span class="k bnt_add_ctg">Save</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

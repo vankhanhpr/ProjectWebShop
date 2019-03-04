@@ -115,6 +115,10 @@
         color: var(--c-dt-bl);
         border: 1px solid rgba(51,51,51,0.12);
     }
+    .input-pdt-pc {
+        color: var(--c-dt-bl);
+        border: 1px solid rgba(51,51,51,0.12);
+    }
     .bnt_add_ctg {
         color: var(--c-dt-bl);
         text-align: center;
@@ -129,6 +133,17 @@
         color: var(--c-dt-bl);
         font-weight: 500;
         text-align:left;
+    }
+    .pdt-tt-pc {
+        color: var(--c-dt-bl);
+        font-weight: 500;
+        text-align: left;
+    }
+    .modal-body {
+        height: auto;
+        position: relative;
+        float: left;
+        width: 100%;
     }
 }
 
@@ -261,7 +276,23 @@
         margin-top: 5px;
         padding: 5px;
     }
-    .bd-add-pdt{
-        width:100%;
+    .pdt-tt-pc {
+        font-size: var(--font-detail);
+        width: 35%;
+    }
+    .input-pdt-pc {
+        font-size: var(--font-detail);
+        width: 65%;
+        padding: 4px 5px;
+        margin-top: 5px;
+    }
+    .bd-add-pdt {
+        width: 100%;
+        margin-bottom:10px;
+    }
+    .bd-add-pdt-pc {
+        width: 50%;
+        padding-right: 5px;
+        margin-bottom: 10px;
     }
 }
