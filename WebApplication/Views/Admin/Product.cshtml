@@ -1,8 +1,9 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="~/css/ad_product.css">
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/css/ad_product.css">
+}
 <div class="k main-form">
     <div class="k l-form" id="f-ln-prd">
         <div class="k bd-catagory">
@@ -49,8 +50,8 @@
             </div>
             <div class="modal-body">
                 <span class="k t ctl-tt">Category name</span>
-                <input class="k input-ctg" type="text" />
-                <span class="k bnt_add_ctg">Save</span>
+                <input class="k input-ctg" type="text" id="ip-name-ctl" />
+                <span class="k bnt_add_ctg" onclick="insertPr()">Save</span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -77,11 +78,10 @@
                     <span class="k t pdt-tt">Total</span>
                     <input class="k input-pdt" type="text" />
                 </div>
-
                 <div class="k bd-add-pdt">
                     <span class="k t pdt-tt">Manufacturing date</span>
                     <div class="form-group">
-                        <div class='input-group date' id='datetimepicker1'>
+                        <div class='input-group date' id='datepicker'>
                             <input type='text' class="form-control" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
@@ -92,7 +92,7 @@
                 <div class="k bd-add-pdt">
                     <span class="k t pdt-tt">Expiry date</span>
                     <div class="form-group">
-                        <div class='input-group date' id='datetimepicker1'>
+                        <div class='input-group date' id='datepicker1'>
                             <input type='text' class="form-control" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
@@ -108,7 +108,24 @@
                     <span class="k t pdt-tt-pc" style="padding-right:0;">Import price</span>
                     <input class="k input-pdt-pc" type="text" placeholder="đ" />
                 </div>
+                <div class="k f-select-img">
+                    <span class="k t pdt-tt" style="width:100%;margin-bottom:10px;">Image products</span>
+                    <i class="k fa fa-file-image-o" aria-hidden="true" id="img-main">
+                        <span class="bnt-sl-img" onclick="getImage()">browse</span>
+                        <input id="multi-file" class="hidden" type="file" accept="image/*" multiple="">
+                    </i>
+                    <div class="k f-img-view" id="f-img-view">
+                        <div class="k bd-img-it-lv2">
+
+                        </div>
+                        <div class="k bd-img-view-it-add">
+                            <div class="k img-view-it" style="background-image:url(/images/home/ic_add_img.png)" onclick="getImageIt()"></div>
+                            <input id="multi-file-it" class="hidden" type="file" accept="image/*" multiple="">
+                        </div>
+                    </div>
+                </div>
                 <span class="k bnt_add_ctg">Save</span>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -117,3 +134,8 @@
 
     </div>
 </div>
+
+
+@section Script{
+    <script src="~/js/adproducts.js"></script>
+}

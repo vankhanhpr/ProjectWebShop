@@ -22,5 +22,18 @@ namespace ProjectWebShop.Controllers
         {
             return _ilnproductResponsitory.GetAllLine();
         }
+        [HttpPost("InsertLineProduct")]
+        public dynamic InsertLine([FromBody]LineProducts ln)
+        {
+            if (ln!=null)
+            {
+                _ilnproductResponsitory.SaveLineProduct(ln);
+                return Ok(new { data = "success" });
+            }
+            else
+            {
+                return Ok(new { data = "error" });
+            }
+        }
     }
 }
