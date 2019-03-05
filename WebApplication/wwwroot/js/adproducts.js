@@ -1,6 +1,6 @@
 ﻿
 //line products
-callAjax(tp.get, "lineproduct/GetAllLineProduct", null, bindingGetAllLnPr);
+//callAjax(tp.get, "lineproduct/GetAllLineProduct", null, bindingGetAllLnPr);
 function bindingGetAllLnPr(data) {
     if (data) {
         for (var i in data) {
@@ -85,45 +85,51 @@ function readImageUpload(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $("#img-main").css("background-image", "url(" + e.target.result+")");
+            $("#img-main").css("background-image", "url(" + e.target.result + ")");
             $("#img-main").css("color", "rgba(51,51,51,0)");
         };
         reader.readAsDataURL(input.files[0]);
     }
-    //$(".bd-img-view-it").remove();
-    //for (var i = 1; i < input.files.length; i++) {
-    //    var reader1 = new FileReader();
-    //    reader1.onload = function (e) {
-    //        $("#f-img-view").append('<div class="k bd-img-view-it">' +
-    //            '<div class= "k img-view-it"style="background-image:url(' + e.target.result + ')" ></div >' +
-    //            '</div');
-    //    };
-    //    reader1.readAsDataURL(input.files[i]);
-    //}
-    input.val('');
+    input.clear();
 }
+var totalimg = 0;
+var po = 0;
 function readImageUploadIt(input) {
-    if (!input.files[0].name.toLowerCase().match(/\.(jpg|jpeg|png|gif)$/)) {
-        toastr.info("", " Vui lòng chọn hình ảnh có đuôi(*.jpg | *.jpeg | *.png | *.gif)", 2000);
-        return false;
+    if (totalimg >= 5) {
+        totalimg = 5;
+        $("#bnt-add-it-img").hide();
     }
-    if (input.files[0].size / 1024 / 1024 > 10) {
-        toastr.info("", "Vui lòng upload hình dung lượng dưới 10MB", 2000);
-        return false;
-    }
-   // $(".bd-img-view-it").remove();
+    //if (!input.files[0].name.toLowerCase().match(/\.(jpg|jpeg|png|gif)$/)) {
+    //    toastr.info("", " Vui lòng chọn hình ảnh có đuôi(*.jpg | *.jpeg | *.png | *.gif)", 2000);
+    //    return false;
+    //}
+    //if (input.files[0].size / 1024 / 1024 > 10) {
+    //    toastr.info("", "Vui lòng upload hình dung lượng dưới 10MB", 2000);
+    //    return false;
+    //}
     for (var i = 0; i < input.files.length; i++) {
-        var reader1 = new FileReader();
-        reader1.onload = function (e) {
-            $(".bd-img-it-lv2").append('<div class="k bd-img-view-it">' +
-                '<div class= "k img-view-it"style="background-image:url(' + e.target.result + ')" ></div >' +
-                '</div');
-        };
-        reader1.readAsDataURL(input.files[i]);
+        totalimg++;
+        if (totalimg < 6) {
+            var reader1 = new FileReader();
+            reader1.onload = function (e) {
+                $(".bd-img-it-lv2").append('<div class="k bd-img-view-it"id="f-img-it' + po +'">' +
+                    '<div class= "k img-view-it"style="background-image:url(' + e.target.result + ')" ></div >' +
+                    ' <i class="fa fa-times" aria-hidden="true"onclick="removeImg(' + po +')"></i>' +
+                    '</div');
+            };
+            reader1.readAsDataURL(input.files[i]);
+        }
+        po = po + 1;
     }
-    input.val('');
+    $("#multi-file-it").val('');
 }
-
+function removeImg(x) {
+    $('#f-img-it' + x).remove();
+    totalimg--;
+    if (totalimg < 5) {
+        $("#bnt-add-it-img").show();    
+    }
+}
 $(document).ready(function () {
     $('#datepicker').datetimepicker({
         format: 'DD/MM/YYYY',
