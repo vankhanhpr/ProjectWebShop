@@ -51,7 +51,7 @@
             <div class="modal-body">
                 <span class="k t ctl-tt">Category name</span>
                 <input class="k input-ctg" type="text" id="ip-name-ctl" />
-                <span class="k bnt_add_ctg" onclick="insertPr()">Save</span>
+                <span class="k bnt_add_ctg" onclick="insertLnPr()">Save</span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -72,32 +72,32 @@
             <div class="modal-body">
                 <div class="k bd-add-pdt">
                     <span class="k t pdt-tt">Product name</span>
-                    <input class="k input-pdt" type="text" />
+                    <input class="k input-pdt" type="text" id="pr-name" />
                 </div>
                 <div class="k bd-add-pdt-pc">
                     <span class="k t pdt-tt-pc">LineProduct</span>
-                    <select class="k input-pdt-pc">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
+                    <select class="k input-pdt-pc" id="sl-lnpr">
+                        @*<option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>*@
                     </select>
                 </div>
                 <div class="k bd-add-pdt-pc">
                     <span class="k t pdt-tt-pc" style="text-align:center;">Total</span>
-                    <input class="k input-pdt-pc" type="text" />
+                    <input class="k input-pdt-pc" type="text" id="total-pr"/>
                 </div>
                 <div class="k bd-add-pdt-pc">
                     <span class="k t pdt-tt-pc">Sale price</span>
-                    <input class="k input-pdt-pc" type="text" placeholder="đ" />
+                    <input class="k input-pdt-pc" type="text" placeholder="đ"id="sale-price" />
                 </div>
                 <div class="k bd-add-pdt-pc">
                     <span class="k t pdt-tt-pc" style="text-align:center;">Import price</span>
-                    <input class="k input-pdt-pc" type="text" placeholder="đ" />
+                    <input class="k input-pdt-pc" type="text" placeholder="đ" id="import-price"/>
                 </div>
                 <div class="k bd-add-pdt">
                     <span class="k t pdt-tt">Manufacturing date</span>
                     <div class="form-group">
                         <div class='input-group date' id='datepicker'>
-                            <input type='text' class="form-control" />
+                            <input type='text' class="form-control" id="mn-day"/>
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -108,7 +108,7 @@
                     <span class="k t pdt-tt">Expiry date</span>
                     <div class="form-group">
                         <div class='input-group date' id='datepicker1'>
-                            <input type='text' class="form-control" />
+                            <input type='text' class="form-control"id="ex-day" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -136,7 +136,7 @@
                         </div>
                     </div>
                 </div>
-                <span class="k bnt_add_ctg">Save</span>
+                <span class="k bnt_add_ctg" onclick="insertProduct()">Save</span>
 
             </div>
             <div class="modal-footer">

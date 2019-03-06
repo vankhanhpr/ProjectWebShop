@@ -16,9 +16,12 @@ namespace ProjectWebShop.Controllers
     public class ProductsController : Controller
     {
         private readonly IProductResponsitory _iproductResponsitory;
-        public ProductsController(IProductResponsitory iproductResponsitory)
+        private readonly IImageProductResponsitory _iimageProductResponsitory;
+
+        public ProductsController(IProductResponsitory iproductResponsitory, IImageProductResponsitory iimageProductResponsitory)
         {
             this._iproductResponsitory = iproductResponsitory;
+            this._iimageProductResponsitory = iimageProductResponsitory;
         }
         [HttpGet("GetAllProduct")]
         public dynamic GetAll()
@@ -49,6 +52,7 @@ namespace ProjectWebShop.Controllers
         {
             try
             {
+                _iimageProductResponsitory.DeleteImgByPr(id);
                 _iproductResponsitory.DeleteProduct(id);
                 return Ok(new { data = "Success" });
             }

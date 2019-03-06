@@ -22,3 +22,20 @@ function callAjax(type, link, data, callback) {
         }
     });
 }
+function callAjaxInsert(type, link, data, callback) {
+    $.ajax({
+        url: linkserver + link,
+        type: type,
+        datatype: 'json',
+        async: false,
+        data: data,
+        processdata: false,
+        contenttype: false,
+        error: function (err) {
+            callback('error');
+        },
+        success: function (data) {
+            callback('insert success');
+        }
+    });
+}

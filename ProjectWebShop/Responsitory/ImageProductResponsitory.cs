@@ -63,5 +63,15 @@ namespace ProjectWebShop.Responsitory
             return context.ImageProducts
                 .Where(p => p.prid == id).ToList();
         }
+
+        public void DeleteImgByPr(int id)
+        {
+            var list = GetImgByPr(id);
+            foreach(dynamic i in list)
+            {
+
+                imgproductEntity.Remove(i);
+            }
+        }
     }
 }

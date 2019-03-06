@@ -13,5 +13,6 @@ namespace ProjectWebShop.Interface.product
         void DeleteImg(int id);
         void UpdateImg(ImageProducts img);
         dynamic GetImgByPr(int id);
+        void DeleteImgByPr(int id);
     }
 }

@@ -1,6 +1,8 @@
-﻿
-//line products
-//callAjax(tp.get, "lineproduct/GetAllLineProduct", null, bindingGetAllLnPr);
+﻿var formData = new FormData();
+//var lnid = 0;
+var listFile = [];
+//get lines products
+callAjax(tp.get, "lineproduct/GetAllLineProduct", null, bindingGetAllLnPr);
 function bindingGetAllLnPr(data) {
     if (data) {
         for (var i in data) {
@@ -10,6 +12,7 @@ function bindingGetAllLnPr(data) {
                 '<span class="k t t-name-pr">' + data[i].linename + '</span>' +
                 '<div class="k ic-next"></div>' +
                 '</div >');
+            $("#sl-lnpr").append("<option value=" + data[i].lineprid + ">" + data[i].linename + "</option>");
         }
         callAjax(tp.get, "products/GetByLine?id=" + data[0].lineprid, null, bindingPdtByLine);
     }
@@ -33,7 +36,7 @@ function bindingPdtByLine(data) {
                 '<span class="k t total-pdt">Import price: ' + data[i].importprice + '</span>' +
                 '<span class="k t total-pdt">Manufacturing date: ' + formatDate(new Date(data[i].mnday)) + '</span>' +
                 '<span class="k t t-warning">Expiry date: ' + formatDate(new Date(data[i].expirydate)) + '</span>' +
-                '<div class="k ic_delete_pdt"></div>' +
+                '<div class="k ic_delete_pdt" onclick="deleteProduct(' + data[i].prid+')"></div>' +
                 '<div class="k ic_edit_pdt"></div>' +
                 '</div>' +
                 '</div>');
@@ -52,7 +55,7 @@ function formatDate(date) {
     return date.getDate() + "/" + month + "/" + date.getFullYear();
 }
 //insert a product
-function insertPr() {
+function insertLnPr() {
     var namecat = { "linename": $("#ip-name-ctl").val() };
     callAjax(tp.post, "lineproduct/InsertLineProduct", JSON.stringify(namecat), resultInsert);
 }
@@ -83,6 +86,7 @@ function readImageUpload(input) {
         return false;
     }
     if (input.files && input.files[0]) {
+        formData.append("imagerq", input.files[0]);
         var reader = new FileReader();
         reader.onload = function (e) {
             $("#img-main").css("background-image", "url(" + e.target.result + ")");
@@ -90,46 +94,48 @@ function readImageUpload(input) {
         };
         reader.readAsDataURL(input.files[0]);
     }
-    input.clear();
+    //input.clear();
 }
 var totalimg = 0;
-var po = 0;
 function readImageUploadIt(input) {
     if (totalimg >= 5) {
         totalimg = 5;
         $("#bnt-add-it-img").hide();
     }
-    //if (!input.files[0].name.toLowerCase().match(/\.(jpg|jpeg|png|gif)$/)) {
-    //    toastr.info("", " Vui lòng chọn hình ảnh có đuôi(*.jpg | *.jpeg | *.png | *.gif)", 2000);
-    //    return false;
-    //}
-    //if (input.files[0].size / 1024 / 1024 > 10) {
-    //    toastr.info("", "Vui lòng upload hình dung lượng dưới 10MB", 2000);
-    //    return false;
-    //}
+    if (input.files.length >= 5) {
+        $("#bnt-add-it-img").hide();
+    }
     for (var i = 0; i < input.files.length; i++) {
         totalimg++;
+        listFile.push(input.files[i]);
         if (totalimg < 6) {
             var reader1 = new FileReader();
-            reader1.onload = function (e) {
-                $(".bd-img-it-lv2").append('<div class="k bd-img-view-it"id="f-img-it' + po +'">' +
-                    '<div class= "k img-view-it"style="background-image:url(' + e.target.result + ')" ></div >' +
-                    ' <i class="fa fa-times" aria-hidden="true"onclick="removeImg(' + po +')"></i>' +
+            reader1.name = input.files[i].name;
+            reader1.addEventListener('load', function (e) {
+                var picFile = e.target;
+                $(".bd-img-it-lv2").append('<div class="k bd-img-view-it">' +
+                    '<div class= "k img-view-it"style="background-image:url(' + e.target.result + ')"title="' + picFile.name + '" ></div >' +
+                    ' <i class="fa fa-times" aria-hidden="true" id="bnt-remove"></i>' +
                     '</div');
-            };
+            });
             reader1.readAsDataURL(input.files[i]);
         }
-        po = po + 1;
     }
     $("#multi-file-it").val('');
 }
-function removeImg(x) {
-    $('#f-img-it' + x).remove();
+//remove image item
+$(document).on("click", "#bnt-remove", function () {
+    $(this).parent().remove();
     totalimg--;
     if (totalimg < 5) {
-        $("#bnt-add-it-img").show();    
+        $("#bnt-add-it-img").show();
     }
-}
+    var removeFile = $(this).parent().find('.img-view-it').attr('title');
+    var index = listFile.findIndex(function (o) {
+        return o.name === removeFile;
+    });
+    listFile.splice(index, 1);
+});
 $(document).ready(function () {
     $('#datepicker').datetimepicker({
         format: 'DD/MM/YYYY',
@@ -204,3 +210,58 @@ $(document).ready(function () {
         },
     });
 });
+
+//insert a product
+function insertProduct() {
+    formData.append('prname', $('#pr-name').val());
+    formData.append('total', $('#total-pr').val());
+    formData.append('importprice', $('#import-price').val());
+    formData.append('price', $('#sale-price').val());
+    formData.append('mnday', $('#mn-day').val());
+    formData.append('expirydate', $('#ex-day').val());
+    formData.append('lineprid', parseInt($('#sl-lnpr').val()));
+    for (var i = 0; i < listFile.length; i++) {
+        formData.append("files", listFile[i]);
+    }
+    //callAjaxInsert(tp.post,"File/InseretProduct",formData,resultInsertProduct);
+    $.ajax({
+        url: 'https://localhost:44337/api/File/InseretProduct',
+        type: 'POST',
+        dataType: 'json',
+        async: false,
+        data: formData,
+        processData: false,
+        contentType: false,
+        error: function (err) {
+            alert('error');
+        },
+        success: function (data) {
+            alert('insert success');
+
+        }
+    });
+}
+function resultInsertProduct() {
+    alert("fasdf");
+}
+function deleteProduct(id) {
+    var pr = {
+        "id": id
+    };
+    $.ajax({
+        url: 'https://localhost:44337/api/Products/DeleteProduct?id=' + id,
+        type: 'POST',
+        dataType: 'json',
+        async: false,
+        data: null,
+        processData: false,
+        contentType: false,
+        error: function (err) {
+            alert('error');
+        },
+        success: function (data) {
+            alert('delete success');
+
+        }
+    });
+}

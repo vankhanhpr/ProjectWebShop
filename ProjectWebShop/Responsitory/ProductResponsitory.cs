@@ -36,13 +36,17 @@ namespace ProjectWebShop.Responsitory
             //  .Join(context.LineProducts, a => a.lineprid, b => b.lineprid, (a, b) => new { a }).Where(p => p.a.lineprid == id);
             var ab = context.Products
               .Join(context.LineProducts, a => a.lineprid, b => b.lineprid, (a, b) => new { a }).Where(p => p.a.lineprid == id);
-
             return ab.ToList();
         }
         public dynamic GetProductById(int id)
         {
             return context.Products
                 .Where(p => p.lineprid == id).ToList();
+        }
+        public Products GetaProductById(int id)
+        {
+            return context.Products
+                .Where(p => p.prid == id).FirstOrDefault();
         }
         public void SaveProduct(Products product)
         {
@@ -51,7 +55,8 @@ namespace ProjectWebShop.Responsitory
         }
         public void DeleteProduct(int id)
         {
-            Products product = GetProductById(id);
+
+            Products product = GetaProductById(id);
             productEntity.Remove(product);
             context.SaveChanges();
         }
