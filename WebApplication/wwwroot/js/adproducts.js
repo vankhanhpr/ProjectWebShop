@@ -1,6 +1,7 @@
-﻿var formData = new FormData();
+﻿
 //var lnid = 0;
 var listFile = [];
+var formData = new FormData();
 //get lines products
 callAjax(tp.get, "lineproduct/GetAllLineProduct", null, bindingGetAllLnPr);
 function bindingGetAllLnPr(data) {
@@ -94,7 +95,7 @@ function readImageUpload(input) {
         };
         reader.readAsDataURL(input.files[0]);
     }
-    //input.clear();
+    $("#multi-file").val("");
 }
 var totalimg = 0;
 function readImageUploadIt(input) {
@@ -121,7 +122,7 @@ function readImageUploadIt(input) {
             reader1.readAsDataURL(input.files[i]);
         }
     }
-    $("#multi-file-it").val('');
+   // $("#multi-file-it").val("");
 }
 //remove image item
 $(document).on("click", "#bnt-remove", function () {
@@ -170,7 +171,7 @@ $(document).ready(function () {
         widgetPositioning: {
             horizontal: 'auto',
             vertical: 'auto'
-        },
+        }
     });
 });
 $(document).ready(function () {
@@ -207,12 +208,13 @@ $(document).ready(function () {
         widgetPositioning: {
             horizontal: 'auto',
             vertical: 'auto'
-        },
+        }
     });
 });
 
 //insert a product
 function insertProduct() {
+   
     formData.append('prname', $('#pr-name').val());
     formData.append('total', $('#total-pr').val());
     formData.append('importprice', $('#import-price').val());
@@ -225,7 +227,7 @@ function insertProduct() {
     }
     //callAjaxInsert(tp.post,"File/InseretProduct",formData,resultInsertProduct);
     $.ajax({
-        url: 'https://localhost:44337/api/File/InseretProduct',
+        url: linkserver + 'File/InseretProduct',
         type: 'POST',
         dataType: 'json',
         async: false,
@@ -233,7 +235,7 @@ function insertProduct() {
         processData: false,
         contentType: false,
         error: function (err) {
-            alert('error');
+            alert('error' + err);
         },
         success: function (data) {
             alert('insert success');
@@ -245,11 +247,8 @@ function resultInsertProduct() {
     alert("fasdf");
 }
 function deleteProduct(id) {
-    var pr = {
-        "id": id
-    };
     $.ajax({
-        url: 'https://localhost:44337/api/Products/DeleteProduct?id=' + id,
+        url: linkserver +"file/DeleteProduct?id="+ id,
         type: 'POST',
         dataType: 'json',
         async: false,

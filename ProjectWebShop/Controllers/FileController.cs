@@ -168,6 +168,34 @@ namespace ProjectWebShop.Controllers
             }
             return Ok(new { data = "success" });
         }
+        [HttpPost("DeleteProduct")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            try
+            {
+                if (id == 0)
+                {
+                    return Ok("Product not found");
+                }
+                Products pf = _iproductResponsitory.GetaProductById(id);
+                IEnumerable<ImageProducts> listimg = _iimageProductResponsitory.GetAllImgByPrid(pf.prid);
+                foreach (var img in listimg)
+                {
+                    string webRootPath = _hostingEnvironment.WebRootPath;
+                    string contentRootPath = _hostingEnvironment.ContentRootPath;
+                    var file = System.IO.Path.Combine(webRootPath, "images/" + img.image);
+                    System.IO.File.Delete(file);
+                    _iimageProductResponsitory.DeleteImg(img.imgid);
+                }
+                _iproductResponsitory.DeleteProduct(id);
+                return Ok(new { data = "Remove success" });
+            }
+            catch (Exception e)
+            {
+                return Ok(new { data = "Remove error" });
+            }
+            
+        }
         //random image 
         private static Random random = new Random();
         public static string RandomString(int length)

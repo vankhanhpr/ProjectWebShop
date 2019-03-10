@@ -5,17 +5,12 @@ use mydatabase;
 
 Create table lineproducts(
 lineprid int primary key not null  AUTO_INCREMENT,
-linename nvarchar(100)
+linename nvarchar(500)
 );
-create table imageproducts(
-	imgid int primary key not null  AUTO_INCREMENT ,
-	image nvarchar(100),
-	prid int ,
-	foreign key (prid) references products
-);
+
 create table products (
- prid int not null  AUTO_INCREMENT,
- prname nvarchar(100),
+ prid int not null primary key  AUTO_INCREMENT,
+ prname nvarchar(200),
  total int ,
  importprice bigint,
  price bigint,
@@ -23,35 +18,42 @@ create table products (
  totalview int,
  totallike int,
  evaluate float,
- mnday date,
- expirydate date,
- primary key (prid),
+ image nvarchar(200),
+ mnday datetime,
+ expirydate datetime,
  foreign key (lineprid) references lineproducts(lineprid)
+);
+create table imageproducts(
+	imgid int  not null  AUTO_INCREMENT ,
+	image nvarchar(500),
+	prid int ,
+    primary key (imgid),
+	foreign key (prid) references products(prid)
 );
 Create table evaluates(
 	evaid int not null  AUTO_INCREMENT,
-	comment nvarchar(500),
+	comment nvarchar(65535),
 	evaluate int,
 	usid int,
 	prid int ,
 	primary key (evaid),
-	foreign key (usid) references users,
-	foreign key (prid) references products
+	foreign key (usid) references users(usid),
+	foreign key (prid) references products(prid)
 );
-Create table imgcomments(
+create  table imgcomments(
 icmtid int AUTO_INCREMENT primary key,
-image nvarchar(max),
+image nvarchar(500),
 evaid int,
-foreign key(evaid) references evaluates
+foreign key(evaid) references evaluates(evaid)
 );
 Create table carts(
-cartid nvarchar(50) primary key,
+cartid int AUTO_INCREMENT primary key,
 money double,
-prid nvarchar(50), 
+prid int, 
 foreign key (prid) references products(prid)
 );
 Create table users (
-uid nvarchar(50) primary key ,
+usid int primary key not null AUTO_INCREMENT,
 username nvarchar(100),
 roles int ,
 avatar nvarchar(200),
@@ -60,14 +62,14 @@ email nvarchar(100),
 phone nvarchar(10)
 );
 Create table Invoice(
-ivid nvarchar(50) primary key,
+ivid int AUTO_INCREMENT primary key,
 namecustomer nvarchar(100),
 quantitum int ,
 totalmoney double ,
 money double ,
 discount double,
 note nvarchar(300),
-prid nvarchar(50),
+prid int,
 foreign key (prid) references products(prid)
 );
 
