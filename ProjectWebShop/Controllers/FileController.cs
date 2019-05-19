@@ -8,28 +8,40 @@ using Microsoft.AspNetCore.Hosting;
 using ProjectWebShop.Interface.product;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
+using ProjectWebShop.Auth;
 
 namespace ProjectWebShop.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/file")]
     [ApiController]
     public class FileController : Controller
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
-        private readonly IProductResponsitory _iproductResponsitory;
-        private readonly IImageProductResponsitory _iimageProductResponsitory;
+        private  IHostingEnvironment _hostingEnvironment;
+        private  IProductResponsitory _iproductResponsitory;
+        private  IImageProductResponsitory _iimageProductResponsitory;
 
+        //private AuthService authService;
         public FileController(IHostingEnvironment hostingEnvironment, IProductResponsitory iproductResponsitory, IImageProductResponsitory iimageProductResponsitory)
         {
-            _hostingEnvironment = hostingEnvironment;
-            _iproductResponsitory = iproductResponsitory;
-            _iimageProductResponsitory = iimageProductResponsitory;
+            this._hostingEnvironment = hostingEnvironment;
+            this._iproductResponsitory = iproductResponsitory;
+            this._iimageProductResponsitory = iimageProductResponsitory;
+            //authService 
+
         }
 
         //https://localhost:44337/images/3pihm04qn4.jpg
         [HttpPost("UploadFile")]
         public async Task<IActionResult> UploadFile(IFormFile file)
         {
+            // 1. get Token from Header
+            // 2. Call validateToken from AuthService
+            // 3.
+
+            // String tokenFromHeader;
+
+            // Boolean isValidToken = authService.validateToken(tokenFromHeader);
+
             if (file == null || file.Length == 0)
                 return Ok("file not selected");
             var x = file.GetFilename().Split(".");//cut jpg/png...
@@ -86,7 +98,6 @@ namespace ProjectWebShop.Controllers
             {
                 await pd.imagerq.CopyToAsync(stream);
             }
-
             var prod = new Products();
             prod.prname = pd.prname;
             prod.total = pd.total;
@@ -102,10 +113,8 @@ namespace ProjectWebShop.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
             }
-            
             foreach (var file in pd.files)
             {
                 var x = file.GetFilename().Split(".");
@@ -125,13 +134,14 @@ namespace ProjectWebShop.Controllers
             return Ok(new { data = "success" });
         }
         [HttpPost("UpdateProduct")]
-        public async Task<IActionResult> UpdateProduct([FromForm]ProductRespont pd)
+        public async Task<IActionResult> UpdateProduct([FromForm]ProductRpUpdate pd)
         {
             if (pd == null)
             {
                 return Ok("Files not found");
             }
-            Products pf=_iproductResponsitory.GetProductById(pd.prid);
+
+            Products pf = _iproductResponsitory.GetProductById(pd.prid);
             pf.prname = pd.prname;
             pf.total = pd.total;
             pf.importprice = pd.importprice;
@@ -141,16 +151,22 @@ namespace ProjectWebShop.Controllers
             pf.totallike = pd.totallike;
             pf.evaluate = pd.evaluate;
             _iproductResponsitory.UpdateProduct(pf);
-            IEnumerable <ImageProducts> listimg = _iimageProductResponsitory.GetAllImgByPrid(pd.prid);
+            IEnumerable<ImageProducts> listimg = _iimageProductResponsitory.GetAllImgByPrid(pd.prid);
             foreach (var img in listimg)
             {
-                string webRootPath = _hostingEnvironment.WebRootPath;
-                string contentRootPath = _hostingEnvironment.ContentRootPath;
-                var file = System.IO.Path.Combine(webRootPath, "images/" + img.image);
-                System.IO.File.Delete(file);
-                _iimageProductResponsitory.DeleteImg(img.imgid);
+                foreach (var imgrp in pd.filesOld)
+                {
+                    if (!imgrp.check)
+                    {
+                        string webRootPath = _hostingEnvironment.WebRootPath;
+                        string contentRootPath = _hostingEnvironment.ContentRootPath;
+                        var file = System.IO.Path.Combine(webRootPath, "images/" + imgrp.image);
+                        System.IO.File.Delete(file);//delete in forder
+                        _iimageProductResponsitory.DeleteImg(imgrp.imgid);//delete in database
+                    }
+                }
             }
-            foreach(var file in pd.files)
+            foreach (var file in pd.files)
             {
                 var x = file.GetFilename().Split(".");
                 var nameimage = RandomString(10) + "." + x[1];
@@ -181,12 +197,10 @@ namespace ProjectWebShop.Controllers
                 IEnumerable<ImageProducts> listimg = _iimageProductResponsitory.GetAllImgByPrid(pf.prid);
                 foreach (var img in listimg)
                 {
-                    string webRootPath = _hostingEnvironment.WebRootPath;
-                    string contentRootPath = _hostingEnvironment.ContentRootPath;
-                    var file = System.IO.Path.Combine(webRootPath, "images/" + img.image);
-                    System.IO.File.Delete(file);
+                    deleteImg(img.image);
                     _iimageProductResponsitory.DeleteImg(img.imgid);
                 }
+                deleteImg(pf.image);
                 _iproductResponsitory.DeleteProduct(id);
                 return Ok(new { data = "Remove success" });
             }
@@ -194,7 +208,15 @@ namespace ProjectWebShop.Controllers
             {
                 return Ok(new { data = "Remove error" });
             }
-            
+
+        }
+        //delete file in foder root/image
+        public void deleteImg(string img)
+        {
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            string contentRootPath = _hostingEnvironment.ContentRootPath;
+            var file = System.IO.Path.Combine(webRootPath, "images/" + img);
+            System.IO.File.Delete(file);
         }
         //random image 
         private static Random random = new Random();
@@ -204,5 +226,11 @@ namespace ProjectWebShop.Controllers
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+        //[HttpGet("test")]
+        //public string test()
+        //{
+        //    var x = "fasda";
+        //    return x;
+        //}
     }
 }

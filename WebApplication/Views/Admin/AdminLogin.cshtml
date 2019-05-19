@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "AdminLogin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/css/ad_login.css" />
+}
+<div class="k main-form">
+    <div class="body-login">
+        <span class="k text-tt">Sign in Account</span>
+        <span class="k text-note">Email</span>
+        <input id="t-email" type="email" class="form-control form-control-lg" value="" name="email" required="">
+        <span class="k text-note">Password</span>
+        <input id="t-pass" type="password" class="form-control form-control-lg" value="" name="email" required="">
+        <span class="k btn-login" onclick="Login()">Login</span>
+    </div>
+</div>
+
+@section Script{
+    <script src="~/js/adlogin.js"></script>
+}

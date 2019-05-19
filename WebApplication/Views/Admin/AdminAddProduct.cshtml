@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "AdminAddProduct";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/css/ad_product.css">
+}
+<div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add products</h4>
+            </div>
+            <div class="modal-body">
+                <div class="k bd-add-pdt">
+                    <span class="k t pdt-tt">Product name</span>
+                    <input class="k input-pdt" type="text" id="pr-name" />
+                </div>
+                <div class="k bd-add-pdt-pc">
+                    <span class="k t pdt-tt-pc">LineProduct</span>
+                    <select class="k input-pdt-pc" id="sl-lnpr">
+                        @*<option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>*@
+                    </select>
+                </div>
+                <div class="k bd-add-pdt-pc">
+                    <span class="k t pdt-tt-pc" style="text-align:center;">Total</span>
+                    <input class="k input-pdt-pc" type="text" id="total-pr" />
+                </div>
+                <div class="k bd-add-pdt-pc">
+                    <span class="k t pdt-tt-pc">Sale price</span>
+                    <input class="k input-pdt-pc" type="text" placeholder="đ" id="sale-price" />
+                </div>
+                <div class="k bd-add-pdt-pc">
+                    <span class="k t pdt-tt-pc" style="text-align:center;">Import price</span>
+                    <input class="k input-pdt-pc" type="text" placeholder="đ" id="import-price" />
+                </div>
+                <div class="k bd-add-pdt">
+                    <span class="k t pdt-tt">Manufacturing date</span>
+                    <div class="form-group">
+                        <div class='input-group date' id='datepicker'>
+                            <input type='text' class="form-control" id="mn-day" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="k bd-add-pdt">
+                    <span class="k t pdt-tt">Expiry date</span>
+                    <div class="form-group">
+                        <div class='input-group date' id='datepicker1'>
+                            <input type='text' class="form-control" id="ex-day" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="k f-select-img">
+                    <span class="k t pdt-tt" style="width:100%;margin-bottom:10px;">Image products</span>
+                    <i class="k fa fa-file-image-o" aria-hidden="true" id="img-main">
+                        <span class="bnt-sl-img" onclick="getImage()">browse</span>
+                        <input id="multi-file" class="hidden" type="file" accept="image/*" multiple="">
+                    </i>
+                    <div class="k f-img-view" id="f-img-view">
+                        <div class="k bd-img-it-lv2">
+                        </div>
+                        <div class="k bd-img-view-it-add">
+                            <div class="k img-view-it" style="background-image:url(/images/home/ic_add_img.png)" onclick="getImageIt()" id="bnt-add-it-img"></div>
+                            <input id="multi-file-it" class="hidden" type="file" accept="image/*" multiple="">
+                            @*<div class="k bd-img-view-it">
+                                    <div class="k img-view-it"></div>
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+                <span class="k bnt_add_ctg" onclick="insertProduct()">Save</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Script{
+
+}

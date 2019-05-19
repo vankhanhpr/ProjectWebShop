@@ -26,7 +26,7 @@ create table products (
 create table imageproducts(
 	imgid int  not null  AUTO_INCREMENT ,
 	image nvarchar(500),
-	prid int ,
+	prid int,
     primary key (imgid),
 	foreign key (prid) references products(prid)
 );
@@ -53,8 +53,9 @@ prid int,
 foreign key (prid) references products(prid)
 );
 Create table users (
-usid int primary key not null AUTO_INCREMENT,
+usid int AUTO_INCREMENT primary key,
 username nvarchar(100),
+password nvarchar(100),
 roles int ,
 avatar nvarchar(200),
 wall nvarchar(200),

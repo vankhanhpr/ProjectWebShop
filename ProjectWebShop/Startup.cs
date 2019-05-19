@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,8 +17,10 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using ProjectWebShop.Auth;
 using ProjectWebShop.Interface.lineproduct;
 using ProjectWebShop.Interface.product;
+using ProjectWebShop.Interface.user;
 using ProjectWebShop.Responsitory;
 using WebApiMyShop.Data;
 using WebApiMyShop.Interface;
@@ -43,14 +46,31 @@ namespace ProjectWebShop
             services.AddSingleton<IFileProvider>(
                new PhysicalFileProvider(
                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images")));//image
+
             services.AddTransient<ILineProductResponsitory, LineProductResponsitory>();//prodcut
             services.AddTransient<IProductResponsitory, ProductResponsitory>();//prodcut
             services.AddTransient<IImageProductResponsitory, ImageProductResponsitory>();//imageproduct
             services.AddTransient<IEvaluateResponsitory, EvaluateResponsitory>();//evaluate
-            //services.AddMvc();
+            services.AddTransient<IUserResponsitory , UserResponsitory>();//login
             services.AddCors();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+               .AddEntityFrameworkStores<ApplicationDbContext>()
+               .AddDefaultTokenProviders();//add token for user
+            //add token
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true, // có validate Server tạo JWT không ?
+                    ValidateAudience = true,
+                    ValidateLifetime = true, //có validate expire time hay không ?
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {

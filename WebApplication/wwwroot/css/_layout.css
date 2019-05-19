@@ -79,7 +79,7 @@
         z-index: 3;
         position: relative;
         display: inline-block;
-        bottom: -22px;
+        bottom: 0;
     }
 
     .logo {

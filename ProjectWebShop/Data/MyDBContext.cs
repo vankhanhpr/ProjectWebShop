@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectWebShop.Model;
+using WebApiMyShop.Models;
+
 namespace WebApiMyShop.Data
 {
     public class MyDBContext: DbContext
@@ -8,6 +10,7 @@ namespace WebApiMyShop.Data
         {
         }
         public MyDBContext() { }
+        public DbSet<Users> Users { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<LineProducts> LineProducts { get; set; }
         public DbSet<ImageProducts> ImageProducts { get; set; }

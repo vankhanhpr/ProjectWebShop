@@ -39,3 +39,19 @@ function callAjaxInsert(type, link, data, callback) {
         }
     });
 }
+
+function showLoading() {
+    $("body").append('<div class="lds-ring"><div></div><div></div><div></div><div></div></div>');
+}
+function destroyLoading() {
+    $(".lds-ring").hide();
+}
+function formatNumber(yourNumber) {
+    if (yourNumber) {
+        var components = yourNumber.toString().split(".");
+        components[0] = components[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return components.join(".");
+    } else {
+        return "0";
+    }
+}

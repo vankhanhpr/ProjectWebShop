@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjectWebShop.Interface.product;
 using ProjectWebShop.Model;
-using WebApiMyShop.Data;
 
 namespace ProjectWebShop.Controllers
 {
@@ -17,7 +11,6 @@ namespace ProjectWebShop.Controllers
     {
         private readonly IProductResponsitory _iproductResponsitory;
         private readonly IImageProductResponsitory _iimageProductResponsitory;
-
         public ProductsController(IProductResponsitory iproductResponsitory, IImageProductResponsitory iimageProductResponsitory)
         {
             this._iproductResponsitory = iproductResponsitory;
@@ -64,6 +57,11 @@ namespace ProjectWebShop.Controllers
         //https://localhost:44337/api/products/GetByuLine?id=2
         [HttpGet("GetByLine")]
         public dynamic GetByLine(int id)
+        {
+            return _iproductResponsitory.GetProductByLinePr(id);
+        }
+        [HttpGet("GetPrById")]
+        public dynamic GetProductByID(int id)
         {
             return _iproductResponsitory.GetProductById(id);
         }

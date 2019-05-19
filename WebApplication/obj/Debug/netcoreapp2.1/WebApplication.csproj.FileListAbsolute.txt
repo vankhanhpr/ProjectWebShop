@@ -70,3 +70,6 @@ D:\Working\ProjectWebShop\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\
 D:\Working\ProjectWebShop\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\WebApplication.csproj.CopyComplete
 E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Admin\SendRequestAsyncSchedule.g.cshtml.cs
 D:\Working\ProjectWebShop\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Admin\SendRequestAsyncSchedule.g.cshtml.cs
+E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Product\Product.g.cshtml.cs
+E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Admin\AdminLogin.g.cshtml.cs
+E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Admin\AdminAddProduct.g.cshtml.cs

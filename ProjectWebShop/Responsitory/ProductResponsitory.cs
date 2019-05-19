@@ -29,19 +29,26 @@ namespace ProjectWebShop.Responsitory
             });
             return pdt.ToList();
         }
-
         public dynamic GetProductByLinePr(int id)
         {
             //var ab = context.Products
             //  .Join(context.LineProducts, a => a.lineprid, b => b.lineprid, (a, b) => new { a }).Where(p => p.a.lineprid == id);
-            var ab = context.Products
-              .Join(context.LineProducts, a => a.lineprid, b => b.lineprid, (a, b) => new { a }).Where(p => p.a.lineprid == id);
-            return ab.ToList();
+            //var ab = context.Products
+            //  .Join(context.LineProducts, a => a.lineprid, b => b.lineprid, (a, b) => new { a }).Where(p => p.a.lineprid == id);
+            //return ab.ToList();
+            return context.Products
+               .Where(p => p.lineprid == id).ToList();
         }
         public dynamic GetProductById(int id)
         {
-            return context.Products
-                .Where(p => p.lineprid == id).ToList();
+            var pdt = context.Products.Where(x=>x.prid == id).Select(product => new
+            {
+                product,
+                images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
+            });
+            return pdt;
+            //return context.Products
+            //    .Where(p => p.lineprid == id).ToList();
         }
         public Products GetaProductById(int id)
         {
@@ -55,7 +62,6 @@ namespace ProjectWebShop.Responsitory
         }
         public void DeleteProduct(int id)
         {
-
             Products product = GetaProductById(id);
             productEntity.Remove(product);
             context.SaveChanges();

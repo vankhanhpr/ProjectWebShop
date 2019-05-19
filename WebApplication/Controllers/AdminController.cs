@@ -45,5 +45,13 @@ namespace WebApplication.Controllers
         //    }
         //    return View(list);
         //}
+        public IActionResult AdminLogin()
+        {
+            return View();
+        }
+        public IActionResult AdminAddProduct()
+        {
+            return View();
+        }
     }
 }
