@@ -20,6 +20,7 @@ namespace ProjectWebShop.Responsitory
         {
             var img = GetImgById(id);
             imgproductEntity.Remove(img);
+            context.SaveChanges();
         }
 
         public IEnumerable<ImageProducts> GetAllImage()

@@ -47,8 +47,6 @@ namespace ProjectWebShop.Responsitory
                 images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
             });
             return pdt;
-            //return context.Products
-            //    .Where(p => p.lineprid == id).ToList();
         }
         public Products GetaProductById(int id)
         {

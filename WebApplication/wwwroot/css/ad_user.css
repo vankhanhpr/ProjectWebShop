@@ -1,0 +1,19 @@
+﻿
+@import url("adminconfig.css");
+@media only screen and (min-width:0){
+    .k{
+        position:relative;
+        float:left;
+        background-position:center;
+        background-size:contain;
+        background-repeat:no-repeat;
+    }
+    .main-form{
+        width:100%;
+    }
+    .tt-main{
+    }
+}
+@media only screeen and (min-width:1200px){
+
+}

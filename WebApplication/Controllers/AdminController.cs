@@ -53,5 +53,9 @@ namespace WebApplication.Controllers
         {
             return View();
         }
+        public IActionResult UserAdmin()
+        {
+            return View();
+        }
     }
 }

@@ -60,6 +60,7 @@ namespace ProjectWebShop.Controllers
         {
             return _iproductResponsitory.GetProductByLinePr(id);
         }
+        [HttpPost("GetPrById")]
         [HttpGet("GetPrById")]
         public dynamic GetProductByID(int id)
         {

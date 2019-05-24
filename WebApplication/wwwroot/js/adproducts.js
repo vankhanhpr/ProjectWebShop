@@ -3,7 +3,7 @@ var listFile = [];
 var listFileUd = [];
 var listFileUdOld = [];
 var formDataUd = null;
-var formData = new FormData();
+var formData = null;
 
 var listLnPr = [];
 //get lines products
@@ -16,6 +16,7 @@ function bindingGetAllLnPr(data) {
             $("#f-ln-prd").append('<div class="k bd-prd" onclick= "filterLinePr(' + data[i].lineprid + ')">' +
                 '<div class="k ic-pdt" ></div >' +
                 '<span class="k t t-name-pr">' + data[i].linename + '</span>' +
+                '<i class="fa fa-trash dlt-cata" aria-hidden="true" onclick="deleteCatagoty(' + data[i].lineprid + ')"></i>' +
                 '<div class="k ic-next"></div>' +
                 '</div >');
             $("#sl-lnpr").append("<option value=" + data[i].lineprid + ">" + data[i].linename + "</option>");
@@ -60,8 +61,9 @@ function formatDate(date) {
     hours = hours ? hours : 12; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0' + minutes : minutes;
     var strTime = hours + ':' + minutes + ' ' + ampm;
-    var month = date.getMonth() + 1;
-    return date.getDate() + "/" + month + "/" + date.getFullYear();
+    var month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1);
+    var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    return day + "/" + month + "/" + date.getFullYear();
 }
 //insert a product
 function insertLnPr() {
@@ -87,15 +89,18 @@ function getImageIt() {
     });
 }
 function readImageUpload(input) {
-    if (!input.files[0].name.toLowerCase().match(/\.(jpg|jpeg|png|gif)$/)) {
-        toastr.info("", " Vui lòng chọn hình ảnh có đuôi(*.jpg | *.jpeg | *.png | *.gif)", 2000);
-        return false;
-    }
-    if (input.files[0].size / 1024 / 1024 > 10) {
-        toastr.info("", "Vui lòng upload hình dung lượng dưới 10MB", 2000);
-        return false;
-    }
+    //if (!input.files[0].name.toLowerCase().match(/\.(jpg|jpeg|png|gif)$/)) {
+    //    toastr.info("", " Vui lòng chọn hình ảnh có đuôi(*.jpg | *.jpeg | *.png | *.gif)", 2000);
+    //    return false;
+    //}
+    //if (input.files[0].size / 1024 / 1024 > 10) {
+    //    toastr.info("", "Vui lòng upload hình dung lượng dưới 10MB", 2000);
+    //    return false;
+    //}
     if (input.files && input.files[0]) {
+        if (formData.get("imagerq") != null) {
+            formData.delete("imagerq");
+        }
         formData.append("imagerq", input.files[0]);
         var reader = new FileReader();
         reader.onload = function (e) {
@@ -220,34 +225,69 @@ $(document).ready(function () {
         }
     });
 });
+
+function createPr() {//new formdata
+    formData = new FormData();
+    resetFormInsert();
+}
+function resetFormInsert() {
+    $("#pr-name").val("");
+    $("#total-pr").val("");
+    $("#sale-price").val("");
+    $("#import-price").val("");
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = dd + '/' + mm + '/' + yyyy;
+    $("#mn-day").val(today);
+    $("#ex-day").val(today);
+    $("#img-main").css("background-image", "none");
+    $("#img-main").css("color", "rgba(51, 51, 51, 1)");
+    totalimg = 0;
+    listFile = [];
+    $(".bd-img-view-it").remove();
+    $("#bnt-add-it-img").show();
+}
 //insert a product
 function insertProduct() {
-    formData.append('prname', $('#pr-name').val());
-    formData.append('total', $('#total-pr').val());
-    formData.append('importprice', $('#import-price').val());
-    formData.append('price', $('#sale-price').val());
-    formData.append('mnday', $('#mn-day').val());
-    formData.append('expirydate', $('#ex-day').val());
-    formData.append('lineprid', parseInt($('#sl-lnpr').val()));
-    for (var i = 0; i < listFile.length; i++) {
-        formData.append("files", listFile[i]);
-    }
-    $.ajax({
-        url: linkserver + 'File/InseretProduct',
-        type: 'POST',
-        dataType: 'json',
-        async: false,
-        data: formData,
-        processData: false,
-        contentType: false,
-        error: function (err) {
-            bootbox.alert("Error: " + err);
-        },
-        success: function (data) {
-            bootbox.alert("Insert item success!");
-            callAjax(tp.get, "products/GetByLine?id=" + lnid, null, bindingPdtByLine);
+    try {
+        formData.append('prname', $('#pr-name').val());
+        formData.append('total', $('#total-pr').val());
+        formData.append('importprice', $('#import-price').val());
+        formData.append('price', $('#sale-price').val());
+        formData.append("mnday", $('#mn-day').val());
+        formData.append('expirydate', $('#ex-day').val());
+        formData.append('lineprid', parseInt($('#sl-lnpr').val()));
+        if (listFile.length > 0) {
+            for (var i = 0; i < listFile.length; i++) {
+                formData.append("files", listFile[i]);
+            }
         }
-    });
+
+        $.ajax({
+            url: linkserver + 'File/InseretProduct',
+            type: 'POST',
+            dataType: 'json',
+            async: false,
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            error: function (err) {
+                bootbox.alert("Error: " + err);
+            },
+            success: function (data) {
+                bootbox.alert("Insert item success!");
+                $('#myModal1').modal('toggle');
+                callAjax(tp.get, "products/GetByLine?id=" + lnid, null, bindingPdtByLine);
+            }
+        });
+    }
+    catch (err) {
+        bootbox.alert("Error: " + err);
+    }
 }
 function resultInsertProduct() {
     alert("fasdf");
@@ -374,24 +414,28 @@ $(document).ready(function () {
 });
 //get products by id
 function getPrById(id) {
-    formDataUd = new FormData()
+    formDataUd = new FormData();
+    listFileUd = [];
     callAjax(tp.get, "products/GetPrById?id=" + id, null, bindingPrbyId);
 }
 var totalimg_ud = 0;
 function bindingPrbyId(data) {
     if (data) {
         formDataUd.append('prid', data[0].product.prid);
+        formDataUd.append('image', data[0].product.image);
+
+
         $('#pr-name-ud').val(data[0].product.prname);
         $('#total-pr-ud').val(data[0].product.total);
         $('#sale-price-ud').val(data[0].product.price);
         $('#import-price-ud').val(data[0].product.importprice);
-        $('#opt-ud').remove();
+        $('.opt-ud').remove();
         for (var i in listLnPr) {
             if (listLnPr[i].lineprid != data[0].product.lineprid) {
-                $("#sl-lnpr-ud").append('<option value="' + listLnPr[i].lineprid + '" id="opt-ud">' + listLnPr[i].linename + '</option>');
+                $("#sl-lnpr-ud").append('<option value="' + listLnPr[i].lineprid + '" class="opt-ud">' + listLnPr[i].linename + '</option>');
             }
             else {
-                $("#sl-lnpr-ud").append('<option value="' + listLnPr[i].lineprid + '" id="opt-ud"  selected="selected">' + listLnPr[i].linename + '</option>');
+                $("#sl-lnpr-ud").append('<option value="' + listLnPr[i].lineprid + '" class="opt-ud"  selected="selected">' + listLnPr[i].linename + '</option>');
             }
         }
         $('#mn-day-ud').val(formatDate(new Date(data[0].product.mnday)));
@@ -401,10 +445,12 @@ function bindingPrbyId(data) {
         $("#img-main-ud").css("color", "rgba(51,51,51,0)");
         //image item
         totalimg_ud = data[0].images.length;
-        for (var j in data[0].images) {
-            var x = { "imgid": data[0].images[j].imgid, "image": data[0].images[j].image, "check": true };
-            listFileUdOld.push(x);
-            $("#list-img-it-ud").append('<div class="k bd-img-view-it-up">' +
+        $('.bd-img-view-it-ud').remove();
+        listFileUdOld = [];
+        for (var j = 0; j < data[0].images.length; j++) {
+            var FileUpdate = { "imgid": data[0].images[j].imgid, "image": data[0].images[j].image, "check": true };
+            listFileUdOld.push(FileUpdate);
+            $("#list-img-it-ud").append('<div class="k bd-img-view-it-ud">' +
                 '<div class= "k img-view-it"style="background-image:url(' + serverfile + data[0].images[j].image + ')"></div >' +
                 ' <i class="fa fa-times" aria-hidden="true" id="bnt-remove-ud" onclick="deleteImgItUp(' + j + ')"></i>' +
                 '</div');
@@ -441,6 +487,9 @@ function readImageUploadUd(input) {
         return false;
     }
     if (input.files && input.files[0]) {
+        if (formDataUd.get('imagerq') != null) {
+            formDataUd.delete('imagerq');
+        }
         formDataUd.append("imagerq", input.files[0]);
         var reader = new FileReader();
         reader.onload = function (e) {
@@ -477,7 +526,7 @@ function readImageUploadItUd(input) {
             reader1.name = input.files[i].name;
             reader1.addEventListener('load', function (e) {
                 var picFile = e.target;
-                $("#list-img-it-ud").append('<div class="k bd-img-view-it">' +
+                $("#list-img-it-ud").append('<div class="k bd-img-view-it-ud">' +
                     '<div class= "k img-view-it"style="background-image:url(' + e.target.result + ')"title="' + picFile.name + '" ></div >' +
                     ' <i class="fa fa-times" aria-hidden="true" id="bnt-remove-ud"></i>' +
                     '</div');
@@ -499,11 +548,8 @@ function updateProduct() {
     formDataUd.append('importprice', $('#import-price-ud').val());
     formDataUd.append('price', $('#sale-price-ud').val());
 
-    var mnday = (new Date($('#mn-day-ud').val())).toUTCString();
-    formDataUd.append('mnday', mnday);
-    var expirydate = (new Date($('#ex-day-ud').val())).toUTCString();
-    formDataUd.append('expirydate', expirydate);
-
+    formDataUd.append('mnday', $('#mn-day-ud').val());
+    formDataUd.append('expirydate', $('#ex-day-ud').val());
     formDataUd.append('lineprid', parseInt($('#sl-lnpr-ud').val()));
 
     if (listFileUd.length > 0) {
@@ -511,9 +557,10 @@ function updateProduct() {
             formDataUd.append("files", listFileUd[i]);
         }
     }
-    if (listFileUdOld) {
-        debugger
-        formDataUd.append("filesOld",listFileUdOld);
+    if (listFileUdOld.length > 0) {
+        for (var j = 0; j < listFileUdOld.length; j++) {
+            formDataUd.append("filesolds", JSON.stringify(listFileUdOld[j]));
+        }
     }
     $.ajax({
         type: "POST",
@@ -524,10 +571,64 @@ function updateProduct() {
         cache: false,
         enctype: 'multipart/form-data',
         success: function (data) {
-            bootbox.alert("Insert item success!");
+            $('#myModal-ud').modal('toggle');
+            bootbox.alert("Update item success!");
         },
         error: function (err) {
             bootbox.alert("Error: " + err);
+        }
+    });
+}
+//delete catagory
+function deleteCatagoty(catid) {
+    bootbox.confirm({
+        message: "Delete item?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                $.ajax({
+                    url: linkserver + "lineproduct/deleteLnPr?catid=" + catid,
+                    type: 'post',
+                    datatype: 'json',
+                    async: false,
+                    data: null,
+                    processdata: false,
+                    contenttype: false,
+                    error: function (err) {
+                        bootbox.alert({
+                            message: "Error: Please remove all items in the category before do it !" + err,
+                            backdrop: true
+                        });
+                    },
+                    success: function (data) {
+                        if (data.data == "Success") {
+                            callAjax(tp.get, "lineproduct/GetAllLineProduct", null, bindingGetAllLnPr);
+                            bootbox.alert({
+                                message: "Delete item success! ",
+                                backdrop: true
+                            });
+                        }
+                        else {
+                            bootbox.alert({
+                                message: "Error: Please remove all items in the category before do it !",
+                                backdrop: true
+                            });
+                        }
+                    }
+                });
+            }
+            else {
+                //
+            }
         }
     });
 }

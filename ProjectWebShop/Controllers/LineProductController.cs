@@ -35,5 +35,18 @@ namespace ProjectWebShop.Controllers
                 return Ok(new { data = "error" });
             }
         }
+        [HttpPost("deleteLnPr")]
+        public object deleteCatagory(int catid)
+        {
+            try
+            {
+                _ilnproductResponsitory.DeleteLineProduct(catid);
+                return Ok(new { data = "Success" });
+            }
+            catch(Exception e)
+            {
+                return Ok(new { data = "error" });
+            }
+        }
     }
 }

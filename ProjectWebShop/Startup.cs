@@ -41,7 +41,7 @@ namespace ProjectWebShop
         {
             //services.AddDbContext<MyDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<MyDBContext>(options =>
-            options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSingleton<IFileProvider>(
                new PhysicalFileProvider(

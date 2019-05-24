@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using ProjectWebShop.Interface.product;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
-using ProjectWebShop.Auth;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Globalization;
 
 namespace ProjectWebShop.Controllers
 {
@@ -16,9 +18,9 @@ namespace ProjectWebShop.Controllers
     [ApiController]
     public class FileController : Controller
     {
-        private  IHostingEnvironment _hostingEnvironment;
-        private  IProductResponsitory _iproductResponsitory;
-        private  IImageProductResponsitory _iimageProductResponsitory;
+        private IHostingEnvironment _hostingEnvironment;
+        private IProductResponsitory _iproductResponsitory;
+        private IImageProductResponsitory _iimageProductResponsitory;
 
         //private AuthService authService;
         public FileController(IHostingEnvironment hostingEnvironment, IProductResponsitory iproductResponsitory, IImageProductResponsitory iimageProductResponsitory)
@@ -88,48 +90,57 @@ namespace ProjectWebShop.Controllers
         public async Task<IActionResult> InseretProduct([FromForm]ProductRespont pd)
         {
             if (pd == null)
-                return Ok("Error");
-            var i = pd.imagerq.GetFilename().Split(".");
-            var nameimg = RandomString(10) + "." + i[1];
-            var fpath = Path.Combine(
-                        Directory.GetCurrentDirectory(), "wwwroot/images",
-                        nameimg);
-            using (var stream = new FileStream(fpath, FileMode.Create))
             {
-                await pd.imagerq.CopyToAsync(stream);
+                return Ok("Error");
             }
-            var prod = new Products();
-            prod.prname = pd.prname;
-            prod.total = pd.total;
-            prod.lineprid = pd.lineprid;
-            prod.importprice = pd.importprice;
-            prod.price = pd.price;
-            prod.image = nameimg;
-            prod.mnday = pd.mnday;
-            prod.expirydate = pd.expirydate;
+
             try
             {
+                var i = pd.imagerq.GetFilename().Split(".");
+                var nameimg = RandomString(10) + "." + i[1];
+                var fpath = Path.Combine(
+                            Directory.GetCurrentDirectory(), "wwwroot/images",
+                            nameimg);//post image to forder 
+                using (var stream = new FileStream(fpath, FileMode.Create))
+                {
+                    await pd.imagerq.CopyToAsync(stream);
+                }
+                var prod = new Products();
+                prod.prname = pd.prname;
+                prod.total = pd.total;
+                prod.lineprid = pd.lineprid;
+                prod.importprice = pd.importprice;
+                prod.price = pd.price;
+                prod.image = nameimg;
+                DateTime mnday = DateTime.ParseExact(pd.mnday, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                prod.mnday = mnday;
+                DateTime expirydate = DateTime.ParseExact(pd.expirydate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                prod.expirydate = expirydate;
                 _iproductResponsitory.SaveProduct(prod);
+
+                if (pd.files != null || pd.files.Count>0)
+                {
+                    foreach (var file in pd.files)
+                    {
+                        var x = file.GetFilename().Split(".");
+                        var nameimage = RandomString(10) + "." + x[1];
+                        var path = Path.Combine(
+                                    Directory.GetCurrentDirectory(), "wwwroot/images",
+                                    nameimage);
+                        var img = new ImageProducts();
+                        img.image = nameimage;
+                        img.prid = prod.prid;
+                        _iimageProductResponsitory.SaveImg(img);
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
-                throw;
-            }
-            foreach (var file in pd.files)
-            {
-                var x = file.GetFilename().Split(".");
-                var nameimage = RandomString(10) + "." + x[1];
-                var path = Path.Combine(
-                            Directory.GetCurrentDirectory(), "wwwroot/images",
-                            nameimage);
-                var img = new ImageProducts();
-                img.image = nameimage;
-                img.prid = prod.prid;
-                _iimageProductResponsitory.SaveImg(img);
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
+                return Ok(new { data = "error" });
             }
             return Ok(new { data = "success" });
         }
@@ -140,49 +151,87 @@ namespace ProjectWebShop.Controllers
             {
                 return Ok("Files not found");
             }
-
-            Products pf = _iproductResponsitory.GetProductById(pd.prid);
-            pf.prname = pd.prname;
-            pf.total = pd.total;
-            pf.importprice = pd.importprice;
-            pf.price = pd.price;
-            pf.lineprid = pd.lineprid;
-            pf.totalview = pd.totalview;
-            pf.totallike = pd.totallike;
-            pf.evaluate = pd.evaluate;
-            _iproductResponsitory.UpdateProduct(pf);
-            IEnumerable<ImageProducts> listimg = _iimageProductResponsitory.GetAllImgByPrid(pd.prid);
-            foreach (var img in listimg)
+            try
             {
-                foreach (var imgrp in pd.filesOld)
+                //var pf = _iproductResponsitory.GetProductById(pd.prid);
+                Products newitem = new Products();
+                newitem.prid = pd.prid;
+                newitem.prname = pd.prname;
+                newitem.total = pd.total;
+                newitem.importprice = pd.importprice;
+                newitem.price = pd.price;
+                newitem.lineprid = pd.lineprid;
+                newitem.totalview = pd.totalview;
+                newitem.totallike = pd.totallike;
+                newitem.evaluate = pd.evaluate;
+                DateTime mnday = DateTime.ParseExact(pd.mnday, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime expirydate = DateTime.ParseExact(pd.expirydate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                newitem.mnday = mnday;
+                newitem.expirydate = expirydate;
+                newitem.image = pd.image;
+                if (pd.imagerq != null)
                 {
-                    if (!imgrp.check)
+                    //delete old picture
+                    string webRootPath = _hostingEnvironment.WebRootPath;
+                    string contentRootPath = _hostingEnvironment.ContentRootPath;
+                    var file = System.IO.Path.Combine(webRootPath, "images/" + pd.image);
+                    System.IO.File.Delete(file);//delete in forder
+
+
+                    var temp = pd.imagerq.GetFilename().Split(".");
+                    var nameimgmain = RandomString(10) + "." + temp[1];
+                    var fpath = Path.Combine(
+                                Directory.GetCurrentDirectory(), "wwwroot/images",
+                                nameimgmain);//post image to forder 
+                    newitem.image = nameimgmain;
+
+                    using (var stream = new FileStream(fpath, FileMode.Create))
                     {
-                        string webRootPath = _hostingEnvironment.WebRootPath;
-                        string contentRootPath = _hostingEnvironment.ContentRootPath;
-                        var file = System.IO.Path.Combine(webRootPath, "images/" + imgrp.image);
-                        System.IO.File.Delete(file);//delete in forder
-                        _iimageProductResponsitory.DeleteImg(imgrp.imgid);//delete in database
+                        await pd.imagerq.CopyToAsync(stream);
                     }
                 }
-            }
-            foreach (var file in pd.files)
-            {
-                var x = file.GetFilename().Split(".");
-                var nameimage = RandomString(10) + "." + x[1];
-                var path = Path.Combine(
-                            Directory.GetCurrentDirectory(), "wwwroot/images",
-                            nameimage);
-                var img = new ImageProducts();
-                img.image = nameimage;
-                img.prid = pd.prid;
-                _iimageProductResponsitory.SaveImg(img);
-                using (var stream = new FileStream(path, FileMode.Create))
+                _iproductResponsitory.UpdateProduct(newitem);
+                IEnumerable<ImageProducts> listimg = _iimageProductResponsitory.GetAllImgByPrid(pd.prid);
+                if (pd.filesolds != null)
                 {
-                    await file.CopyToAsync(stream);
+                    foreach (var imgrp in pd.filesolds)
+                    {
+                        FileUpdate fileul = new FileUpdate(imgrp);
+                        if (!fileul.check)
+                        {
+                            string webRootPath = _hostingEnvironment.WebRootPath;
+                            string contentRootPath = _hostingEnvironment.ContentRootPath;
+                            var file = System.IO.Path.Combine(webRootPath, "images/" + fileul.image);
+                            System.IO.File.Delete(file);//delete in forder
+                            _iimageProductResponsitory.DeleteImg(fileul.imgid);//delete in database
+                        }
+                    }
                 }
+                if (pd.files.Count() > 0)
+                {
+                    foreach (var file in pd.files)
+                    {
+                        var x = file.GetFilename().Split(".");
+                        var nameimage = RandomString(10) + "." + x[1];
+                        var path = Path.Combine(
+                                    Directory.GetCurrentDirectory(), "wwwroot/images",
+                                    nameimage);
+                        var img = new ImageProducts();
+                        img.image = nameimage;
+                        img.prid = pd.prid;
+                        _iimageProductResponsitory.SaveImg(img);
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+                    }
+                }
+                return Ok(new { data = "success" });
             }
-            return Ok(new { data = "success" });
+            catch (Exception e)
+            {
+                return Ok(new { data = "error" });
+            }
         }
         [HttpPost("DeleteProduct")]
         public async Task<IActionResult> DeleteProduct(int id)
@@ -226,11 +275,5 @@ namespace ProjectWebShop.Controllers
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        //[HttpGet("test")]
-        //public string test()
-        //{
-        //    var x = "fasda";
-        //    return x;
-        //}
     }
 }

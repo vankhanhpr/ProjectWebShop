@@ -22,8 +22,8 @@ namespace ProjectWebShop.Model
         public int totalview { get; set; }
         public int totallike { get; set; }
         public double evaluate { get; set; }
-        public DateTime mnday { get; set; }
-        public DateTime expirydate { get; set; }
+        public string mnday { get; set; }
+        public string expirydate { get; set; }
         public IFormFile imagerq { get; set; }
         public List<IFormFile> files { get; set; }
     }

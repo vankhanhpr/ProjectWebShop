@@ -11,14 +11,15 @@
             <div class="k ic-add-category" data-toggle="modal" data-target="#myModal2"></div>
         </div>
         @*<div class="k bd-prd">
-                <div class="k ic-pdt"></div>
-                <span class="k t t-name-pr">Milk tea</span>
-                <div class="k ic-next"></div>
-            </div>*@
+            <div class="k ic-pdt"></div>
+            <span class="k t t-name-pr">Milk tea</span>
+            <i class="fa fa-trash dlt-cata" aria-hidden="true"></i>
+            <div class="k ic-next"></div>
+        </div>*@
     </div>
     <div class="k r-form" id="f-it-products">
         <div class="k ic-add-pdt" data-toggle="modal" data-target="#myModal1"></div>
-        <span class="k t t-add-pdt" data-toggle="modal" data-target="#myModal1">Add Product</span>
+        <span class="k t t-add-pdt" data-toggle="modal" data-target="#myModal1" onclick="createPr()">Add Product</span>
         @*<div class="k item-pr-form">
                 <div class="k img-pdt"></div>
                 <div class="k f-pdt-name">
@@ -199,7 +200,7 @@
                         <input id="multi-file-ud" class="hidden" type="file" accept="image/*" multiple="">
                     </i>
                     <div class="k f-img-view" id="f-img-view-ud">
-                        <div class="k bd-img-it-lv2" id="list-img-it-ud">
+                        <div class="k bd-img-it-lv2-ud" id="list-img-it-ud">
                         </div>
                         <div class="k bd-img-view-it-add">
                             <div class="k img-view-it" style="background-image:url(/images/home/ic_add_img.png)" onclick="getImageItUd()" id="bnt-add-it-img-ud"></div>
