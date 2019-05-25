@@ -20,24 +20,11 @@ namespace ProjectWebShop.Responsitory
             userEntity = context.Set<Users>();
         }
 
-        public int Count(Func<UserLogin, bool> predicate)
+        public void DeleteUser(Users users)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Create(UserLogin entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(UserLogin entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<UserLogin> Find(Func<UserLogin, bool> predicate)
-        {
-            throw new NotImplementedException();
+            Users us = GetUserByEmail(users.email);
+            userEntity.Remove(us);
+            context.SaveChanges();
         }
 
         public IEnumerable<Users> GetAllUser()
@@ -50,14 +37,26 @@ namespace ProjectWebShop.Responsitory
             return context.Users.Where(x => x.email == email).FirstOrDefault();
         }
 
+        public IEnumerable<Users> GetUserByRoles(int idrole)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertUser(Users users)
+        {
+            context.Entry(users).State = EntityState.Added;
+            context.SaveChanges();
+        }
+
         public dynamic RemoveUser()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(UserLogin entity)
+        public void UpdateUser(Users users)
         {
-            throw new NotImplementedException();
+            context.Update(users);
+            context.SaveChanges();
         }
     }
 }

@@ -1,19 +1,348 @@
 ﻿
 @import url("adminconfig.css");
-@media only screen and (min-width:0){
-    .k{
-        position:relative;
-        float:left;
+
+@media only screen and (min-width:0) {
+    .container {
+        width: 100%;
+        padding: 0;
+    }
+
+    .k {
+        position: relative;
+        float: left;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .main-form {
+        width: 100%;
+    }
+
+    .bg-tt {
+        width: 100%;
+        background-color: rgba(51,51,51,0.3);
+        height: 60px;
+    }
+    .t-gt-home{
+        color:var(--c-tt-wt);
+        font-weight:600;
+        font-size:20px;
+        margin:10px 5px;
+        cursor:pointer;
+    }
+    .tt-main {
+        color: var(--c-tt-bl);
+        font-weight: 600;
+    }
+
+    .note-role {
+        color: var(--c-dt-bl);
+    }
+
+    .bd-tt {
+        border: 1px solid rgba(51,51,51,0.2);
+        width: 100%;
+        padding: 10px 1px;
+    }
+
+    .value-roles {
+        padding: 3px 10px;
+        color: var(--c-dt-bl);
+        border: 1px solid rgba(51,51,51,0.2);
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .item-role {
+        padding: 3px 10px;
+        color: var(--c-dt-bl);
+        border: 1px solid rgba(51,51,51,0.2);
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .inp-search {
+        position: relative;
+        float: right;
+        border: 1px solid rgba(51,51,51,0.2);
+        padding: 5px;
+        border-radius: 4px;
+        background-image: url(/images/admin/ic_search.png);
+        background-repeat: no-repeat;
+        background-size: 23px 21px;
+        background-position: 3px;
+        padding: 5px;
+        padding-left: 30px;
+    }
+
+    .bd-rol {
+        border-bottom: 1px solid rgba(51,51,51,0.2);
+        width: 100%;
+        padding: 15px 0;
+    }
+
+    .add-form {
+        border: none;
+        width: 100%;
+        padding-top: 15px;
+    }
+    .tab-body-user{
+        width:100%;
+        display:none;
+    }
+    .l-text {
+        color: var(--c-dt-bl);
+        font-weight: 600;
+        margin-top: 3px;
+        margin-right: 3px;
+    }
+
+    .input-text {
+        border: 1px solid rgba(51,51,51,0.2);
+        padding: 5px;
+        border-radius: 4px;
+    }
+
+    .chb {
+        padding: 1px;
+    }
+
+    .t-checkb {
+        margin-left: 3px;
+        color: var(--c-dt-bl);
+    }
+
+    .date {
+        width: 20%;
+    }
+
+    .t-roles {
+        color: var(--c-dt-bl);
+        margin-left: 20px;
+        font-weight: 600;
+    }
+
+    .value-roles-add {
+        border: 1px solid rgba(51,51,51,0.2);
+        padding: 5px 15px;
+        border-radius: 4px;
+        margin-left: 5px;
+    }
+
+    .input-adr {
+        border: 1px solid rgba(51,51,51,0.2);
+        border-radius: 4px;
+        color: var(--c-dt-bl);
+        padding: 5px;
+    }
+
+    .tab-showus {
+        border: rgba(51,51,51,0.2);
+        width: 100%;
+    }
+
+    .tab-title {
+        width: 100%;
+        background-color: rgba(51,51,51,0.2);
+        padding: 15px 0;
+    }
+
+    .note-t {
+        color: var(--c-dt-bl);
+        text-align: center;
+        font-weight: 400;
+    }
+    .note-tius {
+        color: var(--c-dt-bl);
+        text-align: center;
+        font-weight: 600;
+    }
+    .body-user {
+        width: 100%;
+        padding: 15px 0;
+        border-bottom:1px solid rgba(51,51,51,0.1);
+    }
+    .avt-user{
+        width:10%;
+        height:100px;
         background-position:center;
         background-size:contain;
         background-repeat:no-repeat;
+        background-image:url(/images/admin/tea.jpg);
+        border-radius:4px;
     }
-    .main-form{
+    .f-edit{
+        width:10%;
+    }
+    .font-ic {
+        color: var(--c-dt-bl);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        display: inline-block;
+        cursor:pointer;
+    }
+    .fa-pencil-square-o {
+        left:30%;
+    }
+    .fa-trash-o{
+        left:60%;
+    }
+    .bnt-add-new-us{
+        color:var(--c-tt-wt);
+        float:right;
+        background-color:#F0AD4E;
+        padding:10px 10px;
+        border-radius:4px;
+        border:none;
+        font-weight:600;
+    }
+    .bnt-add-f{
+        color:red;
+        font-weight:400;
+        cursor:pointer;
+    }
+    .t-note-u-ud{
+        color:var(--c-dt-bl);
+    }
+    .tab-edit-user{
         width:100%;
+        border-bottom:1px solid rgba(51,51,51,0.2);
+        padding:10px 0;
     }
-    .tt-main{
+    .bnt-edit-user {
+        color: var(--c-tt-wt);
+        text-align: center;
+        font-weight: 600;
+        box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+        cursor: pointer;
+        transition: all ease-in-out 300ms;
+        background-color: #F0AD4E;
+        width:100%;
+        padding:10px;
+        border-radius:4px;
     }
 }
-@media only screeen and (min-width:1200px){
 
+@media only screen and (min-width:1200px) {
+    .main-form {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .tt-main {
+        font-size: 20px;
+        width: auto;
+        margin-right: 100px;
+    }
+
+    .note-role {
+        font-size: var(--font-detail);
+        font-weight: 600;
+        margin-top: 5px;
+    }
+
+    .value-roles {
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+
+    .inp-search {
+        margin-right: 10px;
+    }
+
+    .l-text {
+        font-size: var(--font-detail);
+    }
+
+    .t-checkb {
+        font-size: var(--font-detail);
+    }
+
+    .t-roles {
+        font-size: var(--font-detail);
+    }
+
+    .input-adr {
+        font-size: var(--font-detail);
+        width: 20%;
+        margin-right: 20px;
+    }
+
+    .fa-file-image-o {
+        width: 10%;
+        font-size: 25px;
+        text-align: center;
+        padding: 45px 30px;
+        border-radius: 4px;
+        border: 1px solid rgba(51,51,51,0.5);
+        cursor: pointer;
+    }
+
+    .tab-title {
+        margin-top:20px;
+    }
+
+    .note-t {
+        font-size: var(--font-detail);
+        width: 10%;
+
+    }
+    .note-tius {
+       font-size: var(--font-detail);
+        width: 10%;
+        margin-top: 45px;
+    }
+    .font-ic {
+        font-size: 20px;
+        margin-top:45px;
+    }
+    .bnt-add-new-us {
+        font-size: 20px;
+        margin-right: 50px;
+        margin-top: 40px;
+        box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+        cursor: pointer;
+        transition: all ease-in-out 300ms;
+    }
+        .bnt-add-new-us:hover {
+            box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
+            -webkit-transform: translate(0px, -10px) scale(1.2);
+            transform: translate(0px, -5px) scale(1.1);
+        }
+    .bnt-add-f {
+        font-size: 17px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+    .t-note-u-ud {
+       font-size:var(--font-detail);
+       width:20%;
+       margin:0;
+    }
+    .edit-ip-ud{
+        width:80%;
+        margin:0;
+    }
+    .line-it{
+        margin-bottom:15px;
+        width:100%;
+    }
+    .t-gender{
+        width:40%;
+    }
+    .sl-gender{
+        width:60%;
+    }
+    .t-email{
+        padding-left:10px;
+        font-weight:600;
+    }
+    .bnt-edit-user{
+        font-size:20px;
+    }
 }
