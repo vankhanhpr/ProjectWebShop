@@ -2,10 +2,10 @@
 function Login() {
     showLoading();
     //formData.append('usid', $('#t-email').val());
-    //formData.append('password', $('#t-pass').val());
+    //formData.append('password', md5($('#t-pass').val()));
     var data = { "email": $('#t-email').val(), "password": md5($('#t-pass').val()) };
     $.ajax({
-        url: linkserver+ 'authentication/login',
+        url: linkserver + 'authentication/login',
         type: 'POST',
         dataType: 'json',
         data: JSON.stringify(data),

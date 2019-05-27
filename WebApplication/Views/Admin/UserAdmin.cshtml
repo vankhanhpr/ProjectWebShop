@@ -15,7 +15,7 @@
         <div class="k bd-rol">
             <span class="k tt-main">Users</span>
             <span class="k note-role">Filter</span>
-            <select class="k value-roles">
+            <select class="k value-roles" onchange="changeRoles(this)">
                 <option value="1" class="item-role">Admin</option>
                 <option value="2" class="item-role">User</option>
             </select>
@@ -26,14 +26,14 @@
         <div class="k tab-body-user">
             <div class="k add-form">
                 <div class="k l-text">Name: </div>
-                <input type="text" class="k input-text" />
-                <input class="k chb" type="checkbox" name="vehicle1" value="Bike" style="margin-left:15px;" />
+                <input type="text" id="inp-name" class="k input-text" />
+                <input class="k chb" id="check-man" onclick="removeCheckbox(1)" type="checkbox" name="vehicle1" value="Bike" style="margin-left:15px;" />
                 <span class="k t-checkb">Man</span>
 
-                <input class="k chb" type="checkbox" name="vehicle1" value="Bike" style="margin-left:15px;" />
+                <input class="k chb" id="check-woman" onclick="removeCheckbox(2)" type="checkbox" name="vehicle1" value="Bike" style="margin-left:15px;" />
                 <span class="k t-checkb">Woman</span>
 
-                <input class="k chb" type="checkbox" name="vehicle1" value="Bike" style="margin-left:15px;" />
+                <input class="k chb" id="check-other" onclick="removeCheckbox(3)" type="checkbox" name="vehicle1" value="Bike" style="margin-left:15px;" />
                 <span class="k t-checkb">Other</span>
 
                 <span class="k t-roles">Set roles:</span>
@@ -41,22 +41,22 @@
                     <option value="1" class="item-role">Admin</option>
                     <option value="2" class="item-role">User</option>
                 </select>
+
+                <div class="k l-text">Email: </div>
+                <input type="text" class="k input-adr" id="inp-email" />
             </div>
             <div class="k add-form">
 
-                <div class="k l-text">Email: </div>
-                <input type="text" class="k input-adr" />
-
                 <div class="k l-text">Address: </div>
-                <input type="text" class="k input-adr" />
+                <input type="text" class="k input-adr" id="inp-addr" />
 
                 <div class="k l-text">Phone: </div>
-                <input type="number" class="k input-adr" />
+                <input type="number" class="k input-adr" id="inp-phone" />
 
                 <div class="k l-text">Birthday: </div>
                 <div class="form-group">
-                    <div class='input-group date' id='datepicker'>
-                        <input type='text' class="form-control" id="mn-day" />
+                    <div class='input-group date' id='datepicker-us'>
+                        <input type='text' class="form-control" id="inp-bd" />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -66,10 +66,15 @@
             <div class="k add-form">
                 <div class="k l-text">Avatar: </div>
                 <i class="k fa fa-file-image-o" aria-hidden="true" id="img-main" style="background-image: none; color: rgb(51, 51, 51);">
-                    <span class="bnt-sl-img">browse</span>
+                    <span class="bnt-sl-img" onclick="getImage()">browse</span>
                     <input id="multi-file" class="hidden" type="file" accept="image/*" multiple="">
                 </i>
-                <div class="k bnt-add-new-us">Create user</div>
+                <div class="k l-text" style="margin-left:20px;">Password: </div>
+                <input type="password" class="k input-adr" id="inp-pass" />
+                <input class="k chb" id="check-pass" onchange="showpass()" type="checkbox" name="shp" value="shp" style="margin-top:7px;" />
+                <div class="k l-text" style="margin-left:5px;">show</div>
+
+                <div class="k bnt-add-new-us" onclick="insertUser()">Create user</div>
             </div>
         </div>
 
@@ -86,23 +91,22 @@
                 <span class="k note-t">Create day</span>
                 <span class="k note-t" style="width:10%;">Edit</span>
             </div>
-            <div class="k body-user">
-                <span class="k note-tius" style="width:5%;">1</span>
-                <div class="k avt-user"></div>
-                <span class="k note-tius" style="width:20%;">Nguyen Van A</span>
-                <span class="k note-tius" style="width:5%;">males</span>
-                <span class="k note-tius" style="width:20%;">khanhnv@hcmute.edu.vn</span>
-                <span class="k note-tius">0987.566.566</span>
-                <span class="k note-tius">23/05/1995</span>
-                <span class="k note-tius">01/05/2019</span>
-                <div class=" k f-edit">
-                    <i class="fa fa-pencil-square-o font-ic" aria-hidden="true" data-toggle="modal" data-target="#myModalUser"></i>
-                    <i class="fa fa-trash-o font-ic" aria-hidden="true"></i>
-                </div>
+            <div class="k bd-body-us">
+                @*<div class="k body-user">
+                        <span class="k note-tius" style="width:5%;">1</span>
+                        <div class="k avt-user"></div>
+                        <span class="k note-tius" style="width:20%;">Nguyen Van A</span>
+                        <span class="k note-tius" style="width:5%;">males</span>
+                        <span class="k note-tius" style="width:20%;">khanhnv@hcmute.edu.vn</span>
+                        <span class="k note-tius">0987.566.566</span>
+                        <span class="k note-tius">23/05/1995</span>
+                        <span class="k note-tius">01/05/2019</span>
+                        <div class=" k f-edit">
+                            <i class="fa fa-pencil-square-o font-ic" aria-hidden="true" data-toggle="modal" data-target="#myModalUser"></i>
+                            <i class="fa fa-trash-o font-ic" aria-hidden="true"></i>
+                        </div>
+                    </div>*@
             </div>
-
-
-            
 
             <div class="modal fade" id="myModalUser" role="dialog">
                 <div class="modal-dialog">
@@ -118,36 +122,56 @@
                                 <div class="k add-form">
                                     <div class="k line-it">
                                         <span class="k t-note-u-ud">Full name:</span>
-                                        <input type="text" class="k input-text edit-ip-ud" />
+                                        <input type="text" class="k input-text edit-ip-ud" id="ud-fullname" />
                                     </div>
-                                    <div class="k line-it"style="width:50%;">
+                                    <div class="k line-it" style="width:50%;">
                                         <span class="k t-note-u-ud t-gender">Gender</span>
-                                        <select class="k value-roles-add edit-ip-ud sl-gender">
-                                            <option value="1" class="item-role">Admin</option>
-                                            <option value="2" class="item-role">User</option>
+                                        <select class="k value-roles-add edit-ip-ud sl-gender" id="sl-gd-ud">
+                                            <option value="1" class="item-role udsex">Man</option>
+                                            <option value="2" class="item-role udsex">Woman</option>
+                                            <option value="3" class="item-role udsex">Other</option>
                                         </select>
                                     </div>
                                     <div class="k line-it" style="width:50%;">
                                         <span class="k t-note-u-ud" style="padding-left:10px;">Email:</span>
-                                        <span class="k t-note-u-ud edit-ip-ud t-email">Khanhnv@gmail.com</span>
+                                        <span class="k t-note-u-ud edit-ip-ud t-email" id="ed-mail"></span>
                                     </div>
                                     <div class="k line-it">
                                         <span class="k t-note-u-ud">Phone:</span>
-                                        <input type="number" class="k input-text edit-ip-ud" />
+                                        <input type="number" class="k input-text edit-ip-ud" id="ed-phone" />
                                     </div>
+
+                                    <div class="k line-it">
+                                        <span class="k t-note-u-ud">Address:</span>
+                                        <input type="text" class="k input-text edit-ip-ud" id="ed-address" />
+                                    </div>
+
                                     <div class="k line-it">
                                         <span class="k t-note-u-ud">Birthday:</span>
                                         <div class="k form-group edit-ip-ud">
-                                            <div class='input-group date' id='datepicker' style="width:100%;">
-                                                <input type='text' class="form-control" id="mn-day" />
-                                                <span class="input-group-addon">
+                                            <div class='input-group' id='datepicker-ud-user' style="width:100%;">
+                                                <input type='text' class="form-control" id="ed-birthday"/>
+                                                <span class="input-group-addon" >
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="k bnt-edit-user">Update User</span>
-                                   
+                                    <div class="k line-it">
+                                        <span class="k t-note-u-ud">Password:</span>
+                                        <input type="password" class="k input-text edit-ip-ud" id="ed-pass-ud" style="width:60%;"/>
+                                        <input class="k chb" id="check-pass" onchange="showpassUd()" type="checkbox" name="shp" value="shp" style="margin-top:7px;margin-left:5px;" />
+                                        <div class="k l-text" style="margin-left:5px;">show</div>
+                                    </div>
+                                    <div class="k line-it">
+
+                                        <div class="k l-text">Avatar: </div>
+                                        <i class="k fa fa-file-image-o ud-img" id="image-mainud" aria-hidden="true" style="background-image: none; color: rgb(51, 51, 51);">
+                                            <span class="bnt-sl-img" onclick="getImageUd()">browse</span>
+                                            <input id="multi-file-ud" class="hidden" type="file" accept="image/*" multiple="">
+                                        </i>
+                                    </div>
+                                    <span class="k bnt-edit-user"  onclick="gotoUpdate()">Update User</span>
                                 </div>
                             </div>
 

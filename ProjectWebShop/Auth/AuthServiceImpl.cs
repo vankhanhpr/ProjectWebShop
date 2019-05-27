@@ -60,7 +60,7 @@ namespace ProjectWebShop.Auth
         private String generateToken(Users user)
         {
             var claims = new[] {
-                new Claim(JwtRegisteredClaimNames.Sub, user.username),
+                new Claim(JwtRegisteredClaimNames.Sub, user.fullname),
                 new Claim(JwtRegisteredClaimNames.Email, user.email),
                 //new Claim(JwtRegisteredClaimNames.Birthdate, user.Birthdate.ToString("yyyy-MM-dd")),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())

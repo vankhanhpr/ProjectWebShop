@@ -39,7 +39,7 @@ namespace ProjectWebShop.Responsitory
 
         public IEnumerable<Users> GetUserByRoles(int idrole)
         {
-            throw new NotImplementedException();
+            return context.Users.Where(x => x.roles == idrole).ToList();
         }
 
         public void InsertUser(Users users)

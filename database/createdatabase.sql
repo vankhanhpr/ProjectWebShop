@@ -52,15 +52,26 @@ money double,
 prid int, 
 foreign key (prid) references products(prid)
 );
+Create table Activity(
+ actid int not null Auto_increment primary key,
+ actiname nvarchar(100)
+)
+
 Create table users (
 usid int AUTO_INCREMENT primary key,
-username nvarchar(100),
+fullname nvarchar(100),
 password nvarchar(100),
 roles int ,
 avatar nvarchar(200),
 wall nvarchar(200),
 email nvarchar(100),
-phone nvarchar(10)
+phone nvarchar(10),
+address nvarchar(400),
+birthday datetime,
+createday datetime,
+active int,
+foreign key (roles) references roles(roleid),
+foreign key (active) references activity(actid)
 );
 Create table Invoice(
 ivid int AUTO_INCREMENT primary key,

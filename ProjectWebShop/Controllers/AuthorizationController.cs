@@ -25,7 +25,7 @@ namespace ProjectWebShop.Controllers
             this.m_authService = AuthServiceImpl.Instance(m_userResponsitory, m_config);
         }
         [HttpPost("login")]
-        public string login([FromBody]Users user)
+        public string login([FromForm]Users user)
         {
             AuthInfo authInfo = new AuthInfo();
             authInfo.email = user.email;

@@ -423,8 +423,6 @@ function bindingPrbyId(data) {
     if (data) {
         formDataUd.append('prid', data[0].product.prid);
         formDataUd.append('image', data[0].product.image);
-
-
         $('#pr-name-ud').val(data[0].product.prname);
         $('#total-pr-ud').val(data[0].product.total);
         $('#sale-price-ud').val(data[0].product.price);

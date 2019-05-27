@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\user\" />
   </ItemGroup>
 
   <ItemGroup>
