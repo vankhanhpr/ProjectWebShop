@@ -17,21 +17,21 @@ namespace ProjectWebShop.Auth
         private IUserResponsitory m_userResponsitory;
         private IConfiguration m_config;
         private IDictionary<String, String> m_tokens = new Dictionary<String, String>();
-      
-        private static AuthServiceImpl instance;
 
-        public static AuthServiceImpl Instance(IUserResponsitory userResponsitory, IConfiguration config)
-        {
-            if (instance == null)
-            {
-                instance = new AuthServiceImpl(userResponsitory,config);
-            }
-            return instance;
-        }
+        //public static readonly AuthServiceImpl instance;
+
+        //public static AuthServiceImpl Instance(IUserResponsitory userResponsitory, IConfiguration config)
+        //{
+        //    if (instance == null)
+        //    {
+        //        instance = new AuthServiceImpl(userResponsitory,config);
+        //    }
+        //    return instance;
+        //}
         public AuthServiceImpl(IUserResponsitory userResponsitory, IConfiguration config)
         {
-            this.m_config = config;
-            this.m_userResponsitory = userResponsitory;
+            m_config = config;
+            m_userResponsitory = userResponsitory;
         }
 
         public String login(AuthInfo authInfo)

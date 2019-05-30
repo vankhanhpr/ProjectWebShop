@@ -5,7 +5,7 @@ function Login() {
     //formData.append('password', md5($('#t-pass').val()));
     var data = { "email": $('#t-email').val(), "password": md5($('#t-pass').val()) };
     $.ajax({
-        url: linkserver + 'authentication/login',
+        url: linkserver + 'Authorization/login',
         type: 'POST',
         dataType: 'json',
         data: JSON.stringify(data),

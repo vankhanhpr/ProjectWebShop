@@ -46,6 +46,12 @@ namespace ProjectWebShop
             services.AddSingleton<IFileProvider>(
                new PhysicalFileProvider(
                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images")));//image
+            services.AddSingleton<IFileProvider>(
+               new PhysicalFileProvider(
+                   Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/user")));//image user
+
+            services.AddSingleton<IAuthService, AuthServiceImpl>();
+
 
             services.AddTransient<ILineProductResponsitory, LineProductResponsitory>();//prodcut
             services.AddTransient<IProductResponsitory, ProductResponsitory>();//prodcut

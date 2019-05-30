@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Css{
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;subset=vietnamese" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="~/css/product.css">
 }
 <div class=" k main-form">
@@ -13,7 +14,77 @@
             <div class="k img-pdt"></div>
         </div>
         <div class="k area-product">
-            <span class="k tt-pdt">Bánh kem phomas</span>
+            <div class="k bd-name-tt">
+                <span class="k tt-pdt">Bánh kem phomas</span>
+                <i class="fa fa-star ic-star" aria-hidden="true"></i>
+                <i class="fa fa-star ic-star" aria-hidden="true"></i>
+                <i class="fa fa-star ic-star" aria-hidden="true"></i>
+                <i class="fa fa-star ic-star" aria-hidden="true"></i>
+                <i class="fa fa-star ic-star" aria-hidden="true"></i>
+                <span class="k t-view-evaluate">(Xem 20 đánh giá)</span>
+            </div>
+            <div class="k bd-price">
+                <span class="k t-price">20.000 đ</span>
+                <span class="k t-old-price">Giá cũ : 21.000 đ</span>
+                <span class="k t-price-dc">(15%)</span>
+            </div>
+            <div class="k bd-amount">
+                <button class="bnt-amount" type="button">-</button>
+                <button class="bnt-amount" type="button">2</button>
+                <button class="bnt-amount" type="button">+</button>
+                <button id="#bnt-bought" class="add-to-cart" type="button">
+                    <span class="text">CHỌN MUA</span>
+                </button>
+            </div>
+            <div class="k bd-deliver">
+                <span class="k t-note-del">THỜI GIAN GIAO HÀNG DỰ KIẾN</span>
+                <span class="k t-add-del">Giao hàng tới</span>
+                <span class="k t-adddress">Thôn cành lá, xã Cành Cây, huyện Trên Mây tỉnh Dưới Đất</span>
+                <i class="fa fa-truck ic-deli" aria-hidden="true"> </i>
+                <span class="k t-time">Dự kiến trong ngày 23 tháng5 năm 2019</span>
+            </div>
+        </div>
+    </div>
+    <div class="k form-some-pr">
+        <span class="k t-view-s-pr">SẢN PHẨM TƯƠNG TỰ</span>
+        <div class="k bd-list-pr">
+            <div class="k bd-id-pr">
+                <div class="k f-it-more">
+                    <div class="k img-pr-more"></div>
+                    <span class="k t-name-pr-more">Trà chanh chém gió</span>
+                    <span class="k t-price-more">50.000 đ</span>
+                    <span class="k t-prds-more">40.000 đ</span>
+                    <span class="k t-prds-dc">-15%</span>
+                </div>
+            </div>
+            <div class="k bd-id-pr">
+                <div class="k f-it-more">
+                    <div class="k img-pr-more"></div>
+                    <span class="k t-name-pr-more">Trà chanh chém gió</span>
+                    <span class="k t-price-more">50.000 đ</span>
+                    <span class="k t-prds-more">40.000 đ</span>
+                    <span class="k t-prds-dc">-15%</span>
+                </div>
+            </div>
+            <div class="k bd-id-pr">
+                <div class="k f-it-more">
+                    <div class="k img-pr-more"></div>
+                    <span class="k t-name-pr-more">Trà chanh chém gió</span>
+                    <span class="k t-price-more">50.000 đ</span>
+                    <span class="k t-prds-more">40.000 đ</span>
+                    <span class="k t-prds-dc">-15%</span>
+                </div>
+            </div>
+            <div class="k bd-id-pr">
+                <div class="k f-it-more">
+                    <div class="k img-pr-more"></div>
+                    <span class="k t-name-pr-more">Trà chanh chém gió</span>
+                    <span class="k t-price-more">50.000 đ</span>
+                    <span class="k t-prds-more">40.000 đ</span>
+                    <span class="k t-prds-dc">-15%</span>
+                </div>
+            </div>
+            <i class="fa fa-angle-right bnt-next-pr" aria-hidden="true"></i>
         </div>
     </div>
 </div>

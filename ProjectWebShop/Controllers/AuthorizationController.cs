@@ -17,15 +17,15 @@ namespace ProjectWebShop.Controllers
     {
         private IUserResponsitory m_userResponsitory;
         private IConfiguration m_config;
-        private AuthServiceImpl m_authService;
-        public AuthorizationController(IUserResponsitory userResponsitory, IConfiguration config)
+        private IAuthService m_authService;
+        public AuthorizationController(IUserResponsitory userResponsitory, IConfiguration config,IAuthService authService)
         {
-            this.m_userResponsitory=userResponsitory;
-            this.m_config = config;
-            this.m_authService = AuthServiceImpl.Instance(m_userResponsitory, m_config);
+            m_userResponsitory=userResponsitory;
+            m_config = config;
+            this.m_authService = authService;
         }
         [HttpPost("login")]
-        public string login([FromForm]Users user)
+        public string login([FromBody]Users user)
         {
             AuthInfo authInfo = new AuthInfo();
             authInfo.email = user.email;

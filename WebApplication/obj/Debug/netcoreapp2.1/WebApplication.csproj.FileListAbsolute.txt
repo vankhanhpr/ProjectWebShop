@@ -74,3 +74,4 @@ E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Prod
 E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Admin\AdminLogin.g.cshtml.cs
 E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Admin\AdminAddProduct.g.cshtml.cs
 E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Admin\UserAdmin.g.cshtml.cs
+E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Order\Order.g.cshtml.cs

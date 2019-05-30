@@ -1,0 +1,370 @@
+﻿@import url("_layout.css");
+
+:root {
+}
+
+@media only screen and (min-width:0) {
+    .f-head{
+        display:none;
+    }
+    .main-form-order {
+        width: 100%;
+        padding: 0 10%;
+    }
+
+    .form-head {
+        width: 100%;
+    }
+
+    .bd-it-f-head {
+        width: 25%;
+    }
+
+    .img-logo {
+        background-size: contain;
+        background-image: url(/images/user/logo.jpg);
+        height: 100px;
+        width: 100%;
+    }
+
+    .ic-truck {
+        background: url('/images/order/images-order .png') no-repeat;
+        height: 52px;
+        width: 52px;
+        float: left;
+        background-repeat: no-repeat;
+    }
+
+    .t-deliver {
+        color: #1787c6;
+        font-weight: bold;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        line-height: 1.42857143;
+    }
+
+    .t-login-to-b {
+        background-color: #f8f8f8;
+        border: 1px dashed #dedede;
+        width: 100%;
+        padding-left: 5px;
+        color: #666666;
+    }
+
+    .f-inf-order {
+        width: 100%;
+        border: 1px solid rgba(51,51,51,0.12);
+    }
+
+    .db-f-it {
+        width: 33.333333%;
+        padding: 0 10px;
+    }
+
+    .tt-order {
+        text-transform: uppercase;
+        border-left: 5px solid #cccccc;
+        background-color: #f5f5f5;
+        line-height: 32px;
+        width: 100%;
+        float: left;
+        padding-left: 9px;
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+
+    .tt-type-pay {
+        text-transform: uppercase;
+        border-left: 5px solid #cccccc;
+        background-color: #f5f5f5;
+        line-height: 32px;
+        width: 100%;
+        float: left;
+        padding-left: 9px;
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+
+    .input-validation-error {
+        border: 1px solid red !important;
+        padding-left: 6px;
+    }
+
+    .text-box {
+        width: 100%;
+        height: 34px;
+        padding: 6px 5px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+    }
+
+    .field-validation-error {
+        color: red !important;
+        font-style: italic;
+    }
+
+    .bd-gender {
+        width: 100%;
+        padding: 10px 5px;
+    }
+
+    .t-gender {
+        color: var(--c-dt-bl);
+    }
+
+    .div-radio-button {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        width: 80px;
+    }
+
+        .div-radio-button input {
+            opacity: 0;
+            margin: 0;
+            display: none;
+            cursor: pointer;
+            color: var(--c-dt-bl);
+            list-style-type: none;
+        }
+
+    .fa-circle-o {
+        width: 23px;
+        height: 23px;
+        display: block;
+        font-size: 25px;
+        color: rgba(51,51,51,0.3);
+        margin: 0;
+        margin-top: 2px;
+        margin-right: 2px;
+        list-style-type: none;
+    }
+
+    .name-gender {
+        font-weight: normal;
+        margin-top: 5px;
+        margin-right: 5px;
+        list-style-type: none;
+        color: rgba(51,51,51,0.7);
+        cursor: pointer;
+    }
+
+    .name-deliver {
+        font-weight: normal;
+        margin-top: 5px;
+        margin-right: 5px;
+        list-style-type: none;
+        color: rgba(51,51,51,1);
+        cursor: pointer;
+    }
+
+    .name-time-deliver {
+        font-weight: normal;
+        margin-top: 5px;
+        margin-right: 5px;
+        list-style-type: none;
+        color: rgba(51,51,51,1);
+        cursor: pointer;
+    }
+
+    .fa-dot-circle-o {
+        color: var(--cl-yl);
+        width: 23px;
+        height: 23px;
+        display: block;
+        font-size: 25px;
+        margin: 0;
+        margin-top: 2px;
+        margin-right: 2px;
+        list-style-type: none;
+    }
+
+    .tex-note {
+        width: 100%;
+        height: 34px;
+        padding: 6px 5px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+    }
+    .f-prd{
+        width:100%;
+        padding-top:10px;
+        border-bottom:1px solid rgba(51,51,51,0.2);
+        padding-bottom:20px;
+    }
+    .img-prd{
+        background-position:center;
+        background-size:contain;
+        background-repeat:no-repeat;
+        background-image:url(/images/user/logo.jpg);
+    }
+    .name-prd{
+        color:var(--c-dt-bl);
+        padding-left:10px;
+        width:60%;
+        font-weight:500;
+    }
+    .price-product {
+        color: var(--c-dt-bl);
+        padding-left: 10px;
+        width: auto;
+        font-weight: 600;
+    }
+    .f-amount{
+        width:100%;
+    }
+    .t-note-amount{
+        color:rgba(51,51,51,0.7);
+        width:auto;
+    }
+    .t-amount {
+        color: rgba(51,51,51,0.7);
+        width: auto;
+        padding-left:10px;
+        border-radius:3px;
+        border:1px solid rgba(51,51,51,0.2);
+        padding:5px 8px;
+        margin-top:5px;
+        margin-left:10px;
+    }
+    .t-note-bf-pay{
+        color:var(--c-dt-bl);
+        width:50%;
+        text-align:left;
+        font-weight:500;
+    }
+    .t-money {
+        color: var(--c-dt-bl);
+        width: 50%;
+        font-weight: 500;
+        text-align: right;
+    }
+    .discount-code{
+        width:60%;
+    }
+    .bnt-dsc-code{
+        float:right;
+        border-radius:4px;
+        border:1px solid rgba(51,51,51,0.2);
+        background-color:rgba(51,51,51,0.4);
+        color:white;
+        width:30%;
+        text-align:center;
+        padding:5px;
+        margin-top:10px;
+        cursor:pointer;
+    }
+    .bnt-bought-pr {
+        width: 100%;
+        color: white;
+        background-color: orangered;
+        border-radius: 4px;
+        padding: 7px;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width:1200px) {
+    .ic-truck {
+        margin-left: 22px;
+        height: 52px;
+        float: left;
+        background-position: -140px -141px;
+    }
+
+    .t-deliver {
+        font-size: 13px;
+        margin-top: 15px;
+        margin-left: 5px;
+    }
+
+    .ic-lie {
+        background-position: -194px -141px;
+    }
+
+    .ic-quality {
+        background-position: -247px -141px;
+    }
+
+    .t-login-to-b {
+        line-height: 43px;
+        margin: 10px 0 0 0;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .f-inf-order {
+        padding-top: 20px;
+        padding-bottom: 50px;
+        margin-bottom: 20px;
+    }
+
+    .line-order span .gt {
+        margin-left: 20px;
+    }
+
+    .bd-gender {
+        margin-top: 10px;
+    }
+
+    .t-gender {
+        font-size: var(--font-detail);
+        margin-right: 20px;
+        margin-top: 5px;
+    }
+
+    .name-gender {
+        font-size: 15px;
+    }
+
+    .name-deliver {
+        font-size: 15px;
+    }
+
+    .name-time-deliver {
+        font-size: 15px;
+    }
+
+    .sl-add {
+        width: 50%;
+        padding: 5px 2px;
+        border: 1px solid rgba(51,51,51,0.2);
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    .tex-note{
+        height:68px;
+    }
+    .img-prd{
+        width:40px;
+        height:50px;
+    }
+    .name-prd{
+        font-size:15px;   
+    }
+    .price-product {
+        font-size: 15px;
+    }
+
+    .t-note-amount {
+        padding-top:10px;
+    }
+    .t-note-amount {
+        font-size:15px;
+    }
+
+    .t-note-bf-pay {
+        font-size: 15px;
+        margin-top:20px;
+    }
+
+    .t-money {
+        font-size: 15px;
+        margin-top: 20px;
+    }
+    .bnt-bought-pr {
+        font-size: 20px;
+        margin-top: 20px;
+        cursor:pointer;
+    }
+}
