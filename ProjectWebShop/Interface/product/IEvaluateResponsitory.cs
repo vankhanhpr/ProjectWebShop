@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace ProjectWebShop.Interface.product
 {
-    public interface IEvaluateResponsitory : IResponsitory<Evaluates>
+    public interface IEvaluateResponsitory : IResponsitory<Evaluate>
     {
-        dynamic GetAllEvaluates(int id);
-        Evaluates GetEvaluatesById(int id);
-        void SaveEvaluate(Evaluates ev);
+        dynamic GetAllEvaluates();
+        Evaluate GetEvaluatesById(int id);
+        void SaveEvaluate(Evaluate ev);
         void DeleteEvaluate(int id);
-        void UpdateEvaluate(Evaluates ev);
-        dynamic GetEvaluatesByPr(int id);
+        void UpdateEvaluate(Evaluate ev);
+        List<Evaluate> GetEvaluatesByPr(int id);
     }
 }

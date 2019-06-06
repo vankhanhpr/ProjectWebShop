@@ -235,6 +235,7 @@ function resetFormInsert() {
     $("#total-pr").val("");
     $("#sale-price").val("");
     $("#import-price").val("");
+    $("#pr-oldprice").val("");
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -259,7 +260,15 @@ function insertProduct() {
         formData.append('price', $('#sale-price').val());
         formData.append("mnday", $('#mn-day').val());
         formData.append('expirydate', $('#ex-day').val());
+        formData.append('highlight',1);
+        formData.append('oldprice', $("#pr-oldprice").val());
         formData.append('lineprid', parseInt($('#sl-lnpr').val()));
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        var sttoday = dd + '/' + mm + '/' + yyyy;
+        formData.append("createday", sttoday);
         if (listFile.length > 0) {
             for (var i = 0; i < listFile.length; i++) {
                 formData.append("files", listFile[i]);
@@ -421,35 +430,38 @@ function getPrById(id) {
 var totalimg_ud = 0;
 function bindingPrbyId(data) {
     if (data) {
-        formDataUd.append('prid', data[0].product.prid);
-        formDataUd.append('image', data[0].product.image);
-        $('#pr-name-ud').val(data[0].product.prname);
-        $('#total-pr-ud').val(data[0].product.total);
-        $('#sale-price-ud').val(data[0].product.price);
-        $('#import-price-ud').val(data[0].product.importprice);
+        formDataUd.append('prid', data.product.prid);
+        formDataUd.append('image', data.product.image);
+        formDataUd.append('highlight', data.product.highlight);
+        formDataUd.append('createday', formatDate(new Date(data.product.createday)).toString());
+        $('#pr-name-ud').val(data.product.prname);
+        $('#pr-oldprice-ud').val(data.product.oldprice);
+        $('#total-pr-ud').val(data.product.total);
+        $('#sale-price-ud').val(data.product.price);
+        $('#import-price-ud').val(data.product.importprice);
         $('.opt-ud').remove();
         for (var i in listLnPr) {
-            if (listLnPr[i].lineprid != data[0].product.lineprid) {
+            if (listLnPr[i].lineprid != data.product.lineprid) {
                 $("#sl-lnpr-ud").append('<option value="' + listLnPr[i].lineprid + '" class="opt-ud">' + listLnPr[i].linename + '</option>');
             }
             else {
                 $("#sl-lnpr-ud").append('<option value="' + listLnPr[i].lineprid + '" class="opt-ud"  selected="selected">' + listLnPr[i].linename + '</option>');
             }
         }
-        $('#mn-day-ud').val(formatDate(new Date(data[0].product.mnday)));
-        $('#ex-day-ud').val(formatDate(new Date(data[0].product.expirydate)));
+        $('#mn-day-ud').val(formatDate(new Date(data.product.mnday)));
+        $('#ex-day-ud').val(formatDate(new Date(data.product.expirydate)));
         //image main
-        $('#img-main-ud').css("background-image", "url(" + serverfile + data[0].product.image + ")");
+        $('#img-main-ud').css("background-image", "url(" + serverfile + data.product.image + ")");
         $("#img-main-ud").css("color", "rgba(51,51,51,0)");
         //image item
-        totalimg_ud = data[0].images.length;
+        totalimg_ud = data.images.length;
         $('.bd-img-view-it-ud').remove();
         listFileUdOld = [];
-        for (var j = 0; j < data[0].images.length; j++) {
-            var FileUpdate = { "imgid": data[0].images[j].imgid, "image": data[0].images[j].image, "check": true };
+        for (var j = 0; j < data.images.length; j++) {
+            var FileUpdate = { "imgid": data.images[j].imgid, "image": data.images[j].image, "check": true };
             listFileUdOld.push(FileUpdate);
             $("#list-img-it-ud").append('<div class="k bd-img-view-it-ud">' +
-                '<div class= "k img-view-it"style="background-image:url(' + serverfile + data[0].images[j].image + ')"></div >' +
+                '<div class= "k img-view-it"style="background-image:url(' + serverfile + data.images[j].image + ')"></div >' +
                 ' <i class="fa fa-times" aria-hidden="true" id="bnt-remove-ud" onclick="deleteImgItUp(' + j + ')"></i>' +
                 '</div');
         }
@@ -545,6 +557,7 @@ function updateProduct() {
     formDataUd.append('total', $('#total-pr-ud').val());
     formDataUd.append('importprice', $('#import-price-ud').val());
     formDataUd.append('price', $('#sale-price-ud').val());
+    formDataUd.append('oldprice', $('#pr-oldprice-ud').val());
 
     formDataUd.append('mnday', $('#mn-day-ud').val());
     formDataUd.append('expirydate', $('#ex-day-ud').val());

@@ -24,7 +24,7 @@
     }
 
     .img-pdt {
-        background-image: url(/images/home/testpdt.jpg);
+        /*background-image: url(/images/home/testpdt.jpg);*/
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;

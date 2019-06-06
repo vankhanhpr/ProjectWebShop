@@ -1,5 +1,6 @@
 ﻿
 @{
+    ViewBag.Title = "";
     ViewData["Title"] = "Products";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -11,27 +12,30 @@
     <span class="k link-product">Danh mục sản phẩm > Chi tiết sản phầm</span>
     <div class="k body-product">
         <div class="k area-product">
-            <div class="k img-pdt"></div>
+            <div class="k img-pdt" id="img-main-prd"></div>
         </div>
         <div class="k area-product">
             <div class="k bd-name-tt">
-                <span class="k tt-pdt">Bánh kem phomas</span>
-                <i class="fa fa-star ic-star" aria-hidden="true"></i>
-                <i class="fa fa-star ic-star" aria-hidden="true"></i>
-                <i class="fa fa-star ic-star" aria-hidden="true"></i>
-                <i class="fa fa-star ic-star" aria-hidden="true"></i>
-                <i class="fa fa-star ic-star" aria-hidden="true"></i>
+                <span class="k tt-pdt" id="name-prd">Bánh kem phomas</span>
+                <div class="k " id="bd-evaluate">
+                    @*<i class="fa fa-star ic-star" aria-hidden="true"></i>
+                    <i class="fa fa-star ic-star" aria-hidden="true"></i>
+                    <i class="fa fa-star ic-star" aria-hidden="true"></i>
+                    <i class="fa fa-star ic-star" aria-hidden="true"></i>
+                    <i class="fa fa-star ic-star" aria-hidden="true"></i>*@
+                </div>
+                
                 <span class="k t-view-evaluate">(Xem 20 đánh giá)</span>
             </div>
             <div class="k bd-price">
-                <span class="k t-price">20.000 đ</span>
-                <span class="k t-old-price">Giá cũ : 21.000 đ</span>
-                <span class="k t-price-dc">(15%)</span>
+                <span class="k t-price" id="price-pr"></span>
+                <span class="k t-old-price" id="old-price">Giá cũ :</span>
+                <span class="k t-price-dc" id="t-price-dc"></span>
             </div>
             <div class="k bd-amount">
-                <button class="bnt-amount" type="button">-</button>
-                <button class="bnt-amount" type="button">2</button>
-                <button class="bnt-amount" type="button">+</button>
+                <button class="bnt-amount" type="button" onclick="changeNumber(false)">-</button>
+                <span class="bnt-amount" id="numb">1</span>
+                <button class="bnt-amount" type="button" onclick="changeNumber(true)">+</button>
                 <button id="#bnt-bought" class="add-to-cart" type="button">
                     <span class="text">CHỌN MUA</span>
                 </button>
@@ -88,4 +92,19 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script src="~/js/userproduct.js"></script>
+    <script>
+        try {
+            var prid = @ViewBag.product;
+            getProductById(prid, bindingPrById)
+            getEvaluate(prid);
+        }
+        catch (er) {
+            //
+        }
+
+    </script>
+}
+
 

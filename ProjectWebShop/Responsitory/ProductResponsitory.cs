@@ -36,16 +36,25 @@ namespace ProjectWebShop.Responsitory
             //var ab = context.Products
             //  .Join(context.LineProducts, a => a.lineprid, b => b.lineprid, (a, b) => new { a }).Where(p => p.a.lineprid == id);
             //return ab.ToList();
-            return context.Products
-               .Where(p => p.lineprid == id).ToList();
+            try
+            {
+                return context.Products
+                               .Where(p => p.lineprid == id).ToList();
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+
+
         }
         public dynamic GetProductById(int id)
         {
-            var pdt = context.Products.Where(x=>x.prid == id).Select(product => new
+            var pdt = context.Products.Where(x => x.prid == id).Select(product => new
             {
                 product,
                 images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
-            });
+            }).FirstOrDefault();
             return pdt;
         }
         public Products GetaProductById(int id)
@@ -68,6 +77,38 @@ namespace ProjectWebShop.Responsitory
         {
             context.Update(product);
             context.SaveChanges();
+        }
+
+
+        //for user
+        public dynamic GetProuctsHighLights()
+        {
+            var data = context.Products.Where(x => x.highlight == 1).Select(product => new
+            {
+                product,
+                images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
+            }).Take(3);
+            return data;
+        }
+
+        public dynamic GetProcutsMostLikely()
+        {
+            var data = context.Products.OrderBy(x => x.totallike).Select(product => new
+            {
+                product,
+                images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
+            }).Take(8);
+            return data;
+        }
+
+        public dynamic GetNewProducts()
+        {
+            var data = context.Products.OrderBy(x => x.createday).Select(product => new
+            {
+                product,
+                images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
+            });
+            return data;
         }
     }
 }

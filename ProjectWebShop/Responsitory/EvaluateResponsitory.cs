@@ -9,48 +9,43 @@ using WebApiMyShop.Data;
 
 namespace ProjectWebShop.Responsitory
 {
-    public class EvaluateResponsitory : Responsitory<Evaluates>, IEvaluateResponsitory
+    public class EvaluateResponsitory : Responsitory<Evaluate>, IEvaluateResponsitory
     {
-        private DbSet<Evaluates> evaluateentity;
+        private DbSet<Evaluate> evaluateentity;
         public EvaluateResponsitory(MyDBContext context) : base(context)
         {
-            evaluateentity = context.Set<Evaluates>();
+            evaluateentity = context.Set<Evaluate>();
         }
         public void DeleteEvaluate(int id)
         {
             evaluateentity.Remove(GetEvaluatesById(id));
+            context.SaveChanges();
         }
 
-        public dynamic GetAllEvaluates(int prid)
+        public dynamic GetAllEvaluates()
         {
-            var pdt = context.Evaluates.Where(p=> p.prid==prid).Select(cmt => new
-            {
-                cmt,
-                images = context.Imgcomments.Where(image => image.evaid == cmt.evaid).ToList()
-            });
-            return pdt.ToList();
+            return context.Evaluates.ToList();
         }
 
-        public Evaluates GetEvaluatesById(int id)
+        public Evaluate GetEvaluatesById(int id)
         {
             return context.Evaluates
               .Where(p => p.evaid == id)
               .FirstOrDefault();
         }
-        public dynamic GetEvaluatesByPr(int id)
+        public List<Evaluate> GetEvaluatesByPr(int prid)
         {
             return context.Evaluates
-              .Where(p => p.evaid == id)
-              .FirstOrDefault();
+              .Where(p => p.prid == prid).ToList();
         }
 
-        public void SaveEvaluate(Evaluates ev)
+        public void SaveEvaluate(Evaluate ev)
         {
             context.Entry(ev).State = EntityState.Added;
             context.SaveChanges();
         }
 
-        public void UpdateEvaluate(Evaluates ev)
+        public void UpdateEvaluate(Evaluate ev)
         {
             context.Update(ev);
             context.SaveChanges();

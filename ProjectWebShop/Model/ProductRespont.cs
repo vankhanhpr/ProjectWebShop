@@ -18,12 +18,14 @@ namespace ProjectWebShop.Model
         public int total { get; set; }
         public long importprice { get; set; }
         public long price { get; set; }
+        public long oldprice { get; set; }
         public int lineprid { get; set; }
         public int totalview { get; set; }
         public int totallike { get; set; }
-        public double evaluate { get; set; }
         public string mnday { get; set; }
         public string expirydate { get; set; }
+        public string createday { get; set; }
+        public int highlight { get; set; }
         public IFormFile imagerq { get; set; }
         public List<IFormFile> files { get; set; }
     }

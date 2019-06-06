@@ -2,7 +2,9 @@
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link rel="stylesheet" type="text/css" href="~/css/home.css">
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/css/home.css">
+}
 <div class="container-fluid">
     <div class="k main-form">
         <div class="k bg-slider"></div>
@@ -12,49 +14,23 @@
             <span class=" t bf-t-note"></span>
         </div>
         <div class="k bd-main-it">
-            <div class="k db-it-prd">
-                <div class="k main-it">
-                    <div class="k bd-img">
-                        <div class="k img-product"></div>
-                    </div>
-                    <span class="k t t-name-it">Bánh bông lan </span>
-                    <span class="k t t-price-it">30.000₫ </span>
-                    <span class="k t t-price-pro-it">35.000₫ </span>
-                    <div class="f-dt-pdt">
-                        <i class="fa fa-shopping-cart"></i>
-                        <i class="fa fa-info"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="k db-it-prd">
-                <div class="k main-it">
-                    <div class="k bd-img">
-                        <div class="k img-product"></div>
-                    </div>
-                    <span class="k t t-name-it">Bánh bông lan </span>
-                    <span class="k t t-price-it">30.000₫ </span>
-                    <span class="k t t-price-pro-it">35.000₫ </span>
-                    <div class="f-dt-pdt">
-                        <i class="fa fa-shopping-cart"></i>
-                        <i class="fa fa-info"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="k db-it-prd">
-                <div class="k main-it">
-                    <div class="k bd-img">
-                        <div class="k img-product"></div>
-                    </div>
-                    <span class="k t t-name-it">Bánh bông lan </span>
-                    <span class="k t t-price-it">30.000₫ </span>
-                    <span class="k t t-price-pro-it">35.000₫ </span>
-                    <div class="f-dt-pdt">
-                        <i class="fa fa-shopping-cart"></i>
-                        <i class="fa fa-info"></i>
-                    </div>
-                </div>
-            </div>
+            <div class="k main-it-lv2">
 
+            </div>
+            @*<div class="k db-it-prd">
+                <div class="k main-it">
+                    <div class="k bd-img">
+                        <div class="k img-product"></div>
+                    </div>
+                    <span class="k t t-name-it">Bánh bông lan </span>
+                    <span class="k t t-price-it">30.000₫ </span>
+                    <span class="k t t-price-pro-it">35.000₫ </span>
+                    <div class="f-dt-pdt">
+                        <i class="fa fa-shopping-cart"></i>
+                        <i class="fa fa-info"></i>
+                    </div>
+                </div>
+            </div>*@
             <div class="k owl-dots">
                 <div class="owl-dot">
                     <span></span>
@@ -70,8 +46,8 @@
             <span class=" t t-f-favr">MÓN ĂN ĐƯỢC YÊU THÍCH</span>
             <span class=" t bf-t-note"></span>
         </div>
-        <div class="k bd-main-it">
-            <div class="k db-it-prd it-fvr">
+        <div class="k bd-main-it" id="bd-pr-favorite">
+            @*<div class="k db-it-prd it-fvr">
                 <div class="k main-it">
                     <div class="k bd-img">
                         <div class="k img-product"></div>
@@ -84,105 +60,7 @@
                         <i class="fa fa-info"></i>
                     </div>
                 </div>
-            </div>
-            <div class="k db-it-prd it-fvr">
-                <div class="k main-it">
-                    <div class="k bd-img">
-                        <div class="k img-product"></div>
-                    </div>
-                    <span class="k t t-name-it">Bánh bông lan </span>
-                    <span class="k t t-price-it">30.000₫ </span>
-                    <span class="k t t-price-pro-it">35.000₫ </span>
-                    <div class="f-dt-pdt">
-                        <i class="fa fa-shopping-cart"></i>
-                        <i class="fa fa-info"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="k db-it-prd it-fvr">
-                <div class="k main-it">
-                    <div class="k bd-img">
-                        <div class="k img-product"></div>
-                    </div>
-                    <span class="k t t-name-it">Bánh bông lan </span>
-                    <span class="k t t-price-it">30.000₫ </span>
-                    <span class="k t t-price-pro-it">35.000₫ </span>
-                    <div class="f-dt-pdt">
-                        <i class="fa fa-shopping-cart"></i>
-                        <i class="fa fa-info"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="k db-it-prd it-fvr">
-                <div class="k main-it">
-                    <div class="k bd-img">
-                        <div class="k img-product"></div>
-                    </div>
-                    <span class="k t t-name-it">Bánh bông lan </span>
-                    <span class="k t t-price-it">30.000₫ </span>
-                    <span class="k t t-price-pro-it">35.000₫ </span>
-                    <div class="f-dt-pdt">
-                        <i class="fa fa-shopping-cart"></i>
-                        <i class="fa fa-info"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="k db-it-prd it-fvr">
-                <div class="k main-it">
-                    <div class="k bd-img">
-                        <div class="k img-product"></div>
-                    </div>
-                    <span class="k t t-name-it">Bánh bông lan </span>
-                    <span class="k t t-price-it">30.000₫ </span>
-                    <span class="k t t-price-pro-it">35.000₫ </span>
-                    <div class="f-dt-pdt">
-                        <i class="fa fa-shopping-cart"></i>
-                        <i class="fa fa-info"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="k db-it-prd it-fvr">
-                <div class="k main-it">
-                    <div class="k bd-img">
-                        <div class="k img-product"></div>
-                    </div>
-                    <span class="k t t-name-it">Bánh bông lan </span>
-                    <span class="k t t-price-it">30.000₫ </span>
-                    <span class="k t t-price-pro-it">35.000₫ </span>
-                    <div class="f-dt-pdt">
-                        <i class="fa fa-shopping-cart"></i>
-                        <i class="fa fa-info"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="k db-it-prd it-fvr">
-                <div class="k main-it">
-                    <div class="k bd-img">
-                        <div class="k img-product"></div>
-                    </div>
-                    <span class="k t t-name-it">Bánh bông lan </span>
-                    <span class="k t t-price-it">30.000₫ </span>
-                    <span class="k t t-price-pro-it">35.000₫ </span>
-                    <div class="f-dt-pdt">
-                        <i class="fa fa-shopping-cart"></i>
-                        <i class="fa fa-info"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="k db-it-prd it-fvr">
-                <div class="k main-it">
-                    <div class="k bd-img">
-                        <div class="k img-product"></div>
-                    </div>
-                    <span class="k t t-name-it">Bánh bông lan </span>
-                    <span class="k t t-price-it">30.000₫ </span>
-                    <span class="k t t-price-pro-it">35.000₫ </span>
-                    <div class="f-dt-pdt">
-                        <i class="fa fa-shopping-cart"></i>
-                        <i class="fa fa-info"></i>
-                    </div>
-                </div>
-            </div>
+            </div>*@
         </div>
 
         <div class="k f-new-pdt">
@@ -242,3 +120,6 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script src="~/js/userhome.js"></script>
+}

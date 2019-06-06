@@ -16,12 +16,14 @@ namespace ProjectWebShop.Model
         public int total { get; set; }
         public long importprice { get; set; }
         public long price { get; set; }
+        public long oldprice { get; set; }
         public int lineprid { get; set; }
         public int totalview { get; set; }
         public int totallike { get; set; }
-        public double evaluate { get; set; }
         public string image { get; set; }
+        public int highlight { get; set; }
         public DateTime mnday { get; set; }
+        public DateTime createday { get; set; }
         public DateTime expirydate { get; set; }
     }
 }

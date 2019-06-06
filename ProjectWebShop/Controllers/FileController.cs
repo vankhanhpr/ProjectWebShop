@@ -111,14 +111,20 @@ namespace ProjectWebShop.Controllers
                 prod.lineprid = pd.lineprid;
                 prod.importprice = pd.importprice;
                 prod.price = pd.price;
+                prod.oldprice = pd.oldprice;
                 prod.image = nameimg;
+                prod.highlight = pd.highlight;
                 DateTime mnday = DateTime.ParseExact(pd.mnday, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 prod.mnday = mnday;
                 DateTime expirydate = DateTime.ParseExact(pd.expirydate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 prod.expirydate = expirydate;
+
+                DateTime createday = DateTime.ParseExact(pd.createday, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                prod.createday = createday;
+
                 _iproductResponsitory.SaveProduct(prod);
 
-                if (pd.files != null || pd.files.Count>0)
+                if (pd.files != null || pd.files.Count > 0)
                 {
                     foreach (var file in pd.files)
                     {
@@ -163,11 +169,15 @@ namespace ProjectWebShop.Controllers
                 newitem.lineprid = pd.lineprid;
                 newitem.totalview = pd.totalview;
                 newitem.totallike = pd.totallike;
-                newitem.evaluate = pd.evaluate;
+                newitem.highlight = pd.highlight;
+                newitem.oldprice = pd.oldprice;
                 DateTime mnday = DateTime.ParseExact(pd.mnday, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                DateTime expirydate = DateTime.ParseExact(pd.expirydate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 newitem.mnday = mnday;
+                DateTime expirydate = DateTime.ParseExact(pd.expirydate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 newitem.expirydate = expirydate;
+                DateTime createday = DateTime.ParseExact(pd.createday, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                newitem.createday = createday;
+
                 newitem.image = pd.image;
                 if (pd.imagerq != null)
                 {

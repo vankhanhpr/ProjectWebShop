@@ -12,9 +12,18 @@ namespace WebApplication.Controllers
         {
             return View();
         }
-        public IActionResult Product()
+        public IActionResult Product(int? prid)
         {
-            return View();
+            int product = prid ?? 0 ;
+            if (product == 0)
+            {
+                return RedirectToAction("index", "home");
+            }
+            else
+            {
+                ViewBag.product = product;
+                return View();
+            }
         }
     }
 }
