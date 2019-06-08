@@ -22,7 +22,7 @@ function bindingNewPr(data) {
         var lstpr = data.data;
         $(".db-it-prd").remove();
         for (var i in lstpr) {
-
+            
             $(".main-it-lv2").append('<div class="k db-it-prd">' +
                 '<div class= "k main-it">' +
                 '<div class="k bd-img">' +
@@ -32,7 +32,7 @@ function bindingNewPr(data) {
                 '<span class="k t t-price-it">' + lstpr[i].product.price + '</span>' +
                 '<span class="k t t-price-pro-it">35.000₫ </span>' +
                 '<div class="f-dt-pdt">' +
-                '<i class="fa fa-shopping-cart"></i>' +
+                '<i class="fa fa-shopping-cart" onclick="addProduct(' + lstpr[i].product.prid + ')"></i>' +
                 '<a href="/product/product?prid=' + lstpr[i].product.prid+'"><i class="fa fa-info"></i></a>' +
                 '</div>' +
                 '</div>' +
@@ -43,7 +43,11 @@ function bindingNewPr(data) {
         bootbox.alert("Error !");
     }
 }
-
+//add to cart
+function addProduct(id) {
+    var model = { prid: id, total: 1 };
+    addToCart(model);
+}
 //get highlight products
 function getHighLightpr(callback) {
     $.ajax({
@@ -73,7 +77,7 @@ function bindingHLpr(data) {
                 '</div>' +
                 '<span class="k t t-name-it">' + lsthlpr[i].product.prname + '</span>' +
                 '<span class="k t t-price-it">' + lsthlpr[i].product.price + ' đ </span>' +
-                '<span class="k t t-price-pro-it">35.000₫ </span>' +
+                '<span class="k t t-price-pro-it">'+ lsthlpr[i].product.oldprice +' ₫ </span>' +
                 '<div class="f-dt-pdt">' +
                 '<i class="fa fa-shopping-cart"></i>' +
                 '<i class="fa fa-info"></i>' +

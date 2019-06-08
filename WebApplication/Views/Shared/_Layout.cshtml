@@ -23,7 +23,7 @@
             </form>
         </div>
         <div class="k f-head">
-            <div class="k logo"></div>
+            <a href="/"><div class="k logo"></div></a>
             <div class="k bd-menu">
                 <div class="k main-menu">
                     <ul class="k main-menu">
@@ -71,16 +71,19 @@
                     </ul>
                 </div>
             </div>
-            <div class="k f-cart">
-                <div class="k bd-tt-cart">
-                    <span class="k tt_pdt">0</span>
-                    <i class="shopping-bag"></i>
+            <a href="/order/checkout">
+                <div class="k f-cart">
+                    <div class="k bd-tt-cart">
+                        <span class="k tt_pdt"></span>
+                        <i class="shopping-bag"></i>
+                    </div>
+                    <span class="k bd-note-cart">
+                        <span class="k t t-cart2">GIỎ HÀNG</span>
+                        @*<span class="k t t-count_item">(0) Sản phẩm</span>*@
+                    </span>
                 </div>
-                <span class="k bd-note-cart">
-                    <span class="k t t-cart2">GIỎ HÀNG</span>
-                    <span class="k t t-count_item">(0) Sản phẩm</span>
-                </span>
-            </div>
+            </a>
+           
             <div class="k ic_bt_head"></div>
         </div>
         @RenderBody()

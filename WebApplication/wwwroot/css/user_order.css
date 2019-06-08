@@ -196,7 +196,6 @@
         background-position:center;
         background-size:contain;
         background-repeat:no-repeat;
-        background-image:url(/images/user/logo.jpg);
     }
     .name-prd{
         color:var(--c-dt-bl);
@@ -366,5 +365,11 @@
         font-size: 20px;
         margin-top: 20px;
         cursor:pointer;
+    }
+    .bd-item-small {
+        max-height: 200px;
+        overflow: scroll;
+        overflow-x: hidden;
+        overflow-y: scroll;
     }
 }

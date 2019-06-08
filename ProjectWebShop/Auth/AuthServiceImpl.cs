@@ -18,16 +18,6 @@ namespace ProjectWebShop.Auth
         private IConfiguration m_config;
         private IDictionary<String, String> m_tokens = new Dictionary<String, String>();
 
-        //public static readonly AuthServiceImpl instance;
-
-        //public static AuthServiceImpl Instance(IUserResponsitory userResponsitory, IConfiguration config)
-        //{
-        //    if (instance == null)
-        //    {
-        //        instance = new AuthServiceImpl(userResponsitory,config);
-        //    }
-        //    return instance;
-        //}
         public AuthServiceImpl(IUserResponsitory userResponsitory, IConfiguration config)
         {
             m_config = config;
@@ -115,11 +105,6 @@ namespace ProjectWebShop.Auth
         private Users getUserByEmail(String email)
         {
             return m_userResponsitory.GetUserByEmail(email);
-        }
-
-        string IAuthService.login(AuthInfo authInfo)
-        {
-            throw new NotImplementedException();
         }
 
         public bool checkPass(string pass, string passClient)

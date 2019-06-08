@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/css/user_checkout.css">
+}
+<div class="k main-form">
+    <div class="tt-cart ">ĐƠN HÀNG <span class="total-prd">(9 sản phẩm)</span></div>
+    <div class="k bd-f-tt-prd">
+        <div class="k body-prd">
+            @*<div class="k f-body-prd">
+                <div class="k img-prd"></div>
+                <div class="k f-note-prd">
+                    <span class="k t-name-prd">Banh bong la</span>
+                    <span class="k t-vs2">Cung cấp bởi: Fooody</span>
+                    <span class="bnt-remove-prd">Xóa</span>
+                </div>
+                <div class=" k f-price-prd">
+                    <span class="k t-price">20.000 đ</span>
+                    <span class="k t-old-price">20.000 đ</span>
+                    <span class="k t-discount">15%</span>
+                    <div class="k bd-numb-prd">
+                        <button class="bnt-amount" type="button" onclick="changeNumber(false)">-</button>
+                        <span class="bnt-amount" id="numb">1</span>
+                        <button class="bnt-amount" type="button" onclick="changeNumber(true)">+</button>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+
+
+
+        <div class="k bd-pay-money">
+            <div class="k f-pay-money">
+                <span class="k t-provisional">Tạm tính: </span>
+                <span class="k t-tt-money">50.000 đ</span>
+                <div class="k bd-mn-pay">
+                    <span class="k t-pay-mn">Thành tiền </span>
+                    <span class="k t-total-money">50.000 đ</span>
+                    <span class="k t-vat">(Đã bao gồm VAT) </span>
+                </div>
+                <a href="/order/order"><span class="k bnt-bought">Tiến hành đặt hàng</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/usercheckout.js"></script>
+
+}
+

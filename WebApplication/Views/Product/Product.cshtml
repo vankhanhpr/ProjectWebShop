@@ -25,7 +25,7 @@
                     <i class="fa fa-star ic-star" aria-hidden="true"></i>*@
                 </div>
                 
-                <span class="k t-view-evaluate">(Xem 20 đánh giá)</span>
+                <span class="k t-view-evaluate">(Xem 0 đánh giá)</span>
             </div>
             <div class="k bd-price">
                 <span class="k t-price" id="price-pr"></span>
@@ -37,7 +37,7 @@
                 <span class="bnt-amount" id="numb">1</span>
                 <button class="bnt-amount" type="button" onclick="changeNumber(true)">+</button>
                 <button id="#bnt-bought" class="add-to-cart" type="button">
-                    <span class="text">CHỌN MUA</span>
+                    <span class="text" onclick="addPrToCarrt()">CHỌN MUA</span>
                 </button>
             </div>
             <div class="k bd-deliver">
@@ -52,7 +52,7 @@
     <div class="k form-some-pr">
         <span class="k t-view-s-pr">SẢN PHẨM TƯƠNG TỰ</span>
         <div class="k bd-list-pr">
-            <div class="k bd-id-pr">
+            @*<div class="k bd-id-pr">
                 <div class="k f-it-more">
                     <div class="k img-pr-more"></div>
                     <span class="k t-name-pr-more">Trà chanh chém gió</span>
@@ -87,7 +87,7 @@
                     <span class="k t-prds-more">40.000 đ</span>
                     <span class="k t-prds-dc">-15%</span>
                 </div>
-            </div>
+            </div>*@
             <i class="fa fa-angle-right bnt-next-pr" aria-hidden="true"></i>
         </div>
     </div>
@@ -103,7 +103,6 @@
         catch (er) {
             //
         }
-
     </script>
 }
 

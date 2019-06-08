@@ -18,11 +18,11 @@ namespace ProjectWebShop.Controllers
         private IUserResponsitory m_userResponsitory;
         private IConfiguration m_config;
         private IAuthService m_authService;
-        public AuthorizationController(IUserResponsitory userResponsitory, IConfiguration config,IAuthService authService)
+        public AuthorizationController(IUserResponsitory userResponsitory, IConfiguration config, IAuthService auth)
         {
             m_userResponsitory=userResponsitory;
             m_config = config;
-            this.m_authService = authService;
+            this.m_authService = auth;
         }
         [HttpPost("login")]
         public string login([FromBody]Users user)

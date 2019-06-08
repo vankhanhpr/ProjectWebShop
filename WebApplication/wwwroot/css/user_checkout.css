@@ -1,0 +1,229 @@
+﻿@import url("config.css");
+:root{
+
+}
+@media only screen and (min-width:0){
+    .main-form{
+        width:100%;
+        background-color:rgba(51,51,51,0.12);
+    }
+    .tt-cart{
+        color:var(--c-dt-bl);
+        font-weight:500;
+    }
+    .total-prd {
+        color: var(--c-dt-bl);
+        font-weight: 500;
+    }
+    .bd-f-tt-prd{
+        width:100%;
+    }
+    .body-prd{
+        width:80%;
+       
+    }
+    .f-body-prd {
+        width: 100%;
+        border-radius: 4px;
+        background-color: white;
+        margin-bottom: 1px;
+    }
+    .bd-pay-money{
+        width:20%;
+        padding-left:10px;
+    }
+    .f-pay-money{
+        width:100%;
+        background-color:white;
+        border-radius:4px;
+    }
+    .img-prd {
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        border-radius: 4px;
+    }
+    .t-name-prd{
+        color:var(--c-dt-bl);
+        font-weight:600;
+        width:100%;
+        padding:2px;
+    }
+    .t-vs2 {
+        color: var(--c-dt-bl);
+        font-weight: 300;
+        width: 100%;
+        padding: 2px;
+    }
+    .bnt-remove-prd {
+        color: #007ff0;
+        cursor: pointer;
+        width: auto;
+        padding: 2px;
+    }
+    .t-price{
+        color:var(--c-dt-bl);
+        font-weight:600;
+    }
+    .t-old-price {
+        color: var(--c-dt-bl);
+        text-decoration:line-through;
+        width:auto;
+        padding:5px;
+    }
+    .t-discount {
+        color: var(--c-dt-bl);
+        font-weight: 600;
+        margin-left: 10px;
+        padding: 5px;
+    }
+    .bd-numb-prd{
+        width:100%;
+    }
+    .bnt-amount {
+        font-size: 14px;
+        height: 28px;
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;
+        border: 1px solid rgba(51,51,51,0.1);
+        display: inline-block;
+        padding: 4px 10px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        touch-action: manipulation;
+        cursor: pointer;
+        user-select: none;
+        background-image: none;
+        border-radius: 4px;
+        font-family: initial;
+        margin-top:5px;
+    }
+    .t-provisional{
+        color:var(--c-dt-bl);
+        font-weight:300;
+        width:50%;
+        text-align:left;
+    }
+    .t-tt-money {
+        color: var(--c-dt-bl);
+        font-weight: 300;
+        width: 50%;
+        text-align: right;
+    }
+    .bd-mn-pay{
+        width:100%;
+    }
+    .t-pay-mn {
+        color: var(--c-dt-bl);
+        font-weight: 300;
+        width: 50%;
+        text-align: left;
+    }
+    .t-total-money {
+        color: #fe3834;
+        font-weight: 400;
+        text-align:right;
+        width:50%;
+    }
+    .t-vat {
+        color: var(--c-dt-bl);
+        font-weight: 300;
+        width: 100%;
+        text-align: right;
+    }
+    .bnt-bought {
+        color: white;
+        background-color: #ff424e;
+        border-color: #ff424e;
+        border-radius:4px;
+        width:100%;
+        text-align:center;
+        cursor:pointer;
+    }
+}
+@media only screen and (min-width:1200px){
+    .main-form {
+        padding-left:5%;
+        padding-right:5%;
+        padding-bottom:5%;
+    }
+    .tt-cart {
+        font-size:20px;
+    }
+
+    .total-prd {
+        font-size: 18px;
+    }
+    .bd-f-tt-prd {
+        margin-top: 10px;
+    }
+    .body-prd{
+    }
+    .f-body-prd {
+        padding: 10px;
+    }
+
+    .img-prd {
+        width: 10%;
+        height: 120px;
+    }
+    .f-note-prd{
+        width:70%;
+        padding:25px 30px ;
+    }
+    .t-name-prd {
+        font-size:var(--font-detail);
+    }
+    .t-vs2 {
+        font-size: var(--font-detail);
+    }
+    .bnt-remove-prd {
+        font-size: var(--font-detail);
+    }
+    .f-price-prd{
+        width:20%;
+        padding:5px;
+        margin-top:10px;
+    }
+    .t-price {
+        font-size:var(--font-detail);
+        width:100%;
+    }
+    .t-old-price {
+        font-size:14px;
+    }
+    .t-discount {
+        font-size: 14px;
+    }
+    .f-pay-money {
+        padding: 15px;
+    }
+    .t-provisional {
+        font-size:var(--font-detail);
+    }
+    .t-tt-money {
+        font-size: var(--font-detail);
+    }
+    .t-pay-mn {
+        font-size: var(--font-detail);
+    }
+    .t-total-money {
+        font-size:22px;
+    }
+    .bd-mn-pay {
+       padding-top:30px;
+    }
+    .t-vat {
+        font-size:14px;
+    }
+    .bnt-bought{
+        padding:10px;
+        margin-top:20px;
+    }
+}

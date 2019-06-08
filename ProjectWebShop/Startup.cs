@@ -20,8 +20,10 @@ using Microsoft.IdentityModel.Tokens;
 using ProjectWebShop.Auth;
 using ProjectWebShop.Interface.lineproduct;
 using ProjectWebShop.Interface.product;
+using ProjectWebShop.Interface.unit;
 using ProjectWebShop.Interface.user;
 using ProjectWebShop.Responsitory;
+using ProjectWebShop.Responsitory.unit;
 using WebApiMyShop.Data;
 using WebApiMyShop.Interface;
 
@@ -58,6 +60,9 @@ namespace ProjectWebShop
             services.AddTransient<IImageProductResponsitory, ImageProductResponsitory>();//imageproduct
             services.AddTransient<IEvaluateResponsitory, EvaluateResponsitory>();//evaluate
             services.AddTransient<IUserResponsitory , UserResponsitory>();//login
+            services.AddTransient<IAuthService, AuthServiceImpl>();
+            services.AddTransient<IProvinceResponsitory, ProvinceResponsitory>();
+
             services.AddCors();
             services.AddIdentity<ApplicationUser, IdentityRole>()
                .AddEntityFrameworkStores<ApplicationDbContext>()

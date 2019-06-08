@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectWebShop.Model;
+using ProjectWebShop.Model.units;
 using WebApiMyShop.Models;
 
 namespace WebApiMyShop.Data
@@ -16,5 +17,6 @@ namespace WebApiMyShop.Data
         public DbSet<ImageProducts> ImageProducts { get; set; }
         public DbSet<Evaluate> Evaluates { get; set; }
         public DbSet<ImgComments> Imgcomments { get; set; }
+        public DbSet<Devvn_tinhthanhpho> Province { get; set; }
     }
 }
