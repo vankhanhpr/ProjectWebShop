@@ -28,9 +28,9 @@
     <div class=" k f-inf-order">
         <div class="k db-f-it">
             <span class="tt-order">THÔNG TIN MUA HÀNG</span>
-            <input class="text-box" data-val="true" data-val-required="Vui lòng nhập họ tên" placeholder="Họ và tên" type="text" value="">
+            <input id="t-name-client" class="text-box" data-val="true" data-val-required="Vui lòng nhập họ tên" placeholder="Họ và tên" type="text" value="">
 
-            <div class="k bd-gender">
+            <div class="k bd-gender" id="f-input-gender">
                 <span class="k t-gender">Giới tính:</span>
                 <a class="k div-radio-button" onclick="setRadioChecked(this)" itemprop="setgender">
                     <input class="k" data-val="true" id="male" type="radio" value="Male">
@@ -44,64 +44,65 @@
                 </a>
             </div>
 
-            <input class="text-box" data-val="true" data-val-required="Số điện thoại chính xác" id="ShoppingInfo_FullName" placeholder="Số điện thoại" type="text" value="">
-            <input class="text-box" data-val="true" data-val-required="Email" id="ShoppingInfo_FullName" placeholder="Email" type="text" value="">
-            <select class="k sl-add">
-                <option value="1">Hà Nội</option>
-                <option value="2">Hồ Chí Minh</option>
-                <option value="3">Đak Lak</option>
-                <option value="4">Gia Lai</option>
+            <input class="text-box" data-val="true" data-val-required="Số điện thoại chính xác" id="phone-numb" placeholder="Số điện thoại" type="text" value="">
+            <input class="text-box" data-val="true" data-val-required="Email" id="email" placeholder="Email" type="text" value="">
+            <select class="k sl-add" id="sl-province" onchange="getDistrictByProvince(this,true)">
+                @*<option value="1">Hà Nội</option>
+            <option value="2">Hồ Chí Minh</option>
+            <option value="3">Đak Lak</option>
+            <option value="4">Gia Lai</option>*@
             </select>
 
-            <select class="k sl-add">
-                <option value="1">Đông Anh</option>
-                <option value="2">Đông Em</option>
-                <option value="3">Đông Cô</option>
+            <select class="k sl-add" id="sl-district">
+                @*<option value="1">Đông Anh</option>
+            <option value="2">Đông Em</option>
+            <option value="3">Đông Cô</option>*@
             </select>
-            <input class="text-box" data-val="true" data-val-required="address" id="ShoppingInfo_FullName" placeholder="Giao hàng tới địa chỉ,xã phường" type="text" value="">
-            <div class="k bd-gender">
+            <input class="text-box" data-val="true" data-val-required="address" id="adress-client" placeholder="Giao hàng tới địa chỉ,xã phường" type="text" value="">
+            <div class="k bd-gender" id="f-input-address">
                 <a class="k div-radio-button" onclick="setRadioChecked(this)" itemprop="setdeliver" style="width:100%;">
-                    <input class="k" data-val="true" id="male" type="radio" value="Male">
+                    <input class="k" data-val="true" id="address" type="radio" value="Male">
                     <i class="fa fa-circle-o k"></i>
                     <label class="name-deliver k">Giao hàng tới địa chỉ trên</label>
                 </a>
                 <a class="k div-radio-button" data-val="Female" onclick="setRadioChecked(this)" itemprop="setdeliver" style="width:100%;">
-                    <input class="k" id="female" name="ShoppingInfo.Gender" type="radio" value="Female">
+                    <input class="k" id="anotheradress" name="ShoppingInfo.Gender" type="radio" value="Female">
                     <i class="fa fa-circle-o k" aria-hidden="true"></i>
                     <label class="name-deliver k">Giao hàng tới địa chỉ khác</label>
                 </a>
             </div>
+            <input class="text-box" data-val="true" data-val-required="address" id="other-adress" placeholder="Giao hàng tới địa chỉ,xã phường" type="text" value="">
 
         </div>
 
 
         <div class="k db-f-it">
             <span class="tt-order">THỜI GIAN NHẬN HÀNG</span>
-            <div class="k bd-gender">
+            <div class="k bd-gender" id="f-input-timedl">
                 <a class="k div-radio-button" onclick="setRadioChecked(this)" itemprop="settimedeliver" style="width:100%;">
-                    <input class="k" data-val="true" id="male" type="radio" value="Male">
+                    <input class="k" data-val="true" id="timeinwork" type="radio" value="Male">
                     <i class="fa fa-circle-o k"></i>
                     <label class="name-time-deliver k">Trong giờ hành chính</label>
                 </a>
                 <a class="k div-radio-button" data-val="Female" onclick="setRadioChecked(this)" itemprop="settimedeliver" style="width:100%;margin-top:7px;">
-                    <input class="k" id="female" name="ShoppingInfo.Gender" type="radio" value="Female">
+                    <input class="k" id="another" name="ShoppingInfo.Gender" type="radio" value="Female">
                     <i class="fa fa-circle-o k" aria-hidden="true"></i>
                     <label class="name-time-deliver k">Ngoài giờ hành chính</label>
                 </a>
             </div>
             <span class="tt-type-pay">HÌNH THỨC THANH TOÁN</span>
-            <div class="k bd-gender">
+            <div class="k bd-gender" id="f-input-pay" style="margin-bottom:5px;">
                 <a class="k div-radio-button" onclick="setRadioChecked(this)" itemprop="settypepay" style="width:100%;">
-                    <input class="k" data-val="true" id="male" type="radio" value="Male">
+                    <input class="k" data-val="true" id="cod" type="radio" value="Male">
                     <i class="fa fa-circle-o k"></i>
                     <label class="name-time-deliver k">Thanh toán khi nhận hàng (COD)</label>
                 </a>
                 <a class="k div-radio-button" data-val="Female" onclick="setRadioChecked(this)" itemprop="settypepay" style="width:100%;margin-top:7px;">
-                    <input class="k" id="female" name="ShoppingInfo.Gender" type="radio" value="Female">
+                    <input class="k" id="bank" name="ShoppingInfo.Gender" type="radio" value="Female">
                     <i class="fa fa-circle-o k" aria-hidden="true"></i>
                     <label class="name-time-deliver k">Chuyển khoản ngân hàng hoặc ví điện tử</label>
-
                 </a>
+
             </div>
             <textarea class="tex-note" cols="20" placeholder="Viết ghi chú, yêu cầu hóa đơn GTGT,..." rows="2"></textarea>
         </div>
@@ -122,11 +123,11 @@
             <div class="k f-prd">
                 <div class="k f-amount">
                     <span class="k t-note-bf-pay">Tạm tính</span>
-                    <a class="k t-money">120.000 đ</a>
+                    <a class="k t-money" id="t-money">120.000 đ</a>
                 </div>
                 <div class="k f-amount">
                     <span class="k t-note-bf-pay">Giảm giá</span>
-                    <a class="k t-money">0 đ</a>
+                    <a class="k t-money"id="t-mn-dc">0 đ</a>
                 </div>
                 <div class="k f-amount">
                     <input class="text-box discount-code k" data-val="true" data-val-required="address" placeholder="Nhập mã giảm giá" type="text" value="">
@@ -136,7 +137,7 @@
             <div class="k f-amount">
                 <span class="k t-note-bf-pay" style="font-weight:600">Thành tiền</span>
                 <a class="k t-money" style="color:red;font-size:18px;font-weight:600;"></a>
-                <span class="k bnt-bought-pr">ĐẶT HÀNG</span>
+                <span class="k bnt-bought-pr" onclick="toOrder()">ĐẶT HÀNG</span>
             </div>
         </div>
     </div>

@@ -261,6 +261,9 @@
         padding: 7px;
         text-align: center;
     }
+    #other-adress{
+        display:none;
+    }
 }
 
 @media only screen and (min-width:1200px) {

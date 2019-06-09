@@ -17,6 +17,9 @@ namespace WebApiMyShop.Data
         public DbSet<ImageProducts> ImageProducts { get; set; }
         public DbSet<Evaluate> Evaluates { get; set; }
         public DbSet<ImgComments> Imgcomments { get; set; }
-        public DbSet<Devvn_tinhthanhpho> Province { get; set; }
+        public DbSet<Devvn_tinhthanhpho> Devvn_tinhthanhpho { get; set; }
+        public DbSet<Devvn_quanhuyen> Devvn_quanhuyen { get; set; }
+        public DbSet<Invoices> Invoices { get; set; }
+        public DbSet<InvoiceProduct> InvoiceProduct { get; set; }
     }
 }

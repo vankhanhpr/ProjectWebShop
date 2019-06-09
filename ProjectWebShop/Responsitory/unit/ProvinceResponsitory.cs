@@ -1,9 +1,7 @@
-﻿
+﻿using ProjectWebShop.Model.units;
 using Microsoft.EntityFrameworkCore;
 using ProjectWebShop.Interface.unit;
-using ProjectWebShop.Model.units;
-using System;
-using System.Collections.Generic;
+using System.Linq;
 using WebApiMyShop.Data;
 
 namespace ProjectWebShop.Responsitory.unit
@@ -17,7 +15,7 @@ namespace ProjectWebShop.Responsitory.unit
         }
         public dynamic getAllProvince()
         {
-            return context.Province.ToListAsync();
+            return context.Devvn_tinhthanhpho.ToList();
         }
     }
 }

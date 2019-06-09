@@ -84,4 +84,28 @@ note nvarchar(300),
 prid int,
 foreign key (prid) references products(prid)
 );
-
+Create table invoices(
+ivid int AUTO_INCREMENT primary key,
+namecustomer nvarchar(100),
+gender int ,
+phonenumber nvarchar(10),
+email nvarchar(100),
+province varchar(5),
+district varchar(10),
+adress nvarchar(500),
+adressdelviver nvarchar(500),
+timedeliver int,
+typepay int ,
+totalmoney double ,
+money double ,
+codediscount nvarchar(30),
+note nvarchar(300),
+usid int
+);
+Create table InvoiceProduct(
+ivid int not null primary key Auto_increment ,
+prid int ,
+total int,
+foreign key (prid) references products(prid),
+foreign key (ivid) references invoices(ivid)
+);

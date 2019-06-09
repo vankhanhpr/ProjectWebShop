@@ -3,8 +3,8 @@ using ProjectWebShop.Model.units;
 
 namespace ProjectWebShop.Interface.unit
 {
-    public interface IProvinceResponsitory : IResponsitory<Devvn_tinhthanhpho>
+    public interface IDistrictResponsitory : IResponsitory<Devvn_quanhuyen>
     {
-        dynamic getAllProvince();
+        dynamic getDistrictByprovince(string pid);
     }
 }
