@@ -52,7 +52,7 @@ function showCart() {
     if (typeof (Storage) !== "undefined") {
         var list = [];
         var totalpr = 0;
-        if (localStorage.getItem('product').length > 0) {
+        if (localStorage.getItem('product')) {
             list = JSON.parse(localStorage.getItem("product"));
             for (var i = 0; i < list.length; i++) {
                 totalpr += parseInt(list[i].total);

@@ -207,8 +207,10 @@ function toOrder() {
         cache: false,
         enctype: 'multipart/form-data',
         success: function (data) {
-            $('#myModal-ud').modal('toggle');
-            bootbox.alert("Update item success!");
+            if (data.success) {
+                deleteIt();
+                window.location.href = "/order/ordersuccess?ivid=" + data.data.ivid;
+            }
         },
         error: function (err) {
             bootbox.alert("Error: " + err);

@@ -20,12 +20,11 @@ namespace ProjectWebShop.Model
         public string adressdelviver { get; set; }
         public int timedeliver { get; set; }
         public int typepay { get; set; }
-        public int quantitum { get; set; }
         public Double totalmoney { get; set; }
         public Double money { get; set; }
         public string codediscount { get; set; }
         public string note { get; set; }
-        public int prid { get; set; }
         public int usid { get; set; }
+        public string codeinvoice { get; set; }
     }
 }

@@ -13,10 +13,11 @@ namespace ProjectWebShop.Controllers.invoice
     public class InvoiceController : Controller
     {
         private IInvoiceResponsitory m_invoiceResponcitory;
-       public InvoiceController(IInvoiceResponsitory invoiceResponcitory)
+        public InvoiceController(IInvoiceResponsitory invoiceResponcitory)
         {
             m_invoiceResponcitory = invoiceResponcitory;
         }
+        //insert invoice
         [HttpPost("InsertInvoive")]
         public DataRespont InsertInvoive([FromForm] InvoiceRequest invoice)
         {
@@ -39,15 +40,37 @@ namespace ProjectWebShop.Controllers.invoice
                 inv.codediscount = invoice.codediscount;
                 inv.note = invoice.note;
                 inv.usid = invoice.usid;
+                inv.codeinvoice = RandomString(20);
+                Invoices newinv= m_invoiceResponcitory.InsetInvoice(inv);
 
-                m_invoiceResponcitory.InsetInvoice(inv);
-
-                foreach(var i in invoice.invoiceproduct)
+                foreach (var i in invoice.invoiceproduct)
                 {
-                    //InvoiceProduct invprd = new InvoiceProduct(i);
-                   // m_invoiceResponcitory.InsertInvoiceProduct(invprd);
+                    InvoiceProductRequest invprd = new InvoiceProductRequest(i);
+                    InvoiceProduct invoicers = new InvoiceProduct();
+                    invoicers.prid = invprd.prid;
+                    invoicers.total = invprd.total;
+                    invoicers.ivid = newinv.ivid;
+                    m_invoiceResponcitory.InsertInvoiceProduct(invoicers);
                 }
                 data.success = true;
+                data.data = newinv;
+            }
+            catch (Exception e)
+            {
+                data.success = false;
+                data.error = e;
+            }
+            return data;
+        }
+        //get invoice by id
+        [HttpGet("GetInvoicebyId")]
+        public DataRespont GetInvoicebyId(int id)
+        {
+            DataRespont data = new DataRespont();
+            try
+            {
+                data.success = true;
+                data.data = m_invoiceResponcitory.GetInvoiceById(id);
             }
             catch(Exception e)
             {
@@ -55,6 +78,14 @@ namespace ProjectWebShop.Controllers.invoice
                 data.error = e;
             }
             return data;
+        }
+        //random code invoice 
+        private static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "abcdefghiklmnopqrstwz0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }

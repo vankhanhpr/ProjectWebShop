@@ -16,17 +16,28 @@ namespace ProjectWebShop.Responsitory.invoice
         {
             envoiceEntity = context.Set<Invoices>();
         }
-        public dynamic getInvoiceByUser(int usid)
+
+        //get by id
+
+        public dynamic GetInvoiceById(int ivid)
+        {
+            var invoice = context.Invoices.Where(x => x.ivid == ivid).Select(invoi => new
+            {
+                invoi,
+                invoiceproduct = context.InvoiceProduct.Where(y=>y.ivid==invoi.ivid)
+            }).FirstOrDefault();
+            return invoice;
+        }
+
+        public dynamic GetInvoiceByUser(int usid)
         {
             var item = context.Invoices.Where(x => x.usid == usid).Select(invoice => new
             {
                 invoice,
-                invoiceproduct = context.InvoiceProduct.Where(ivprd => ivprd.prid == invoice.prid).ToList()
+                invoiceproduct = context.InvoiceProduct.Where(ivprd => ivprd.ivid == invoice.ivid).ToList()
             }).FirstOrDefault();
             return item;
         }
-
-
         //insert invoice product
         public void InsertInvoiceProduct(InvoiceProduct invoiceProduct)
         {
@@ -34,10 +45,12 @@ namespace ProjectWebShop.Responsitory.invoice
             context.SaveChanges();
         }
         //insert invoice
-        public void InsetInvoice(Invoices invoice)
+        public Invoices InsetInvoice(Invoices invoice)
         {
             context.Entry(invoice).State = EntityState.Added;
             context.SaveChanges();
+            return invoice;
         }
+
     }
 }

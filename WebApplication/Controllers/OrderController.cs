@@ -16,5 +16,18 @@ namespace WebApplication.Controllers
         {
             return View();
         }
+        public IActionResult OrderSuccess(int? ivid)
+        {
+            int  iv = ivid ?? 0;
+            if (iv == 0)
+            {
+                return RedirectToAction("index", "home");
+            }
+            else
+            {
+                ViewBag.ivid = iv;
+                return View();
+            }
+        }
     }
 }

@@ -1,20 +1,18 @@
-﻿
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProjectWebShop.Model
 {
     public class InvoiceProduct
     {
-        //public InvoiceProduct(string json)
-        //{
-        //    JObject jObject = JObject.Parse(json);
-        //    JToken jUser = jObject;
-        //    invprid = (int)jUser["invprid"];
-        //    prid = (int)jUser["prid"];
-        //    total = (int)jUser["total"];
-        //}
+        [Key]
         public int invprid { get; set; }
         public int prid { get; set; }
         public int total { get; set; }
+        public int ivid { get; set; }
     }
 }

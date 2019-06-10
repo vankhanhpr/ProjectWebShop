@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewData["Title"] = "OrderSuccess";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/css/user_odersuccess.css">
+}
+
+    <div class="k main-form">
+        <div class="k bd-f-note-oder">
+            <div class="k f-note-oder">
+                <div class="k img-background"></div>
+                <div class="k f-text-prd">
+                    <div class="k text-apolozine">Cảm ơn quý khách <span class="name-client"></span> đã cho chúng tôi cơ hội được phục vụ</div>
+                    <span class="k t-code-order">
+                        Mã số đơn hàng của bạn là:
+                        <span class="code"></span>
+                    </span>
+                    <ul class="k infor-contact">
+                        <li>Thời gian giao hàng dự kiến<span class="time-del">từ 1 đến 3</span> tiếng với các đơn hàng không trong giờ cao điểm</li>
+                        <li>Thông tin đơn hàng được gửi tới email: <span class="email-client"></span>, xin vui lòng kiểm tra thông tin</li>
+                        <li>Nếu có thắc mắc hoặc cần trợ giúp, xin vui lòng liên hệ qua hottline:0988878685 hoặc email xinxin@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="k bd-f-more-prd">
+            <div class="f-more-prd">
+                <span class="k tt-more-prd">Có thể bạn quan tâm</span>
+                <div class="k bd-item-more">
+                    @*<div class="k bd-f-moer-prd">
+                        <div class="k img-prd-more"></div>
+                        <div class="k f-name-pr-more">
+                            <span class="k t-name-pr-more">banh bong lan dac san</span>
+                            <span class="k t-price-pr-more">12.000 đ</span>
+                        </div>
+                    </div>*@
+                </div>
+               
+            </div>
+        </div>
+
+    </div>
+
+@section Scripts{
+    <script src="~/js/userordersuccess.js"></script>
+    <script>
+         try {
+             var ivid = @ViewBag.ivid;
+             getOrder(ivid, bindingOrderById);
+        }
+        catch (er) {
+            //
+        }
+    </script>
+}
+
+

@@ -9,8 +9,9 @@ namespace ProjectWebShop.Interface.invoice
 {
     public interface IInvoiceResponsitory: IResponsitory<Invoices>
     {
-        void InsetInvoice(Invoices invoice);
-        dynamic getInvoiceByUser(int usid);
+        Invoices InsetInvoice(Invoices invoice);
+        dynamic GetInvoiceByUser(int usid);
+        dynamic GetInvoiceById(int ivid);
         void InsertInvoiceProduct(InvoiceProduct invoiceProduct);
     }
 }

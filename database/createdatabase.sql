@@ -100,12 +100,14 @@ totalmoney double ,
 money double ,
 codediscount nvarchar(30),
 note nvarchar(300),
-usid int
+usid int,
+codeinvoice nvarchar(20) not null
 );
 Create table InvoiceProduct(
-ivid int not null primary key Auto_increment ,
+invprid int not null primary key Auto_increment ,
 prid int ,
 total int,
+ivid int,
 foreign key (prid) references products(prid),
 foreign key (ivid) references invoices(ivid)
 );
