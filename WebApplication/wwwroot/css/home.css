@@ -56,12 +56,22 @@
     .bd-img {
         width: 100%;
     }
+    .bd-img-highlight {
+        width: 100%;
+    }
     .db-it-prd :hover .bd-img {
         -webkit-transform: scale(1.03);
         transform: scale(1.03);
         -webkit-transition: all 0.7s ease;
         transition: all 0.5s ease;
     }
+    .db-it-prd :hover .bd-img-highlight {
+        -webkit-transform: scale(1.03);
+        transform: scale(1.03);
+        -webkit-transition: all 0.7s ease;
+        transition: all 0.5s ease;
+    }
+
     .img-product {
         /*background-image: url(/images/home/testpdt.jpg);*/
         background-size: cover;
@@ -256,6 +266,9 @@
     }
     .bd-img {
         height:290px;
+    }
+    .bd-img-highlight {
+        height: 176px;
     }
     .img-product {
         height: 290px;

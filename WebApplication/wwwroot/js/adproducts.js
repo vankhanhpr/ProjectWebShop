@@ -42,8 +42,8 @@ function bindingPdtByLine(data) {
                 '<span class="k t total-pdt">Total: ' + data[i].total + '</span>' +
                 '</div>' +
                 '<div class="k f-pdt-name">' +
-                '<span class="k t name-product">Saleprice: ' + data[i].price + '</span>' +
-                '<span class="k t total-pdt">Import price: ' + data[i].importprice + '</span>' +
+                '<span class="k t name-product">Saleprice: ' + formatNumber( data[i].price) + ' đ</span>' +
+                '<span class="k t total-pdt">Import price: ' + formatNumber(data[i].importprice) + ' đ</span>' +
                 '<span class="k t total-pdt">Manufacturing date: ' + formatDate(new Date(data[i].mnday)) + '</span>' +
                 '<span class="k t t-warning">Expiry date: ' + formatDate(new Date(data[i].expirydate)) + '</span>' +
                 '<div class="k ic_delete_pdt" onclick="deleteProduct(' + data[i].prid + ')"></div>' +
@@ -256,12 +256,12 @@ function insertProduct() {
     try {
         formData.append('prname', $('#pr-name').val());
         formData.append('total', $('#total-pr').val());
-        formData.append('importprice', $('#import-price').val());
-        formData.append('price', $('#sale-price').val());
+        formData.append('importprice', covertToString($('#import-price').val()));
+        formData.append('price', covertToString($('#sale-price').val()));
         formData.append("mnday", $('#mn-day').val());
         formData.append('expirydate', $('#ex-day').val());
         formData.append('highlight',1);
-        formData.append('oldprice', $("#pr-oldprice").val());
+        formData.append('oldprice', covertToString($("#pr-oldprice").val()));
         formData.append('lineprid', parseInt($('#sl-lnpr').val()));
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
@@ -435,10 +435,10 @@ function bindingPrbyId(data) {
         formDataUd.append('highlight', data.product.highlight);
         formDataUd.append('createday', formatDate(new Date(data.product.createday)).toString());
         $('#pr-name-ud').val(data.product.prname);
-        $('#pr-oldprice-ud').val(data.product.oldprice);
+        $('#pr-oldprice-ud').val(formatNumber(data.product.oldprice));
         $('#total-pr-ud').val(data.product.total);
-        $('#sale-price-ud').val(data.product.price);
-        $('#import-price-ud').val(data.product.importprice);
+        $('#sale-price-ud').val(formatNumber(data.product.price));
+        $('#import-price-ud').val(formatNumber(data.product.importprice));
         $('.opt-ud').remove();
         for (var i in listLnPr) {
             if (listLnPr[i].lineprid != data.product.lineprid) {
@@ -555,9 +555,9 @@ function deleteImgItUp(position) {
 function updateProduct() {
     formDataUd.append('prname', $('#pr-name-ud').val());
     formDataUd.append('total', $('#total-pr-ud').val());
-    formDataUd.append('importprice', $('#import-price-ud').val());
-    formDataUd.append('price', $('#sale-price-ud').val());
-    formDataUd.append('oldprice', $('#pr-oldprice-ud').val());
+    formDataUd.append('importprice', covertToString($('#import-price-ud').val()));
+    formDataUd.append('price', covertToString( $('#sale-price-ud').val()));
+    formDataUd.append('oldprice', covertToString($('#pr-oldprice-ud').val()));
 
     formDataUd.append('mnday', $('#mn-day-ud').val());
     formDataUd.append('expirydate', $('#ex-day-ud').val());
@@ -584,6 +584,7 @@ function updateProduct() {
         success: function (data) {
             $('#myModal-ud').modal('toggle');
             bootbox.alert("Update item success!");
+            callAjax(tp.get, "products/GetByLine?id=" + lnid, null, bindingPdtByLine);s
         },
         error: function (err) {
             bootbox.alert("Error: " + err);
@@ -643,3 +644,67 @@ function deleteCatagoty(catid) {
         }
     });
 }
+
+//change key
+function changeKeyPress(obj) {
+    var text = $(obj).val().toString();
+    var str = formatNumber(covertToString(text));
+    $(obj).val(str);
+}
+function covertToString(str) {
+    var strint = str.replace(/,/g,'');
+    return strint;
+}
+
+$(document).ready(function () {
+    //called when key is pressed in textbox
+    $("#sale-price").keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+        }
+    });
+    $("#import-price").keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+        }
+    });
+    $("#pr-oldprice").keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+        }
+    });
+    $("#total-pr").keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+        }
+    });
+    //update
+    $("#sale-price-ud").keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+        }
+    });
+    $("#import-price-ud").keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+        }
+    });
+    $("#pr-oldprice-ud").keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+        }
+    });
+    $("#total-pr-ud").keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+        }
+    });
+});

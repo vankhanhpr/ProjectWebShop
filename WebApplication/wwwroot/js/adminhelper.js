@@ -55,7 +55,7 @@ function formatNumber(yourNumber) {
         components[0] = components[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         return components.join(".");
     } else {
-        return "0";
+        return "";
     }
 }
 

@@ -5,8 +5,13 @@ var ttmoney = 0;
 function getPrFromLocal() {
     if (typeof (Storage) !== "undefined") {
         var list = [];
-        if (localStorage.getItem('product').length > 0) {
+        if (localStorage.getItem('product')) {
             list = JSON.parse(localStorage.getItem("product"));
+        }
+        else {
+            $("#f-nothing-prd").show();
+            $(".f-pay-money").hide();
+
         }
         return list;
     }
@@ -33,7 +38,7 @@ function addTotalPrToView(ttpr) {
     $(".total-prd").text("(" + ttpr + " sản phẩm)");
 }
 //get Product by id from server
-function getPrFromServer(id, callback,num,po) {
+function getPrFromServer(id, callback, num, po) {
     $.ajax({
         type: "get",
         url: linkserver + "productuser/GetproductbyId?id=" + id,
@@ -44,7 +49,7 @@ function getPrFromServer(id, callback,num,po) {
             callback(err);
         },
         success: function (data) {
-            callback(data,num,po);
+            callback(data, num, po);
         }
     });
 }
@@ -52,15 +57,31 @@ function getPrFromServer(id, callback,num,po) {
 function deletePrInCart(id) {
     if (typeof (Storage) !== "undefined") {
         var list = [];
-        if (localStorage.getItem('product').length > 0) {
+        if (localStorage.getItem('product')) {
             list = JSON.parse(localStorage.getItem("product"));
+            var ttprtincart = parseInt($(".tt_pdt").text() );
             for (var i = 0; i < list.length; i++) {
                 if (list[i].prid == id) {
+                    ttprtincart -= list[i].total;
                     list.splice(i, 1);
-                    localStorage['product'] = JSON.stringify(list);
-                    getProduct();
-                    $(".f-body-prd").remove();
+                    $(".f-body-prd").remove();//xóa view
+                    if (list.length == 0) {
+                        $(".body-prd").append(' <div class="k f-body-prd" style="text-align:center;" id="f-nothing-prd">' +
+                            '<div class= "img-cart-noth" ></div >' +
+                            '<span class="t-noth-prd">Không có sản phẩm nào trong giỏ hàng của bạn</span>' +
+                            '<a href="/"><span class="bnt-continue">Tiếp tục mua sắm</span></a>' +
+                            '</div >');
+                        $("#f-nothing-prd").show();
+                        $(".f-pay-money").hide();
+                        deleteIt();
+                    }
+                    else {
+                        localStorage['product'] = JSON.stringify(list);
+                        getProduct();
+                    }
+                    $(".total-prd").text("(" + list.length + " sản phẩm)");
                     ttmoney = 0;
+                    $(".tt_pdt").text(ttprtincart);
                     return;
                 }
             }
@@ -72,12 +93,12 @@ function deletePrInCart(id) {
 }
 
 //binding data
-function bindingPrById(data,numb,po) {
+function bindingPrById(data, numb, po) {
     if (data.success) {
         var pr = data.data.product;
         var x = parseInt(pr.price);
         var y = parseInt(pr.oldprice);
-        var dsc = (x- y) / y * 100;
+        var dsc = (x - y) / y * 100;
         var temp = Math.round(parseFloat(dsc) * 100) / 100;
         ttmoney += x * numb;
         showTotalMoney(ttmoney);
@@ -89,8 +110,8 @@ function bindingPrById(data,numb,po) {
             '<span class="bnt-remove-prd" onclick="deletePrInCart(' + pr.prid + ')">Xóa</span>' +
             '</div>' +
             '<div class=" k f-price-prd">' +
-            '<span class="k t-price">' + pr.price + ' đ</span>' +
-            '<span class="k t-old-price">' + pr.oldprice + ' đ</span>' +
+            '<span class="k t-price">' + formatNumber(pr.price) + ' đ</span>' +
+            '<span class="k t-old-price">' + formatNumber(pr.oldprice) + ' đ</span>' +
             '<span class="k t-discount">' + temp + '%</span>' +
             '<div class="k bd-numb-prd">' +
             '<button class="bnt-amount" type="button" onclick="changeNumber(false,' + po + ',' + pr.price + ')">-</button>' +
@@ -107,12 +128,12 @@ function bindingPrById(data,numb,po) {
 
 //show total money
 function showTotalMoney(money) {
-    $(".t-tt-money").text(money+" đ");
-    $(".t-total-money").text(money+" đ");
+    $(".t-tt-money").text(formatNumber(money) + " đ");
+    $(".t-total-money").text(formatNumber(money) + " đ");
 }
 
 //edit total 
-function changeNumber(bool, po,price) {
+function changeNumber(bool, po, price) {
     var number = parseInt($("#numb" + po).text());
     var mon = parseInt($("#numb" + po).text());
     if (bool) {

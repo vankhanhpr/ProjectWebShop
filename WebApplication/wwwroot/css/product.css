@@ -22,7 +22,10 @@
         width: 100%;
         color: rgba(51,51,51,0.7);
     }
-
+    .bd-img-main {
+        width: 100%;
+        padding:3px;
+    }
     .img-pdt {
         /*background-image: url(/images/home/testpdt.jpg);*/
         background-size: cover;
@@ -32,6 +35,24 @@
         height: 368px;
         border: 1px solid rgba(51,51,51,0.02);
         border-radius: 4px;
+    }
+
+    .form-more-img{
+        width:100%;
+        margin-bottom:20px;
+    }
+    .bd-img-more {
+        width: 20%;
+        padding: 3px;
+    }
+    .img-more {
+        width: 100%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 70px;
+        border-radius: 3px;
+        cursor: pointer;
     }
 
     .tt-pdt {
@@ -259,12 +280,15 @@
     }
 
     .area-product {
-        width: 33.3333334%;
-        padding-left: 5px;
-        padding-right: 5px;
+        width: 50%;
+        padding-left: 15px;
+        padding-right: 15px;
         padding-top: 20px;
     }
-
+    .form-more-img {
+        width: 100%;
+        margin-top: 10px;
+    }
     .tt-pdt {
         font-size: var(--f-pdt-tt);
         width: 100%;

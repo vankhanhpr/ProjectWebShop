@@ -29,7 +29,7 @@ function setRadioChecked(a) {
 
         switch (e) {
             case "setgender":
-                if ($(a).find("input").get(0).id=="male") {
+                if ($(a).find("input").get(0).id == "male") {
                     gender = 0;
                 }
                 else {
@@ -75,7 +75,7 @@ function setCheckBoxChecked(a) {
             !0), n.removeClass("fa-square-o").addClass("fa-check-square"));
 }
 //get product
-function getPrFromServer(id, callback,num) {
+function getPrFromServer(id, callback, num) {
     $.ajax({
         type: "get",
         url: linkserver + "productuser/GetproductbyId?id=" + id,
@@ -122,14 +122,16 @@ function bindingPrById(data, num) {
         var item = data.data.product;
         totalmoney += item.price * num;
 
-        var model = { "prid": item.prid,"total": num };
+        var model = { "prid": item.prid, "total": num };
         listinvoicepr.push(model);
 
-        $("#t-money").text(totalmoney + " đ");
+        $("#t-money").text(formatNumber(totalmoney) + " đ");
+        $(".t-money").text(formatNumber(totalmoney) + " đ");
+
         $(".bd-item-small").append('<div class="k f-prd">' +
             '<div class= "k img-prd" style="background-image:url(' + serverfile + item.image + ')"></div >' +
             '<span class="k name-prd">' + item.prname + '</span>' +
-            '<span class="k price-product">' + item.price + ' đ</span>' +
+            '<span class="k price-product">' + formatNumber(item.price) + ' đ</span>' +
             '<div class="k f-amount">' +
             '<span class="k t-note-amount">Số lượng</span>' +
             '<a class="k t-amount" title="Số lượng sản phẩm muốn mua">' + num + '</a>' +
@@ -161,7 +163,7 @@ function bindingProvince(data) {
         for (var i in province) {
             $("#sl-province").append(' <option value=' + province[i].matp + '>' + province[i].name + '</option>');
         }
-        getDistrictByProvince(province[0].matp,false);
+        getDistrictByProvince(province[0].matp, false);
     }
 }
 
@@ -200,7 +202,7 @@ function toOrder() {
     var data = checkOrder();
     $.ajax({
         type: "POST",
-        url: linkserver +"invoice/InsertInvoive",
+        url: linkserver + "invoice/InsertInvoive",
         data: data,
         processData: false,
         contentType: false,
@@ -236,7 +238,7 @@ function checkOrder() {
     }
     //check phone number
     var phonenumber = $("#phone-numb").val().trim();
-    if (phonenumber == "" || phonenumber == null) {
+    if (phonenumber.length!=10) {
         changeColorElement("phone-numb", true);
     }
     else {
@@ -319,7 +321,7 @@ function checkOrder() {
     return formData;
 }
 //change border color element
-function changeColorElement(elem,bol) {
+function changeColorElement(elem, bol) {
     if (bol) {
         $("#" + elem).css("border", "1px solid red");
     }
@@ -327,3 +329,12 @@ function changeColorElement(elem,bol) {
         $("#" + elem).css("border", "1px solid rgba(51,51,51,0.2");
     }
 }
+
+//checknumber
+$(document).ready(function () {
+    $("#phone-numb").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            return false;
+        }
+    });
+});

@@ -44,7 +44,7 @@
                 </a>
             </div>
 
-            <input class="text-box" data-val="true" data-val-required="Số điện thoại chính xác" id="phone-numb" placeholder="Số điện thoại" type="text" value="">
+            <input class="text-box" data-val="true" data-val-required="Số điện thoại chính xác" id="phone-numb" maxlength="10" placeholder="Số điện thoại" type="text" value="">
             <input class="text-box" data-val="true" data-val-required="Email" id="email" placeholder="Email" type="text" value="">
             <select class="k sl-add" id="sl-province" onchange="getDistrictByProvince(this,true)">
                 @*<option value="1">Hà Nội</option>
@@ -123,11 +123,11 @@
             <div class="k f-prd">
                 <div class="k f-amount">
                     <span class="k t-note-bf-pay">Tạm tính</span>
-                    <a class="k t-money" id="t-money">120.000 đ</a>
+                    <a class="k t-money" id="t-money"></a>
                 </div>
                 <div class="k f-amount">
                     <span class="k t-note-bf-pay">Giảm giá</span>
-                    <a class="k t-money"id="t-mn-dc">0 đ</a>
+                    <a class="k t-money"id="t-mn-dc"></a>
                 </div>
                 <div class="k f-amount">
                     <input class="text-box discount-code k" data-val="true" data-val-required="address" placeholder="Nhập mã giảm giá" type="text" value="">
@@ -136,7 +136,7 @@
             </div>
             <div class="k f-amount">
                 <span class="k t-note-bf-pay" style="font-weight:600">Thành tiền</span>
-                <a class="k t-money" style="color:red;font-size:18px;font-weight:600;"></a>
+                <span class="k t-money" style="color:red;font-size:18px;font-weight:600;"></span>
                 <span class="k bnt-bought-pr" onclick="toOrder()">ĐẶT HÀNG</span>
             </div>
         </div>
