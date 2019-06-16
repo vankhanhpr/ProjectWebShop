@@ -1,4 +1,5 @@
-﻿var tp = {
+﻿
+var tp = {
     'get': 'GET',
     'post': 'POST',
     'delete': 'DELETE'
@@ -7,18 +8,20 @@ var linkserver = "https://localhost:44337/api/";
 var serverfile = "https://localhost:44337/images/";
 var serverfileuser = "https://localhost:44337/user/";
 
-var tokens = [];
+
+
+
 function callAjax(type, link, data, callback) {
     console.log(link);
     $.ajax({
         type: type,
         url: linkserver + link,
         data: data,
-        dataType:'json',
+        dataType: 'json',
         contentType: "application/json",
         error: function (err) {
             callback(err);
-            
+
         },
         success: function (data) {
             callback(data);
@@ -272,4 +275,49 @@ var md5 = function (string) {
     var temp = WordToHex(a) + WordToHex(b) + WordToHex(c) + WordToHex(d);
 
     return temp.toLowerCase();
+}
+
+function saveToken(token) {
+    if (typeof (Storage) !== "undefined") {
+        localStorage.setItem('access_token', JSON.stringify(token));
+    }
+    else {
+        bootbox.alert("Brower not support to storage");
+    }
+}
+
+function getTokenFromLocal() {
+    var model = localStorage.getItem('access_token');
+    if (model) {
+        return model;
+    }
+    else {
+        return null;
+    }
+}
+function checkTokenFromLocal() {
+    var model = getTokenFromLocal();
+    $.ajax({
+        url: linkserver + 'Authorization/checkToken',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(model),
+        async: false,
+        processData: false,
+        contentType: "application/json",
+        error: function (err) {
+            bootbox.alert({
+                message: "Error :" + err.message
+            });
+            return false;
+        },
+        success: function (data) {
+            if (data.success) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    });
 }

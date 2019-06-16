@@ -25,5 +25,18 @@ namespace WebApplication.Controllers
                 return View();
             }
         }
+        public IActionResult DescriptionProduct(int? prid)
+        {
+            int product = prid ?? 0;
+            if (product == 0)
+            {
+                return RedirectToAction("index", "home");
+            }
+            else
+            {
+                ViewBag.prid = product;
+                return View();
+            }
+        }
     }
 }

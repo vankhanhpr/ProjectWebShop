@@ -85,7 +85,6 @@
         font-weight: 400;
         text-align: left;
         background: transparent;
-        font-family: "UTMBryantLGBold",sans-serif;
         word-wrap: break-word;
         overflow: hidden;
         display: -webkit-box;
@@ -120,6 +119,31 @@
         font-weight: 500;
         text-decoration: line-through;
         opacity:0.6;
+    }
+    .fa-eye {
+        position: relative;
+        color: rgba(51,51,51,0.7);
+        font-size: 16px;
+        float: right;
+        margin-left: 10px;
+        margin-top: 2px;
+    }
+
+    .fa-heart-o {
+        position: relative;
+        color: rgba(51,51,51,0.7);
+        font-size: 15px;
+        float: right;
+        margin-left: 8px;
+        margin-top: 2px;
+    }
+
+    .t-tt-view {
+        font-size: 14px;
+        color: rgba(51,51,51,0.6);
+        text-align: center;
+        padding: 0 5px;
+        float: right;
     }
     .f-dt-pdt{
         position:absolute;
@@ -176,13 +200,12 @@
     }
     .f-new-pdt{
         width:100%;
-        background-color:rgba(51,51,51,0.2);
     }
     .t-new-pdt {
-        color: var(--c-dt-wt);
+        color: var(--c-dt-bl);
     }
     .t-new-pdt-line {
-        border: 0.75px dashed white;
+        border: 0.75px dashed rgba(51,51,51,0.3);
     }
     .body-it-new{
         width:100%;
@@ -191,7 +214,6 @@
         padding:10px;
     }
     .img-it-new{
-        background-image:url(/images/home/testpdt.jpg);
         width:20%;
         height:120px;
         border-radius:4px;
@@ -276,15 +298,18 @@
     .t-name-it {
         font-size: var(--font-title);
         width: 100%;
+        margin-top:10px;
+        margin-bottom:10px;
     }
     .t-price-it{
         width:auto;
-        margin-right:30px;
+        margin-right:15px;
         font-size:var(--font-title);
     }
     .t-price-pro-it {
         width: auto;
         font-size: var(--font-detail);
+        margin-top:1px;
     }
     .f-dt-pdt {
         width: max-content;

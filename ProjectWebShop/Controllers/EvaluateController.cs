@@ -19,9 +19,9 @@ namespace ProjectWebShop.Controllers
         }
 
        [HttpGet("getEvaByPr")]
-       public DataRespont GetEvabyPr(int prid)
+       public DataRespond GetEvabyPr(int prid)
         {
-            DataRespont data = new DataRespont();
+            DataRespond data = new DataRespond();
             try
             {
                 data.success = true;
@@ -42,9 +42,9 @@ namespace ProjectWebShop.Controllers
             return data;
         }
         [HttpPost("insertEva")]
-        public DataRespont InsertEva()
+        public DataRespond InsertEva()
         {
-            DataRespont data = new DataRespont();
+            DataRespond data = new DataRespond();
             return data;
         }
     }

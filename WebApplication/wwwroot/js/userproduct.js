@@ -74,7 +74,7 @@ function bindingSamePr(data) {
                 '<span class="k t-name-pr-more">' + item.prname + '</span>' +
                 '<span class="k t-price-more">' + formatNumber(item.price) + ' đ</span>' +
                 '<span class="k t-prds-more">' + formatNumber(item.oldprice) + ' đ</span>' +
-                '<span class="k t-prds-dc">-' + temp + '%</span>' +
+                '<span class="k t-prds-dc">' + temp + '%</span>' +
                 '</div >' +
                 '</div ></a>');
         }

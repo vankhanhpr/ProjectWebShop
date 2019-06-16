@@ -18,9 +18,9 @@ namespace ProjectWebShop.Controllers.unit
             m_IDistrictResponsitory = iDistrictResponsitory;
         }
         [HttpGet("GetDtByProvince")]
-        public DataRespont GetProvince(string pid)
+        public DataRespond GetProvince(string pid)
         {
-            DataRespont data = new DataRespont();
+            DataRespond data = new DataRespond();
             try
             {
                 data.success = true;

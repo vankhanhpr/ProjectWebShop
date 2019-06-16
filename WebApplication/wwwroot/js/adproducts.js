@@ -1,4 +1,12 @@
-﻿var lnid = 0;
+﻿$(document).ready(function () {
+    if (token.length < 3) {
+        //
+    }
+    else {
+         window.location.href = "/admin/adminlogin";
+    }
+});
+var lnid = 0;
 var listFile = [];
 var listFileUd = [];
 var listFileUdOld = [];
@@ -48,6 +56,7 @@ function bindingPdtByLine(data) {
                 '<span class="k t t-warning">Expiry date: ' + formatDate(new Date(data[i].expirydate)) + '</span>' +
                 '<div class="k ic_delete_pdt" onclick="deleteProduct(' + data[i].prid + ')"></div>' +
                 '<div class="k ic_edit_pdt" onclick="getPrById(' + data[i].prid + ')" data-toggle="modal" data-target="#myModal-ud"></div>' +
+                '<a href="/product/DescriptionProduct?prid=' + data[i].prid+'"><i class="fa fa-list-alt" aria-hidden="true"></i></a>'+
                 '</div>' +
                 '</div>');
         }

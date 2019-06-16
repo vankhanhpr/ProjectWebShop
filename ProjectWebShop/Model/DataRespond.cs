@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProjectWebShop.Model
 {
-    public class DataRespont
+    public class DataRespond
     {
         public Boolean success { get; set; }
         public dynamic data { get; set; }

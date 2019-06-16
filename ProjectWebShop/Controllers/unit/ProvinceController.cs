@@ -19,9 +19,9 @@ namespace ProjectWebShop.Controllers.unit
         }
 
         [HttpGet("GetProvince")]
-        public DataRespont GetProvince()
+        public DataRespond GetProvince()
         {
-            DataRespont data = new DataRespont();
+            DataRespond data = new DataRespond();
             try
             {
                 data.success = true;

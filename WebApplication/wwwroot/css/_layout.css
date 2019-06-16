@@ -12,13 +12,13 @@
     float: left;
     background-position: center;
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
 .t {
     font-family: inherit;
     line-height: 1.1;
-    margin-top: 10px;
 }
 @media only screen and (min-width:0) {
     .container-fluid {
@@ -106,7 +106,7 @@
         text-decoration: none;
     }
 
-    .fa {
+    .h-icon-fa {
         display: inline-block;
         font: normal normal normal 14px/1 FontAwesome;
         font-size: inherit;
@@ -215,13 +215,13 @@
         font-family: "UTMBryantLGBold",sans-serif;
         text-align:left;
     }
-    .fa{
-        color:var(--cl-yl);
-        text-align:left;
-        position:relative;
-        float:left;
-        margin-top:4px;
-        margin-right:10px;
+    .h-icon-fa {
+        color: var(--cl-yl);
+        text-align: left;
+        position: relative;
+        float: left;
+        margin-top: 4px;
+        margin-right: 10px;
     }
     .t-inf{
         color:var(--c-dt-wt);

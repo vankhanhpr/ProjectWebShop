@@ -28,7 +28,11 @@
         background-size: contain;
         background-image: url(/images/admin/ic_add.png);
     }
-
+    .fa-list-alt{
+        color:rgba(51,51,51,0.7);
+        font-weight:300;
+        float:right;
+    }
     .t-name-pr {
         color: var(--c-dt-wt);
     }
@@ -221,7 +225,7 @@
         margin-right: 10px;
         cursor:pointer;
     }
-
+    
     .bd-prd {
         padding: 5px 0;
     }
@@ -273,8 +277,11 @@
         width: 15%;
         height: 20px;
         cursor: pointer;
+        margin-left:10px;
     }
-
+    .fa-list-alt {
+        font-size: 24px;
+    }
     .ic_delete_pdt {
         width: 15%;
         height: 20px;

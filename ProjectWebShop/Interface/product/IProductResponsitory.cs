@@ -22,5 +22,8 @@ namespace ProjectWebShop.Interface.product
         dynamic GetProuctsHighLights();
         dynamic GetProcutsMostLikely();
         dynamic GetNewProducts();
+        void updateToTalView(Products prd);
+        Products getOnlyProduct(int prid);
+        dynamic GetDesPr();
     }
 }

@@ -111,3 +111,24 @@ ivid int,
 foreign key (prid) references products(prid),
 foreign key (ivid) references invoices(ivid)
 );
+
+Create table describeproducts(
+desid int not null primary key auto_increment ,
+describes nvarchar(3000),
+title nvarchar(1000),
+prid int,
+stt bit,
+foreign key (prid) references products(prid)
+)
+
+Create table discount (
+ discountid int not null primary key Auto_increment ,
+ code nvarchar(10),
+ percent int,
+ eventname nvarchar(500),
+ money Double,
+ stt bit,
+ startday datetime,
+ endday datetime,
+ note nvarchar(1000)
+)

@@ -1,8 +1,6 @@
 ﻿var formData = new FormData();
 function Login() {
     showLoading();
-    //formData.append('usid', $('#t-email').val());
-    //formData.append('password', md5($('#t-pass').val()));
     var data = { "email": $('#t-email').val(), "password": md5($('#t-pass').val()) };
     $.ajax({
         url: linkserver + 'Authorization/login',
@@ -14,24 +12,56 @@ function Login() {
         contentType: "application/json",
         error: function (err) {
             bootbox.alert({
-                message: "Error :" + err,
+                message: "Error :" + err.message
             });
             destroyLoading();
         },
         success: function (data) {
             destroyLoading();
-            if (data.key == "Success") {
-                window.location.href = "/admin/product";
+            if (data.success) {
+                saveToken(data.data);
+                window.location.href = "/admin";
             }
             else {
                 bootbox.alert({
-                    message: "Email or password is not correct",
+                    message: "" + data.data,
                     size: 'small'
                 });
             }
         }
     });
 }
+//check token
+function checkToken(email, token) {
+    $.ajax({
+        url: linkserver + 'Authorization/checkToken?email=' + email + '?token=' + token,
+        type: 'POST',
+        dataType: 'json',
+        data: null,
+        async: false,
+        processData: false,
+        contentType: "application/json",
+        error: function (err) {
+            bootbox.alert({
+                message: "Error :" + err.message
+            });
+            destroyLoading();
+        },
+        success: function (data) {
+            destroyLoading();
+            if (data.success) {
+                window.location.href = "/admin";
+            }
+            else {
+                bootbox.alert({
+                    message: "" + data.data,
+                    size: 'small'
+                });
+            }
+        }
+    });
+}
+
 //encscript password
 var md5 = function (string) {
 

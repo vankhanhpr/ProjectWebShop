@@ -16,7 +16,8 @@ namespace ProjectWebShop.Auth
 
         private IUserResponsitory m_userResponsitory;
         private IConfiguration m_config;
-        private IDictionary<String, String> m_tokens = new Dictionary<String, String>();
+        private IDictionary<string, string> m_tokens = new Dictionary<string, string>();
+        private List<string> listtk = new List<string>();
 
         public AuthServiceImpl(IUserResponsitory userResponsitory, IConfiguration config)
         {
@@ -24,8 +25,9 @@ namespace ProjectWebShop.Auth
             m_userResponsitory = userResponsitory;
         }
 
-        public String login(AuthInfo authInfo)
+        public DataRespond login(AuthInfo authInfo)
         {
+            DataRespond data = new DataRespond();
             // 1. Check token if exist
             // 2. If yes, check token is valid ( Gerneate from Serect Key, Token is expire)
             // 3. If no, Genreate new token 
@@ -34,12 +36,24 @@ namespace ProjectWebShop.Auth
             {
                 if (checkPass(authInfo.password, user.password))
                 {
-                    String token = generateToken(user);
+                    data.success = true;
+                    string token = generateToken(user);
+                    listtk.Add(token);
                     saveToken(user.email, token);
-                    return token;
+                    data.data = new{ token= token,email=user.email};
+                }
+                else
+                {
+                    data.success = false;
+                    data.data = "Nhập mật khẩu không chính xác";
                 }
             }
-            return null;
+            else
+            {
+                data.success = false;
+                data.data = "Email chưa được đăng kí tài khoản";
+            }
+            return data;
         }
 
         private void saveToken(String email, String token)
@@ -116,7 +130,22 @@ namespace ProjectWebShop.Auth
             return false;
         }
 
+        public DataRespond checkToken(string token,string email)
+        {
+            DataRespond data = new DataRespond();
 
+            foreach (KeyValuePair<string, string> item in m_tokens)
+            {
+                if(item.Key==email && item.Value == token)
+                {
+                    data.success = true;
+                    data.data = token;
+                    return data;
+                }
+            }
+            data.success = false;
+            return data;
+        }
     }
 }
 

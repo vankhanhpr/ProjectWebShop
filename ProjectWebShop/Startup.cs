@@ -66,6 +66,7 @@ namespace ProjectWebShop
             services.AddTransient<IProvinceResponsitory, ProvinceResponsitory>();
             services.AddTransient<IDistrictResponsitory, DistrictResponsitory>();
             services.AddTransient<IInvoiceResponsitory, InvoiceResponsitory>();
+            services.AddTransient<IDescribeResponsitory, DescribeResponsitory>();
 
             services.AddCors();
             services.AddIdentity<ApplicationUser, IdentityRole>()

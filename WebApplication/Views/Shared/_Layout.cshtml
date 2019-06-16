@@ -4,6 +4,9 @@
     <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="~/css/_layout.css">
     <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/font/font-awesome.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     @RenderSection("Css", required: false)
 </head>
 <body>
@@ -19,7 +22,7 @@
             </div>
             <form class="search_form" action="/search" method="get" role="search">
                 <input type="text" class="form-control" name="query" value="" autocomplete="off" placeholder="Tìm sản phẩm">
-                <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
+                <button class="btn-search" type="submit"><i class="fa fa-search h-icon-fa"></i></button>
             </form>
         </div>
         <div class="k f-head">
@@ -29,42 +32,42 @@
                     <ul class="k main-menu">
                         <li class="k item-mn">
                             <a class="t-link" href="/">
-                                <i class="fa fa-home"></i>
+                                <i class="fa fa-home h-icon-fa"></i>
                                 Trang chủ
                             </a>
                         </li>
                         <li class="k item-mn list-product">
                             <a href="/collections/all" class="t-link">
-                                <i class="fa fa-birthday-cake"></i>
+                                <i class="fa fa-birthday-cake h-icon-fa"></i>
                                 Sản phẩm
                             </a>
                             <ul class="list-unstyled">
                                 <li class="f-it-lv2"><span class="t item-lv2">Món ăn nổi bật</span></li>
                                 @*<li>
-                                        <a href="/mon-an-ua-chuong">Món ăn ưa chuộng</a>
-                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                        <ul class="list-unstyled menu_child_2">
-                                            <li>
-                                                <a href="/tra">Trà</a>
-                                            </li>
-                                            <li>
-                                                <a href="/banh">Bánh</a>
-                                            </li>
-                                        </ul>
-                                    </li>*@
+            <a href="/mon-an-ua-chuong">Món ăn ưa chuộng</a>
+            <i class="fa fa-angle-right h-icon-fa" aria-hidden="true"></i>
+            <ul class="list-unstyled menu_child_2">
+                <li>
+                    <a href="/tra">Trà</a>
+                </li>
+                <li>
+                    <a href="/banh">Bánh</a>
+                </li>
+            </ul>
+        </li>*@
                                 <li class="f-it-lv2"><a class="t item-lv2" href="/mon-an-moi">Món ăn mới</a></li>
                                 <li class="f-it-lv2"><a class="t item-lv2" href="/mon-an-moi">Món được ưa chuộng</a></li>
                             </ul>
                         </li>
                         <li class="k item-mn">
                             <a class="t-link" href="/gioi-thieu">
-                                <i class="fa fa-info-circle"></i>
+                                <i class="fa fa-info-circle h-icon-fa"></i>
                                 Giới thiệu
                             </a>
                         </li>
                         <li class="k item-mn">
                             <a class="t-link" href="/lien-he">
-                                <i class="fa fa-phone"></i>
+                                <i class="fa fa-phone h-icon-fa"></i>
                                 Liên hệ
                             </a>
                         </li>
@@ -74,7 +77,7 @@
             <a href="/order/checkout">
                 <div class="k f-cart">
                     <div class="k bd-tt-cart">
-                        <span class="k tt_pdt"></span>
+                        <span class="tt_pdt"></span>
                         <i class="shopping-bag"></i>
                     </div>
                     <span class="k bd-note-cart">
@@ -92,16 +95,16 @@
                 <div class="k it-f-ft">
                     <span class="k t tt-ft">LIÊN HỆ</span>
                     <div class="k f-dt-ft">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <i class="fa fa-map-marker h-icon-fa" aria-hidden="true"></i>
                         <span class="k t t-inf">Km17, QL 27 Cưkuin Đắk Lắk</span>
                     </div>
                     <div class="k f-dt-ft">
-                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <i class="fa fa-phone h-icon-fa" aria-hidden="true"></i>
                         <span class="k t t-inf">0983.975.408</span>
                         <span class="k t t-inf"> Thứ 2- Chủ Nhật : 8h-23h</span>
                     </div>
                     <div class="k f-dt-ft">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <i class="fa fa-envelope h-icon-fa" aria-hidden="true"></i>
                         <span class="k t t-inf">khanhnv@hcmute.edu.vn</span>
                     </div>
                 </div>

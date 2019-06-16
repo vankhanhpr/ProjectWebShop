@@ -1,4 +1,9 @@
 ﻿
+$(document).ready(function () {
+    //if (!checkTokenFromLocal()) {
+    //    //window.location.href = "/admin/adminlogin";
+    //}
+});
 boolsh = true;
 function showListItem() {
     if (boolsh == true) {

@@ -1,0 +1,93 @@
+﻿@import url("adminconfig.css");
+
+:root{
+
+}
+@media only screen and (min-width:0){
+    .k{
+        position:relative;
+        float:left;
+    }
+    .main-form{
+        width:100%;
+    }
+    .f-head {
+        width: 100%;
+        background-color: rgba(51,51,51,0.3);
+        height: 60px;
+    }
+    .t-home{
+        color:var(--c-dt-wt);
+        font-weight:600;
+        text-align:left;
+    }
+    .t-ct-ds{
+        color:var(--c-dt-bl);
+        font-weight:300;
+        border:1px solid rgba(51,51,51,0.2);
+    }
+    .f-cust-ds{
+        width:100%;
+        border:1px solid rgba(51,51,51,0.2);
+        text-align:center;
+    }
+    .bd-multil-it{
+        width:100%;
+        padding:10px;
+    }
+    .le-text{
+        color:var(--c-dt-bl);
+        font-weight:300;
+        text-align:left;
+    }
+    .input-t{
+        color:var(--c-dt-bl);
+        font-weight:300;
+    }
+    .bnt-success {
+        width: 100px;
+        color: white;
+        background-color: orangered;
+        border-radius: 4px;
+        padding: 7px;
+        text-align: center;
+        position:relative;
+        display:inline-block;
+        cursor:pointer;
+    }
+}
+@media only screen and (min-width:1200px) {
+    .f-head{
+        padding:10px;
+    }
+    .t-home {
+        font-size: var(--font-title);
+    }
+    .t-ct-ds{
+        width:100%;
+        padding:10px;
+        font-size:var(--font-detail);
+    }
+    .f-cust-ds{
+        padding-bottom:20px;
+    }
+    .le-text {
+        font-size: var(--font-detail);
+        width: 15%;
+    }
+    .input-t {
+        font-size: var(--font-detail);
+        width: 35%;
+        padding: 5px;
+        border-radius: 3px;
+        border:1px solid rgba(51,51,51,0.2);
+    }
+    #t-des{
+        min-height:200px;
+    }
+    .bnt-success {
+        font-size: 20px;
+        margin-top: 20px;
+        cursor: pointer;
+    }
+}

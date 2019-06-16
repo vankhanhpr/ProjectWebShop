@@ -8,6 +8,7 @@ using ProjectWebShop.Auth;
 using ProjectWebShop.Auth.vo;
 using ProjectWebShop.Interface.user;
 using ProjectWebShop.Model;
+using ProjectWebShop.Model.auth;
 
 namespace ProjectWebShop.Controllers
 {
@@ -25,12 +26,29 @@ namespace ProjectWebShop.Controllers
             this.m_authService = auth;
         }
         [HttpPost("login")]
-        public string login([FromBody]Users user)
+        public DataRespond login([FromBody]Users user)
         {
-            AuthInfo authInfo = new AuthInfo();
-            authInfo.email = user.email;
-            authInfo.password = user.password;
-            return m_authService.login(authInfo);
+            DataRespond data = new DataRespond();
+            try
+            {
+                
+                AuthInfo authInfo = new AuthInfo();
+                authInfo.email = user.email;
+                authInfo.password = user.password;
+                data = m_authService.login(authInfo);
+            }
+            catch(Exception e)
+            {
+                data.success = false;
+                data.error = e;
+            }
+            return data;
+        }
+        [HttpPost("checkToken")]
+        public DataRespond checkToken([FromBody] Token token)
+        {
+            DataRespond data = m_authService.checkToken(token.email, token.token);
+            return data;
         }
     }
 }

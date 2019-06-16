@@ -110,5 +110,26 @@ namespace ProjectWebShop.Responsitory
             });
             return data;
         }
+
+        public void updateToTalView(Products prd)
+        {
+            context.Update(prd);
+            context.SaveChanges();
+        }
+
+        public Products getOnlyProduct(int prid)
+        {
+            return context.Products.Where(x => x.prid == prid).FirstOrDefault();
+        }
+
+        public dynamic GetDesPr()
+        {
+            var data = context.Products.OrderBy(x => x.createday).Select(product => new
+            {
+                product,
+                des = context.Describeproducts.Where(d => d.prid == product.prid).FirstOrDefault()
+            }).Take(4);
+            return data;
+        }
     }
 }

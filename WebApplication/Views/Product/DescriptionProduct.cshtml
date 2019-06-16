@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewData["Title"] = "DescriptionProduct";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/css/user_desciptionproduct.css">
+}
+<div class="k main-form">
+    <div class="k f-head">
+        <a href="/admin"><span class="k t-home">Home</span></a>
+    </div>
+    <span class="k t-ct-ds"> Custom the description product</span>
+    <div class="k f-cust-ds">
+        <div class="k bd-multil-it">
+            <span class="k le-text">Title</span>
+            <input id="titel-des" type="text" class="input-t" />
+        </div>
+        <div class="k bd-multil-it">
+            <span class="k le-text">Description</span>
+            <textarea id="t-des" class="input-t"></textarea>
+        </div>
+        <span class="bnt-success" onclick="updateDes()">Success</span>
+    </div>
+</div>
+
+
+@section Script{
+    <script>
+        var prid = @ViewBag.prid;
+        getDesPrbyId(prid);
+        function getDesPrbyId(id) {
+            $.ajax({
+                type: "get",
+                url: linkserver + "describeproduct/GetDesPrById?id=" + id,
+                data: null,
+                dataType: 'json',
+                contentType: "application/json",
+                error: function (err) {
+                    bootbox.alert("Eror: " + err.message);
+                },
+                success: function (data) {
+                    if (data.success && data.data!=null) {
+                        $("#titel-des").val(data.data.title);
+                        $("#t-des").val(data.data.describes);
+                    }
+                    else {
+                        bootbox.alert("Eror: Don't found the data");
+                    }
+                }
+            });
+        }
+        function updateDes() {
+            var data = { "prid": prid, "title": $("#titel-des").val(), "describes": $("#t-des").val(), "stt": 0 };
+            $.ajax({
+                url: linkserver + "describeproduct/CustomDesPr",
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(data),
+                async: false,
+                processData: false,
+                contentType: "application/json",
+                error: function (err) {
+                    bootbox.alert({
+                        message: "Error :" + err.message
+                    });
+                },
+                success: function (data) {
+                    if (data.success) {
+                        bootbox.alert({
+                            size: "small",
+                            title: "Custom the describe",
+                            message: "Custom the descibe product success",
+                            callback: function () {
+                                window.location.href = "/admin/product";
+                            }
+                        });
+                    }
+                    else {
+                        bootbox.alert({
+                            message: "" + data.error.message,
+                            size: 'small'
+                        });
+                    }
+                }
+            });
+
+        }
+    </script>
+}

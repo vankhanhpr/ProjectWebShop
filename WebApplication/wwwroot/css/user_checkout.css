@@ -73,7 +73,7 @@
     }
     .t-discount {
         color: var(--c-dt-bl);
-        font-weight: 600;
+        font-weight: 400;
         margin-left: 10px;
         padding: 5px;
     }

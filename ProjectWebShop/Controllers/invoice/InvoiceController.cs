@@ -19,9 +19,9 @@ namespace ProjectWebShop.Controllers.invoice
         }
         //insert invoice
         [HttpPost("InsertInvoive")]
-        public DataRespont InsertInvoive([FromForm] InvoiceRequest invoice)
+        public DataRespond InsertInvoive([FromForm] InvoiceRequest invoice)
         {
-            DataRespont data = new DataRespont();
+            DataRespond data = new DataRespond();
             try
             {
                 Invoices inv = new Invoices();
@@ -64,9 +64,9 @@ namespace ProjectWebShop.Controllers.invoice
         }
         //get invoice by id
         [HttpGet("GetInvoicebyId")]
-        public DataRespont GetInvoicebyId(int id)
+        public DataRespond GetInvoicebyId(int id)
         {
-            DataRespont data = new DataRespont();
+            DataRespond data = new DataRespond();
             try
             {
                 data.success = true;

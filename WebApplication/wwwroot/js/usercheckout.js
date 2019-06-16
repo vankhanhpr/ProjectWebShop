@@ -11,6 +11,7 @@ function getPrFromLocal() {
         else {
             $("#f-nothing-prd").show();
             $(".f-pay-money").hide();
+            $(".body-prd").css("width","100%");
 
         }
         return list;
@@ -73,6 +74,7 @@ function deletePrInCart(id) {
                             '</div >');
                         $("#f-nothing-prd").show();
                         $(".f-pay-money").hide();
+                        $(".body-prd").css("width", "100%");
                         deleteIt();
                     }
                     else {

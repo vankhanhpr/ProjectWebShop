@@ -20,9 +20,9 @@ namespace ProjectWebShop.Controllers
             this._iimageProductResponsitory = iimageProductResponsitory;
         }
         [HttpGet("getProductsHighLights")]
-        public DataRespont GetPrHighLights()
+        public DataRespond GetPrHighLights()
         {
-            DataRespont data = new DataRespont();
+            DataRespond data = new DataRespond();
             try
             {
                 data.data = _iproductResponsitory.GetProuctsHighLights();
@@ -36,9 +36,9 @@ namespace ProjectWebShop.Controllers
             return data;
         }
         [HttpGet("GetProductsMostLikely")]
-        public DataRespont GetProductsMostLikely()
+        public DataRespond GetProductsMostLikely()
         {
-            DataRespont data = new DataRespont();
+            DataRespond data = new DataRespond();
             try
             {
                 data.data = _iproductResponsitory.GetProcutsMostLikely();
@@ -52,9 +52,9 @@ namespace ProjectWebShop.Controllers
             return data;
         }
         [HttpGet("GetNewProducts")]
-        public DataRespont GetNewProducts()
+        public DataRespond GetNewProducts()
         {
-            DataRespont data = new DataRespont();
+            DataRespond data = new DataRespond();
             try
             {
                 data.data = _iproductResponsitory.GetNewProducts();
@@ -69,13 +69,16 @@ namespace ProjectWebShop.Controllers
         }
 
         [HttpGet("GetproductbyId")]
-        public DataRespont GetPrById(int id)
+        public DataRespond GetPrById(int id)
         {
-            DataRespont data = new DataRespont();
+            DataRespond data = new DataRespond();
             try
             {
                 data.success = true;
                 data.data = _iproductResponsitory.GetProductById(id);
+                var item = _iproductResponsitory.getOnlyProduct(id);
+                item.totalview = item.totalview + 1;
+                _iproductResponsitory.updateToTalView(item);
             }
             catch (Exception e)
             {
@@ -85,9 +88,9 @@ namespace ProjectWebShop.Controllers
             return data;
         } 
         [HttpGet("GetPrByLn")]
-        public DataRespont GetPrByLn(int lnid)
+        public DataRespond GetPrByLn(int lnid)
         {
-            DataRespont data = new DataRespont();
+            DataRespond data = new DataRespond();
             try
             {
                 data.success = true;
@@ -99,6 +102,24 @@ namespace ProjectWebShop.Controllers
                 data.error = e;
             }
 
+            return data;
+        }
+
+        //get product with content
+        [HttpGet("GetDesPr")]
+        public DataRespond GetDesPr()
+        {
+            DataRespond data = new DataRespond();
+            try
+            {
+                data.data = _iproductResponsitory.GetDesPr();
+                data.success = true;
+            }
+            catch (Exception e)
+            {
+                data.success = false;
+                data.error = e;
+            }
             return data;
         }
     }
