@@ -78,3 +78,4 @@ E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\WebApplication.c
 E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Order\Checkout.g.cshtml.cs
 E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Order\OrderSuccess.g.cshtml.cs
 E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Product\DescriptionProduct.g.cshtml.cs
+E:\ASPMVC\ProjectWebShop\WebApplication\obj\Debug\netcoreapp2.1\Razor\Views\Admin\Event.g.cshtml.cs

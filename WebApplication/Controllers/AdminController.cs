@@ -57,5 +57,9 @@ namespace WebApplication.Controllers
         {
             return View();
         }
+        public IActionResult Event()
+        {
+            return View();
+        }
     }
 }

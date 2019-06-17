@@ -1,0 +1,128 @@
+﻿@import url("adminconfig.css");
+:root{
+
+}
+@media only screen and (min-width:0){
+    .main-form{
+        width:100%;
+    }
+    .bg-tt {
+        width: 100%;
+        background-color: rgba(51,51,51,0.3);
+        height: 60px;
+    }
+    .t-gt-home {
+        color: var(--c-tt-wt);
+        font-weight: 600;
+        font-size: 20px;
+        margin: 10px 5px;
+        cursor: pointer;
+    }
+    .f-add-event{
+        width:100%;
+        border:1px solid rgba(51,51,51,0.12);
+    }
+    .l-text-note{
+        color:var(--c-dt-bl);
+        font-weight:300;
+        text-align:left;
+        width:30%;
+        text-align:center;
+    }
+    .input-t {
+        color: var(--c-dt-bl);
+        border: 1px solid rgba(51,51,51,0.12);
+        border-radius: 3px;
+        width: 70%;
+    }
+    .f-all-event{
+        width:100%;
+        border:1px solid rgba(51,51,51,0.1);
+        border-top:none;
+        padding:10px 0;
+    }
+    .bd-f-bd-ev{
+        width:25%;
+        padding:5px;
+    }
+    .f-body-ev {
+        width: 100%;
+        border: 1px solid rgba(51,51,51,0.12);
+        border-radius: 3px;
+        background-color: #fbedbb;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+        cursor:pointer;
+    }
+    .f-it-bd-ev{
+        width:100%;
+        min-height:35px;
+    }
+    .t-le-te {
+        color: var(--c-dt-bl);
+        font-weight: 300;
+        text-align: left;
+        width: 40%;
+    }
+    .t-ev {
+        color: var(--c-dt-bl);
+        font-weight: 300;
+        text-align: left;
+        width: 60%;
+        font-weight:600;
+    }
+    #code {
+        color: orangered;
+        background-color: rgba(51,51,51,0.05);
+        border-radius: 4px;
+        padding: 2px;
+    }
+    #status{
+        color:orangered;
+    }
+    .bnt-insert-ev {
+        color: var(--c-dt-bl);
+        background-color: #fbedbb;
+        padding: 5px;
+        width:50%;
+        text-align:center;
+        margin-left:20px;
+        font-weight:600;
+        border-radius:3px;
+        cursor:pointer;
+    }
+    .error-day{
+        width:100%;
+        color:orangered;
+        text-align:center;
+        display:none;
+    }
+}
+@media only screen and (min-width:1200px){
+    .f-add-event {
+        padding: 10px;
+    }
+    .f-it-ev{
+        width:33.3333%;
+        padding:10px 0;
+        min-height:75px;
+    }
+    .l-text-note{
+        font-size:var(--font-detail);
+        margin-top:3px;
+    }
+    .f-body-ev{
+        padding:15px 10px;
+    }
+    .input-t {
+        padding: 5px;
+    }
+    .t-le-te{
+        font-size:16px;
+    }
+    .t-ev{
+        font-size:16px;
+    }
+    .error-day{
+        font-size:16px;
+    }
+}

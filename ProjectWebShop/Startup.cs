@@ -24,6 +24,7 @@ using ProjectWebShop.Interface.product;
 using ProjectWebShop.Interface.unit;
 using ProjectWebShop.Interface.user;
 using ProjectWebShop.Responsitory;
+using ProjectWebShop.Responsitory.discount;
 using ProjectWebShop.Responsitory.invoice;
 using ProjectWebShop.Responsitory.unit;
 using WebApiMyShop.Data;
@@ -67,6 +68,7 @@ namespace ProjectWebShop
             services.AddTransient<IDistrictResponsitory, DistrictResponsitory>();
             services.AddTransient<IInvoiceResponsitory, InvoiceResponsitory>();
             services.AddTransient<IDescribeResponsitory, DescribeResponsitory>();
+            services.AddTransient<IDiscountResponsitory, DiscountResponsitory>();
 
             services.AddCors();
             services.AddIdentity<ApplicationUser, IdentityRole>()

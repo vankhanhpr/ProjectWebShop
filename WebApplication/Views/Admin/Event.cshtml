@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewData["Title"] = "Event";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/css/ad_event.css">
+}
+<div class="k main-form">
+    <div class="bg-tt">
+        <a href="/admin"><span class="k t-gt-home">Home</span></a>
+    </div>
+    <div class="k f-add-event">
+        <div class="k f-it-ev">
+            <span class="k l-text-note">Name of the event</span>
+            <input type="text" class="input-t" id="name-ev" />
+        </div>
+        <div class="k f-it-ev">
+            <span class="k l-text-note">Discount</span>
+            <input type="text" id="dis-money" onkeyup="changeKeyPress(this)" class="input-t" placeholder="0 vnđ" />
+        </div>
+        <div class="k f-it-ev">
+            <span class="k l-text-note">or</span>
+            <input type="text" id="dis-percent" class="input-t" placeholder="%" maxlength="3" />
+        </div>
+
+        <div class="k f-it-ev">
+            <span class="k l-text-note">Start day</span>
+            <div class="form-group">
+                <div class="input-group date" id="datepicker-startday">
+                    <input type="text" class="form-control" id="st-day">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="k f-it-ev">
+            <span class="k l-text-note">End day</span>
+            <div class="form-group">
+                <div class="input-group date" id="datepicker-endday">
+                    <input type="text" class="form-control" id="end-day">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="k f-it-ev">
+            <span class="k bnt-insert-ev" onclick="insertEvent()">Success</span>
+        </div>
+        <span class="k error-day">** Start date must be less than the end date</span>
+    </div>
+    <div class="k f-all-event">
+        @*<div class="k bd-f-bd-ev">
+            <div class="k f-body-ev">
+                <div class="k f-it-bd-ev">
+                    <span class="k t-le-te">Event name: </span>
+                    <span class="k t-ev">Sự kiện 1/6</span>
+                </div>
+                <div class="k f-it-bd-ev">
+                    <span class="k t-le-te">Code: </span>
+                    <span class="k t-ev" id="code">ABCXYZ</span>
+                </div>
+                <div class="k f-it-bd-ev">
+                    <span class="k t-le-te">Discount: </span>
+                    <span class="k t-ev">15%</span>
+                </div>
+                <div class="k f-it-bd-ev">
+                    <span class="k t-le-te">Start day: </span>
+                    <span class="k t-ev">15/02/2019</span>
+                </div>
+                <div class="k f-it-bd-ev">
+                    <span class="k t-le-te">Start day: </span>
+                    <span class="k t-ev">31/02/2019</span>
+                </div>
+                <div class="k f-it-bd-ev">
+                    <span class="k t-le-te">Status: </span>
+                    <span class="k t-ev" id="status">Enable</span>
+                </div>
+            </div>
+        </div>*@
+       
+
+    </div>
+</div>
+
+@section Script{
+    <script src="~/js/adevent.js"></script>
+}
+

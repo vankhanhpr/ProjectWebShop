@@ -1,10 +1,5 @@
 ﻿$(document).ready(function () {
-    if (token.length < 3) {
-        //
-    }
-    else {
-         window.location.href = "/admin/adminlogin";
-    }
+//
 });
 var bool = true;
 var formdata = new FormData();

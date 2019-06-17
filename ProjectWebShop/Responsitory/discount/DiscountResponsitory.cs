@@ -44,7 +44,7 @@ namespace ProjectWebShop.Responsitory.discount
 
         public IEnumerable<Discount> GetAllDiscount()
         {
-            return context.Discount.ToList();
+            return context.Discount.OrderBy(x=>x.endday).ToList();
         }
 
         public Discount GetDisCountByCode(string code)
