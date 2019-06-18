@@ -7,6 +7,7 @@
     --fs-tt-big: 20px;
     --fs-small: 14px;
 }
+
 .k {
     position: relative;
     float: left;
@@ -20,6 +21,7 @@
     font-family: inherit;
     line-height: 1.1;
 }
+
 @media only screen and (min-width:0) {
     .container-fluid {
         padding: 0;
@@ -57,6 +59,7 @@
         padding: 0 3px;
         font-weight: 400;
         font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+        cursor:pointer;
     }
 
     .search_form {
@@ -100,8 +103,8 @@
     }
 
     .t-link {
-        position:relative;
-        float:left;
+        position: relative;
+        float: left;
         color: var(--cl-head);
         text-decoration: none;
     }
@@ -207,14 +210,17 @@
         border-bottom: 1px solid rgba(51,51,51,0.12);
         text-align: left;
     }
-    .f-ft{
-        background-image:url(/images/user/background_footer.png);
+
+    .f-ft {
+        background-image: url(/images/user/background_footer.png);
     }
+
     .tt-ft {
         color: var(--c-tt-wt);
         font-family: "UTMBryantLGBold",sans-serif;
-        text-align:left;
+        text-align: left;
     }
+
     .h-icon-fa {
         color: var(--cl-yl);
         text-align: left;
@@ -223,33 +229,170 @@
         margin-top: 4px;
         margin-right: 10px;
     }
-    .t-inf{
-        color:var(--c-dt-wt);
-        text-align:left;
-        opacity:0.6;
+
+    .t-inf {
+        color: var(--c-dt-wt);
+        text-align: left;
+        opacity: 0.6;
     }
+
     .t-inf-cus {
         color: var(--c-dt-wt);
         text-align: left;
         opacity: 0.6;
         display: list-item;
-        cursor:pointer;
+        cursor: pointer;
     }
-    .form-email{
+
+    .form-email {
+        position: relative;
+        float: left;
+        width: 100%;
+        padding: 5px;
+        border-radius: 4px;
+        border: none;
+        margin-top: 5px;
+    }
+
+    .bnt_submit {
+        background-color: var(--cl-yl);
+        color: var(--c-dt-wt);
+        text-align: center;
+        border-radius: 4px;
+    }
+
+    .bootbox-cart {
+        position: absolute;
+        right: 235px;
+        bottom: -60px;
+        border: 1px solid rgba(51,51,51,0.2);
+        border-radius: 4px;
+        padding: 15px;
+        z-index: 999;
+        background-color: white;
+        max-width: 300px;
+        display:none;
+    }
+        .bootbox-cart ::after {
+            content: "";
+            position: absolute;
+            width: 11px;
+            height: 11px;
+            top: -4px;
+            right: 15px;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            background: #fff;
+            -webkit-box-shadow: -1px -1px 0 #dfdfdf;
+            box-shadow: -1px -1px 0 #dfdfdf;
+            z-index: -1;
+        }
+
+    .ic-check {
+        position: relative;
+        float: left;
+        color: rgba(51,51,51,0.7);
+        margin-top: 2px;
+        margin-right: 10px;
+        content:none;
+    }
+        .ic-check:after{
+            content:none;
+        }
+        .fa-check-circle:before {
+            color: lightgreen;
+            font-size: 20px;
+            content: none;
+        }
+    .fa-times-circle:before {
+        position: absolute;
+        float: right;
+        right: 10px;
+        top: 8px;
+        color: rgba(51,51,51,0.7);
+        font-size: 15px;
+        margin-top: -8px;
+        margin-right: -8px;
+        cursor: pointer;
+        content: none;
+    }
+    
+    .t-add-t-cart-s {
+        font-size: 15px;
+        color: var(--c-dt-bl);
+        font-weight: 300;
+    }
+        .t-add-t-cart-s:after {
+            content: none;
+        }
+    .bnt-view-cart-and-pay {
+        cursor: pointer;
+        color: var(--c-dt-wt);
+        font-size: 15px;
+        text-align: center;
+        width: 100%;
+        padding: 5px 0;
+        margin-top: 10px;
+        background-color: red;
+        border-radius: 4px;
+    }
+        .bnt-view-cart-and-pay:after {
+            content: none;
+        }
+
+
+       /*form login*/
+    .form login{
+        width:100%;
+    }
+    .modal-content{
         position:relative;
         float:left;
         width:100%;
+    }
+    .modal-body {
+        width: 100%;
+        position: relative;
+        float: left;
+    }
+    .lg-f-hd-it {
+        width: 100%;
+        margin-bottom: 10px;
+        margin-top:10px;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+    }
+    .lg-t-email {
+        color: var(--c-dt-bl);
+        font-weight: 300;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+    }
+    .lg-inp-email{
+        color:var(--c-dt-bl);
+        font-weight:200;
+        border:1px solid rgba(51,51,51,0.12);
+        border-radius:3px;
         padding:5px;
-        border-radius:4px;
-        border:none;
-        margin-top:5px;
     }
-    .bnt_submit{
-        background-color:var(--cl-yl);
-        color:var(--c-dt-wt);
-        text-align:center;
-        border-radius:4px;
+    .bnt_lg-login {
+        width: 100%;
+        color: white;
+        background-color: orangered;
+        border-radius: 4px;
+        padding: 7px;
+        text-align: center;
+        cursor:pointer;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
     }
+    .gt_lg-sign{
+        color:rgba(51,51,51,0.6);
+        width:100%;
+        float:left;
+        text-align:right;
+        cursor:pointer;
+    }
+        .gt_lg-sign:hover {
+            color: rgba(255,0,0,0.6);
+        }
 }
 
 @media only screen and (min-width:1200px) {
@@ -261,7 +404,7 @@
     .f-search {
         width: 100%;
         padding-left: 5%;
-        height:45px;
+        height: 45px;
     }
 
     .t-nt-hotline {
@@ -289,9 +432,9 @@
         font-size: var(--fs-small);
         font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
         width: 80%;
-        position:relative;
-        float:left;
-        top:8px;
+        position: relative;
+        float: left;
+        top: 8px;
     }
 
     .btn-search {
@@ -303,7 +446,6 @@
         height: 30px;
         top: 8px;
         right: 10px;
-
         display: inline-block;
         padding: 0 20px;
         text-align: center;
@@ -313,8 +455,8 @@
         border: none;
         font-weight: 400;
         letter-spacing: 0;
-        position:relative;
-        float:left;
+        position: relative;
+        float: left;
     }
 
     .t-lg {
@@ -385,36 +527,64 @@
 
     .list-unstyled {
         width: 200px;
-        margin-top: 5px;
+        margin-top: 30px;
     }
 
-    .f-ft{
-        width:100%;
-        padding:20px 5%;
+    .f-ft {
+        width: 100%;
+        padding: 20px 5%;
     }
-    .it-f-ft{
-        width:25%;
+
+    .it-f-ft {
+        width: 25%;
     }
+
     .tt-ft {
-        font-size:var(--font-title);
-        width:100%;
+        font-size: var(--font-title);
+        width: 100%;
     }
-    .f-dt-ft{
-        width:100%;
-        padding:5px 0;
+
+    .f-dt-ft {
+        width: 100%;
+        padding: 5px 0;
     }
+
     .fa-map-marker {
-       font-size:var(--font-detail);
+        font-size: var(--font-detail);
     }
+
     .t-inf {
         font-size: var(--fs-small);
     }
+
     .t-inf-cus {
         font-size: var(--fs-small);
     }
+    .modal-body{
+        padding-bottom:20px;
+    }
     .bnt_submit {
-        font-size:var(--font-detail);
-        margin-top:20px;
-        padding:5px 10px;
+        font-size: var(--font-detail);
+        margin-top: 20px;
+        padding: 5px 10px;
+    }
+    .lg-t-email{
+        font-size:15px;
+        width:30%;
+    }
+    .lg-inp-email {
+        font-size: 15px;
+        width: 70%;
+    }
+    .bnt_lg-login {
+        font-size:18px;
+        margin-top:10px;
+    }
+    .gt_lg-sign{
+        font-size:14px;
+        margin-top:10px;
+    }
+    .modal-dialog {
+        width: 500px;
     }
 }

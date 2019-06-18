@@ -22,7 +22,7 @@ namespace ProjectWebShop.Responsitory.discount
             context.SaveChanges();
         }
 
-        public void DeleteDiscount(string  code)
+        public void DeleteDiscount(string code)
         {
             Discount ds = GetDisCountByCode(code);
             discountEntity.Remove(ds);
@@ -44,12 +44,12 @@ namespace ProjectWebShop.Responsitory.discount
 
         public IEnumerable<Discount> GetAllDiscount()
         {
-            return context.Discount.OrderBy(x=>x.endday).ToList();
+            return context.Discount.OrderBy(x => x.endday).ToList();
         }
 
         public Discount GetDisCountByCode(string code)
         {
-            return context.Discount.Where(x=>x.code==code && x.stt==0).FirstOrDefault();
+            return context.Discount.Where(x => x.code == code && x.stt == 0).FirstOrDefault();
         }
     }
 }

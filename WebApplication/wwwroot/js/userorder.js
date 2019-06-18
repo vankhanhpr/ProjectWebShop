@@ -7,6 +7,7 @@ var typepay = null;
 var gender = - 1;
 var codediscount = "";
 var listinvoicepr = [];
+var checkds = false;
 $('.div-radio-button').click(function () {
     $(this).find("fa-circle-o").css("color", "red");
 });
@@ -125,13 +126,14 @@ function bindingPrById(data, num) {
         var model = { "prid": item.prid, "total": num };
         listinvoicepr.push(model);
 
-        $("#t-money").text(formatNumber(totalmoney) + " đ");
-        $(".t-money").text(formatNumber(totalmoney) + " đ");
+        $("#t-money").text(formatNumber(totalmoney) + " vnđ");
+        $("#money-pay-final").text(formatNumber(totalmoney) + " vnđ");
+
 
         $(".bd-item-small").append('<div class="k f-prd">' +
             '<div class= "k img-prd" style="background-image:url(' + serverfile + item.image + ')"></div >' +
             '<span class="k name-prd">' + item.prname + '</span>' +
-            '<span class="k price-product">' + formatNumber(item.price) + ' đ</span>' +
+            '<span class="k price-product">' + formatNumber(item.price) + ' vnđ</span>' +
             '<div class="k f-amount">' +
             '<span class="k t-note-amount">Số lượng</span>' +
             '<a class="k t-amount" title="Số lượng sản phẩm muốn mua">' + num + '</a>' +
@@ -222,74 +224,96 @@ function toOrder() {
 //check order
 function checkOrder() {
     //check name
+    var bool = false;
     var nameclient = $("#t-name-client").val().trim();
     if (nameclient == "" || nameclient == null) {
         changeColorElement("t-name-client", true);
+        bool = false;
     }
     else {
         changeColorElement("t-name-client", false);
+        bool = true;
     }
     //check gender
     if (gender == -1) {
         changeColorElement("f-input-gender", true);
+        bool = false;
+
     }
     else {
         changeColorElement("f-input-gender", false);
+        bool = true;
     }
     //check phone number
     var phonenumber = $("#phone-numb").val().trim();
     if (phonenumber.length!=10) {
         changeColorElement("phone-numb", true);
+        bool = false;
     }
     else {
         changeColorElement("phone-numb", false);
+        bool = true;
     }
     //check email
     var email = $("#email").val().trim();
     if (email == "" || email == null) {
         changeColorElement("email", true);
+        bool = false;
     }
     else {
         changeColorElement("email", false);
+        bool = true;
     }
     //check adress delivery
     var adrclient = $("#adress-client").val().trim();
     if (adrclient == "" || adrclient == null) {
         changeColorElement("adress-client", true);
+        bool = false;
     }
     else {
         changeColorElement("adress-client", false);
+        bool = true;
     }
 
     //check address delivery 
     if (typeaddress == null) {
         changeColorElement("f-input-address", true);
+        bool = false;
     }
     else {
         changeColorElement("f-input-address", false);
+        bool = true;
     }
     //other address
     var otheraddress = $("#other-adress").val().trim();
     if (otheraddress == "" || adrclient == null) {
         changeColorElement("other-adress", true);
+        bool = false;
     }
     else {
         changeColorElement("other-adress", false);
+        bool = true;
     }
     //check time delivery
     if (timeinwork == null) {
         changeColorElement("f-input-timedl", true);
+        bool = false;
     }
     else {
         changeColorElement("f-input-timedl", false);
+        bool = true;
     }
     //check typy pays f-input-pay
     if (typepay == null) {
         changeColorElement("f-input-pay", true);
-        return false;
+        bool = false;
     }
     else {
         changeColorElement("f-input-pay", false);
+        bool = true;
+    }
+    if (!bool) {
+        return;
     }
     var formData = new FormData();
     formData.append("namecustomer", nameclient);
@@ -338,3 +362,56 @@ $(document).ready(function () {
         }
     });
 });
+
+//add the discount
+function addDiscount() {
+    if (!checkds) {//chưa áp dụng mã
+        var model = { "code": $(".discount-code").val() };
+        $.ajax({
+            url: linkserver + 'Discount/CheckCode',
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(model),
+            async: false,
+            processData: false,
+            contentType: "application/json",
+            error: function (err) {
+                bootbox.alert({
+                    message: "Error :" + err.message
+                });
+            },
+            success: function (data) {
+                if (data.success) {
+                    if (data.data.money != 0) {
+                        totalmoney -= data.data.money;
+                        $("#t-mn-dc").text(formatNumber(data.data.money) + " vnđ");
+                    }
+                    else {
+                        $("#t-mn-dc").text(formatNumber(data.data.percent) + " %");
+                        totalmoney -= totalmoney * (data.data.percent / 100);
+                    }
+                    $("#money-pay-final").text(formatNumber(totalmoney) + " vnđ");
+                    bootbox.alert({
+                        title: "Thông báo",
+                        message: "Áp dụng mã giảm giá thành công!",
+                        size: 'small'
+                    });
+                }
+                else {
+                    bootbox.alert({
+                        message: "" + data.error,
+                        size: 'small'
+                    });
+                }
+            }
+        });
+        checkds = true;
+    }
+    else {
+        bootbox.alert({
+            title: "Thông báo",
+            message: "Bạn chỉ được sử dụng 1 mã cho 1 hóa đơn!",
+            size: 'small'
+        });
+    }
+}

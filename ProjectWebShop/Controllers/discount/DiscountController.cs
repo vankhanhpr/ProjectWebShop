@@ -47,7 +47,7 @@ namespace ProjectWebShop.Controllers.discount
                 item.eventname = ds.eventname;
                 DateTime stday = DateTime.ParseExact(ds.startday, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 item.startday = stday;
-                DateTime endday = DateTime.ParseExact(ds.startday, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime endday = DateTime.ParseExact(ds.endday, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 item.endday = endday;
                 item.stt = ds.stt;
                 item.percent = ds.percent;
@@ -81,6 +81,45 @@ namespace ProjectWebShop.Controllers.discount
                 data.error = e;
             }
             return data;
+        }
+        [HttpPost("CheckCode")]
+        public DataRespond CheckCode([FromBody] CodeRespond modelcode)
+        {
+            DataRespond data = new DataRespond();
+            try
+            {
+                var ds = m_idiscountResponsitory.GetDisCountByCode(modelcode.code);
+                if(ds== null || checkEnable(ds)== false)
+                {
+                    data.success = false;
+                    data.error = "Mã giảm giá không hợp lệ";
+                    return data;
+                }
+                else
+                {
+                    ds.stt = 1;
+                    m_idiscountResponsitory.EditDiscount(ds);
+                    data.success = true;
+                    data.data = ds;
+                }
+                data.success = true;
+            }
+            catch(Exception e)
+            {
+                data.error = e;
+                data.success = false;
+            }
+            return data;
+        }
+
+        public Boolean checkEnable(Discount ds)
+        {
+            DateTime today = DateTime.Today;
+            if (ds.endday < today)
+            {
+                return false;
+            }
+            return true;
         }
          //random image 
         private static Random random = new Random();

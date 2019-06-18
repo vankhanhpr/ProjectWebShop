@@ -25,6 +25,7 @@ function addToCart(prod) {
         var list = [];
         var total = 0;
         total += prod.total;
+        openBootBox();
         if (localStorage.getItem('product')) {
             list = JSON.parse(localStorage.getItem("product"));
             for (var j = 0; j < list.length; j++) {
@@ -71,5 +72,46 @@ function showCart() {
 function deleteIt() {
     if (typeof (Storage) !== "undefined") {
         localStorage.removeItem("product");
+    }
+}
+
+function closeBootBox() {
+    $(".bootbox-cart").hide(200);
+}
+function openBootBox() {
+    $(".bootbox-cart").show();
+    //document.body.scrollTop = 0; // For Safari
+    //document.documentElement.scrollTop = 0;
+    $('html, body').animate({ scrollTop: 0 }, 'slow', function () {
+        //
+    });
+}
+function gotoCheckout() {
+    $(".bootbox-cart").hide();
+    window.location = '/order/checkout';
+}
+
+//show form login 
+function showFormLogin() {
+    $('#modalLogin').modal('toggle');
+    $('#modalSignIn').modal('toggle');
+}
+//show form login 
+function showFormSignIn() {
+    $('#modalSignIn').modal('toggle');
+    $('#modalLogin').modal('toggle');
+}
+
+//sign in 
+function signIn() {
+    var email = $("#signin-input").val();
+    var pas = $("#pass-input").val();
+    var pasconf = $("#passconf-input").val();
+    if (pas.trim() != pasconf.trim) {
+        //
+        return;
+    }
+    else {
+        var model = { "email": email, "password": pas.trim() };
     }
 }

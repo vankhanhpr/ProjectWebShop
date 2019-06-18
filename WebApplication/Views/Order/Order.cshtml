@@ -127,16 +127,16 @@
                 </div>
                 <div class="k f-amount">
                     <span class="k t-note-bf-pay">Giảm giá</span>
-                    <a class="k t-money"id="t-mn-dc"></a>
+                    <a class="k t-money"id="t-mn-dc">0 vnđ</a>
                 </div>
                 <div class="k f-amount">
                     <input class="text-box discount-code k" data-val="true" data-val-required="address" placeholder="Nhập mã giảm giá" type="text" value="">
-                    <span class="k bnt-dsc-code">Sử dụng</span>
+                    <span class="k bnt-dsc-code" onclick="addDiscount()">Sử dụng</span>
                 </div>
             </div>
             <div class="k f-amount">
                 <span class="k t-note-bf-pay" style="font-weight:600">Thành tiền</span>
-                <span class="k t-money" style="color:red;font-size:18px;font-weight:600;"></span>
+                <span class="k t-money" style="color:red;font-size:18px;font-weight:600;" id="money-pay-final"></span>
                 <span class="k bnt-bought-pr" onclick="toOrder()">ĐẶT HÀNG</span>
             </div>
         </div>

@@ -16,9 +16,9 @@
             <span class="k t t-nt-hotline">Hotline:</span>
             <span class="k t t-hotline">0969.696.696</span>
             <div class="f-lg-lu">
-                <span class="k t t-lg">Đăng nhập</span>
+                <span class="k t t-lg" data-toggle="modal" data-target="#modalLogin">Đăng nhập</span>
                 <span class="k t t-lg">&</span>
-                <span class="k t t-lg">Đăng ký</span>
+                <span class="k t t-lg"data-toggle="modal" data-target="#modalSignIn">Đăng ký</span>
             </div>
             <form class="search_form" action="/search" method="get" role="search">
                 <input type="text" class="form-control" name="query" value="" autocomplete="off" placeholder="Tìm sản phẩm">
@@ -42,21 +42,21 @@
                                 Sản phẩm
                             </a>
                             <ul class="list-unstyled">
-                                <li class="f-it-lv2"><span class="t item-lv2">Món ăn nổi bật</span></li>
+                                <li class="f-it-lv2"><span class="t item-lv2" onclick="gotoTab('tab-first-prd')">Món ăn nổi bật</span></li>
                                 @*<li>
-            <a href="/mon-an-ua-chuong">Món ăn ưa chuộng</a>
-            <i class="fa fa-angle-right h-icon-fa" aria-hidden="true"></i>
-            <ul class="list-unstyled menu_child_2">
-                <li>
-                    <a href="/tra">Trà</a>
-                </li>
-                <li>
-                    <a href="/banh">Bánh</a>
-                </li>
-            </ul>
-        </li>*@
-                                <li class="f-it-lv2"><a class="t item-lv2" href="/mon-an-moi">Món ăn mới</a></li>
-                                <li class="f-it-lv2"><a class="t item-lv2" href="/mon-an-moi">Món được ưa chuộng</a></li>
+                                    <a href="/mon-an-ua-chuong">Món ăn ưa chuộng</a>
+                                    <i class="fa fa-angle-right h-icon-fa" aria-hidden="true"></i>
+                                    <ul class="list-unstyled menu_child_2">
+                                        <li>
+                                            <a href="/tra">Trà</a>
+                                        </li>
+                                        <li>
+                                            <a href="/banh">Bánh</a>
+                                        </li>
+                                    </ul>
+                                </li>*@
+                                <li class="f-it-lv2"><a class="t item-lv2" onclick="gotoTab('second-tab-prd')">Món được yêu thích</a></li>
+                                <li class="f-it-lv2"><a class="t item-lv2" onclick="gotoTab('third-tab-prd')">Món ăn mới</a></li>
                             </ul>
                         </li>
                         <li class="k item-mn">
@@ -86,9 +86,71 @@
                     </span>
                 </div>
             </a>
-           
+            <div class="bootbox-cart">
+                <i style="content:none" class="fa fa-check-circle ic-check" aria-hidden="true"></i>
+                <span class="k t-add-t-cart-s">Thêm vào giỏ hàng thành công</span>
+                <i class="fa fa-times-circle ic-cancel" onclick="closeBootBox()" aria-hidden="true"></i>
+                <span class="k bnt-view-cart-and-pay" onclick="gotoCheckout()">Xem giỏ hàng và thanh toán</span>
+            </div>
             <div class="k ic_bt_head"></div>
         </div>
+
+        @*form login*@
+        <div class="modal fade" id="modalLogin" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Đăng nhập</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="k lg-f-hd-it">
+                            <span class="k  lg-t-email">Email:</span>
+                            <input class="k lg-inp-email" type="text" />
+                        </div>
+                        <div class="k lg-f-hd-it">
+                            <span class="k  lg-t-email">Mật khẩu:</span>
+                            <input class="k lg-inp-email" type="password" />
+                        </div>
+                        <span class="k bnt_lg-login" onclick="insertLnPr()">Đăng nhập</span>
+                        <span class="k gt_lg-sign" onclick="showFormSignIn()">hoặc đăng kí tài khoản</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        @*Form  sigin*@
+        <div class="modal fade" id="modalSignIn" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Đăng kí tài khoản</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="k lg-f-hd-it">
+                            <span class="k  lg-t-email">Email:</span>
+                            <input class="k lg-inp-email" id="signin-input" type="text" />
+                        </div>
+                        <div class="k lg-f-hd-it">
+                            <span class="k  lg-t-email">Mật khẩu:</span>
+                            <input class="k lg-inp-email" id="pass-input" type="password" />
+                        </div>
+                        <div class="k lg-f-hd-it">
+                            <span class="k  lg-t-email">Nhập lại mật khẩu:</span>
+                            <input class="k lg-inp-email" id="passconf-input" type="password" />
+                        </div>
+                        <span class="k bnt_lg-login">Đăng kí</span>
+                        <span class="k gt_lg-sign" onclick="showFormLogin()">về trang đăng nhập</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         @RenderBody()
         <footer>
             <div class="k f-ft">

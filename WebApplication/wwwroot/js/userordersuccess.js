@@ -49,7 +49,7 @@ function bindingPrdMore(data) {
                 '<div class= "k img-prd-more"style="background-image:url(' + serverfile + it.image + ')" ></div>' +
                 '<div class="k f-name-pr-more">' +
                 '<span class="k t-name-pr-more">' + it.prname + '</span>' +
-                '<span class="k t-price-pr-more">' + it.price + ' đ</span>' +
+                '<span class="k t-price-pr-more">' + formatNumber(it.price) + ' đ</span>' +
                 '</div>' +
                 '</div></a>');
         }

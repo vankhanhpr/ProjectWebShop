@@ -102,8 +102,6 @@ function bindingHLpr(data) {
         bootbox.alert("Error connect");
     }
 }
-
-
 //get the describe product
 getDesPr();
 function getDesPr() {
@@ -139,3 +137,13 @@ function getDesPr() {
         }
     });
 }
+
+function gotoTab(tag) {
+    $('html, body').animate({
+        scrollTop: $("#" + tag).offset().top
+    }, 2000);
+}
+
+//$("#tab-highlight").click(function () {
+   
+//});
