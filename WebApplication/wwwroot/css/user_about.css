@@ -1,0 +1,41 @@
+﻿@import url("config.css");
+:root{
+
+}
+@media only screen and (min-width:0){
+    .main-form{
+        width:100%;
+    }
+    .t-inf-contact{
+        color:var(--c-dt-bl);
+        font-weight:400;
+        text-align:left;
+        width:100%;
+        font-weight:600;
+    }
+    .t-name-cpn{
+        color:var(--c-dt-bl);
+        text-align:left;
+        width:100%;
+    }
+}
+@media only screen and (min-width:1200px){
+    .main-form{
+        padding-left:10%;
+        padding-right:10px;
+    }
+    .bd-t-inf{
+        width:100%;
+        border:1px solid rgba(51,51,51,0.12);
+        border-radius:3px;
+        padding:10px;
+    }
+    .t-inf-contact {
+        font-size: var(--font-detail);
+    }
+    .t-name-cpn{
+        font-size:var(--font-detail);
+        margin-bottom:10px;
+        margin-top:10px;
+    }
+}

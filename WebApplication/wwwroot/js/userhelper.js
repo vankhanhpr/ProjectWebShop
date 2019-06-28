@@ -12,11 +12,16 @@ function formatNumber(yourNumber) {
         return "0";
     }
 }
+
+//loading page
 function showLoading() {
-    $("body").append('<div class="lds-ring"><div></div><div></div><div></div><div></div></div>');
+   // $("body").append('<div class="lds-ring"><div></div><div></div><div></div><div></div></div>');
+   // $("body").append('<div class="lds-heart"><div></div></div>');
+    $("body").append('<div class="f-progress"><div class="loader">Loading...</div></div>');
 }
 function destroyLoading() {
-    $(".lds-ring").hide();
+    //$(".lds-ring").hide();
+    $(".f-progress").hide();
 }
 
 //adđ product to the cart
@@ -115,3 +120,4 @@ function signIn() {
         var model = { "email": email, "password": pas.trim() };
     }
 }
+

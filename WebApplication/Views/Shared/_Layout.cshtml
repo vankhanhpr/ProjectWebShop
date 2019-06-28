@@ -18,7 +18,7 @@
             <div class="f-lg-lu">
                 <span class="k t t-lg" data-toggle="modal" data-target="#modalLogin">Đăng nhập</span>
                 <span class="k t t-lg">&</span>
-                <span class="k t t-lg"data-toggle="modal" data-target="#modalSignIn">Đăng ký</span>
+                <span class="k t t-lg" data-toggle="modal" data-target="#modalSignIn">Đăng ký</span>
             </div>
             <form class="search_form" action="/search" method="get" role="search">
                 <input type="text" class="form-control" name="query" value="" autocomplete="off" placeholder="Tìm sản phẩm">
@@ -37,36 +37,36 @@
                             </a>
                         </li>
                         <li class="k item-mn list-product">
-                            <a href="/collections/all" class="t-link">
+                            <a href="/home" class="t-link">
                                 <i class="fa fa-birthday-cake h-icon-fa"></i>
                                 Sản phẩm
                             </a>
                             <ul class="list-unstyled">
                                 <li class="f-it-lv2"><span class="t item-lv2" onclick="gotoTab('tab-first-prd')">Món ăn nổi bật</span></li>
                                 @*<li>
-                                    <a href="/mon-an-ua-chuong">Món ăn ưa chuộng</a>
-                                    <i class="fa fa-angle-right h-icon-fa" aria-hidden="true"></i>
-                                    <ul class="list-unstyled menu_child_2">
-                                        <li>
-                                            <a href="/tra">Trà</a>
-                                        </li>
-                                        <li>
-                                            <a href="/banh">Bánh</a>
-                                        </li>
-                                    </ul>
-                                </li>*@
+                                        <a href="/mon-an-ua-chuong">Món ăn ưa chuộng</a>
+                                        <i class="fa fa-angle-right h-icon-fa" aria-hidden="true"></i>
+                                        <ul class="list-unstyled menu_child_2">
+                                            <li>
+                                                <a href="/tra">Trà</a>
+                                            </li>
+                                            <li>
+                                                <a href="/banh">Bánh</a>
+                                            </li>
+                                        </ul>
+                                    </li>*@
                                 <li class="f-it-lv2"><a class="t item-lv2" onclick="gotoTab('second-tab-prd')">Món được yêu thích</a></li>
                                 <li class="f-it-lv2"><a class="t item-lv2" onclick="gotoTab('third-tab-prd')">Món ăn mới</a></li>
                             </ul>
                         </li>
                         <li class="k item-mn">
-                            <a class="t-link" href="/gioi-thieu">
+                            <a class="t-link" href="/home/about">
                                 <i class="fa fa-info-circle h-icon-fa"></i>
                                 Giới thiệu
                             </a>
                         </li>
                         <li class="k item-mn">
-                            <a class="t-link" href="/lien-he">
+                            <a class="t-link" href="/contact">
                                 <i class="fa fa-phone h-icon-fa"></i>
                                 Liên hệ
                             </a>
@@ -205,14 +205,14 @@
             </div>
         </footer>
     </div>
+    <script src="~/lib/jquery/dist/jquery.min.3.3.1.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script src="~/lib/jquery/moment.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap-datetimepicker.js"></script>
-    <script src="~/lib/js/bootbox.min.js"></script>
     <script src="~/js/userhelper.js"></script>
-
+    <script src="~/lib/js/bootbox.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

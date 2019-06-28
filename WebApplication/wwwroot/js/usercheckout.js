@@ -1,5 +1,6 @@
-﻿
+﻿showLoading();
 getProduct();
+$(".list-unstyled").remove();
 var ttmoney = 0;
 //get list product from local
 function getPrFromLocal() {
@@ -122,6 +123,7 @@ function bindingPrById(data, numb, po) {
             '</div>' +
             '</div>' +
             '</div >');
+        destroyLoading();
     }
     else {
         bootbox.alert("Có lỗi xảy ra vui lòng thử lại");

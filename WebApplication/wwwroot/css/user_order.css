@@ -200,8 +200,11 @@
     .name-prd{
         color:var(--c-dt-bl);
         padding-left:10px;
-        width:60%;
+        width:100%;
         font-weight:500;
+    }
+    .bd-item-prd{
+        width:60%;
     }
     .price-product {
         color: var(--c-dt-bl);

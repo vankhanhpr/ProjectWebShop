@@ -132,11 +132,13 @@ function bindingPrById(data, num) {
 
         $(".bd-item-small").append('<div class="k f-prd">' +
             '<div class= "k img-prd" style="background-image:url(' + serverfile + item.image + ')"></div >' +
+            '<div class="k bd-item-prd">'+
             '<span class="k name-prd">' + item.prname + '</span>' +
             '<span class="k price-product">' + formatNumber(item.price) + ' vnđ</span>' +
             '<div class="k f-amount">' +
             '<span class="k t-note-amount">Số lượng</span>' +
             '<a class="k t-amount" title="Số lượng sản phẩm muốn mua">' + num + '</a>' +
+            '</div>'+
             '</div>' +
             '</div> ');
     }

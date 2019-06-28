@@ -1,5 +1,6 @@
 ﻿
 $(document).ready(function () {
+    showLoading();
     getNewProducts(bindingNewPr);
     getHighLightpr(bindingHLpr);
 });
@@ -46,6 +47,7 @@ function bindingNewPr(data) {
                 '</div>' +
                 '</div >');
         }
+        destroyLoading();
     }
     else {
         bootbox.alert("Error !");

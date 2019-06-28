@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-//
+    showLoading();
 });
 var bool = true;
 var formdata = new FormData();
@@ -44,6 +44,7 @@ function bindingUserByRole(data) {
                 '</div>' +
                 '</div >');
         }
+        destroyLoading();
     }
 }
 

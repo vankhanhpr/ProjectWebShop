@@ -1,7 +1,30 @@
 ﻿@{
     ViewData["Title"] = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
-<p>Use this area to provide additional information.</p>
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/css/user_about.css">
+}
+<div class="k main-form">
+    <div class="k bd-t-inf">
+        <span class="k t-inf-contact">Về chúng tôi</span>
+        <span class="k t-name-cpn">Vankhanh Corporation</span>
+        <span class="k t-name-cpn">Facebook: <a>https://facebook.com/vankhanhpr</a></span>
+        <span class="k t-name-cpn">Email: <a>khanhnv@hcmute.edu.vn</a></span>
+        <span class="k t-name-cpn">Website: <a>https://khanhnguyenit.com.vn</a></span>
+    </div>
+    <div id="googleMap" style="width:100%;height:500px"></div>
+</div>
+@section Scripts{
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP21pmnDTtUJXuQT2MJilADQNE33laaho&callback=myMap" async defer></script>
+    <script type="text/javascript">
+        function myMap() {
+            var mapProp = {
+                center: new google.maps.LatLng(12.571526, 108.166024),  
+                zoom: 5,
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        }
+    </script>
+}

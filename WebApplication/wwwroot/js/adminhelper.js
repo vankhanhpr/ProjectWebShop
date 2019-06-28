@@ -46,12 +46,6 @@ function callAjaxInsert(type, link, data, callback) {
     });
 }
 
-function showLoading() {
-    $("body").append('<div class="lds-ring"><div></div><div></div><div></div><div></div></div>');
-}
-function destroyLoading() {
-    $(".lds-ring").hide();
-}
 function formatNumber(yourNumber) {
     if (yourNumber) {
         var components = yourNumber.toString().split(".");
@@ -320,4 +314,11 @@ function checkTokenFromLocal() {
             }
         }
     });
+}
+
+function showLoading() {
+    $("body").append('<div class="lds-ring"><div></div><div></div><div></div><div></div></div>');
+}
+function destroyLoading() {
+    $(".lds-ring").hide();
 }

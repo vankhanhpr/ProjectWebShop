@@ -1,11 +1,12 @@
-﻿$(document).ready(function () {
-    if (token.length < 3) {
-        //
-    }
-    else {
-         window.location.href = "/admin/adminlogin";
-    }
-});
+﻿//$(document).ready(function () {
+//    if (token.length < 3) {
+//        //
+//    }
+//    else {
+//         window.location.href = "/admin/adminlogin";
+//    }
+//});
+showLoading();
 var lnid = 0;
 var listFile = [];
 var listFileUd = [];
@@ -35,6 +36,7 @@ function bindingGetAllLnPr(data) {
     }
 }
 function filterLinePr(id) {
+    showLoading();
     lnid = id;
     callAjax(tp.get, "products/GetByLine?id=" + id, null, bindingPdtByLine);
 }
@@ -60,6 +62,7 @@ function bindingPdtByLine(data) {
                 '</div>' +
                 '</div>');
         }
+        destroyLoading();
     }
 }
 function formatDate(date) {
