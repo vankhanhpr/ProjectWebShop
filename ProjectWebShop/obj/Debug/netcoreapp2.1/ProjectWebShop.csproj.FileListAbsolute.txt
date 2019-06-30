@@ -21,10 +21,10 @@ E:\ASPMVC\ProjectWebShop\ProjectWebShop\bin\Debug\netcoreapp2.1\ProjectWebShop.p
 E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.csproj.CoreCompileInputs.cache
 E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.RazorAssemblyInfo.cache
 E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.RazorAssemblyInfo.cs
-E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.AssemblyInfoInputs.cache
 E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.AssemblyInfo.cs
 E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.RazorTargetAssemblyInfo.cache
 E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.dll
 E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.pdb
+E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.csprojAssemblyReference.cache

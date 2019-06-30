@@ -55,15 +55,19 @@ namespace ProjectWebShop
                new PhysicalFileProvider(
                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/user")));//image user
 
-            services.AddSingleton<IAuthService, AuthServiceImpl>();
+           // services.AddSingleton<IAuthService, AuthServiceImpl>();
 
 
             services.AddTransient<ILineProductResponsitory, LineProductResponsitory>();//prodcut
             services.AddTransient<IProductResponsitory, ProductResponsitory>();//prodcut
             services.AddTransient<IImageProductResponsitory, ImageProductResponsitory>();//imageproduct
             services.AddTransient<IEvaluateResponsitory, EvaluateResponsitory>();//evaluate
-            services.AddTransient<IUserResponsitory , UserResponsitory>();//login
-            services.AddTransient<IAuthService, AuthServiceImpl>();
+            services.AddScoped<IUserResponsitory , UserResponsitory>();//login
+            services.AddScoped<IAuthService, AuthServiceImpl>();
+            //services.AddSingleton<    >(service=>
+            //new AuthServiceImpl(
+            //service.GetService<IUserResponsitory>(),service.GetService<IConfiguration>()));
+
             services.AddTransient<IProvinceResponsitory, ProvinceResponsitory>();
             services.AddTransient<IDistrictResponsitory, DistrictResponsitory>();
             services.AddTransient<IInvoiceResponsitory, InvoiceResponsitory>();
@@ -88,7 +92,10 @@ namespace ProjectWebShop
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
             });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+
+            //services.AddSingleton<IAuthService, AuthServiceImpl>();
+            services.AddMvc();//.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {

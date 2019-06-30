@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using ProjectWebShop.Auth.vo;
 using ProjectWebShop.Interface.user;
 using ProjectWebShop.Model;
+using ProjectWebShop.Responsitory;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,11 +16,12 @@ namespace ProjectWebShop.Auth
     {
 
         private IUserResponsitory m_userResponsitory;
-        private IConfiguration m_config;
-        private IDictionary<string, string> m_tokens = new Dictionary<string, string>();
-        private List<string> listtk = new List<string>();
 
-        public AuthServiceImpl(IUserResponsitory userResponsitory, IConfiguration config)
+        private IConfiguration m_config;
+        private static IDictionary<string, string> m_tokens = new Dictionary<string, string>();
+        private static List<string> listtk = new List<string>();
+
+        public  AuthServiceImpl(IUserResponsitory userResponsitory, IConfiguration config)
         {
             m_config = config;
             m_userResponsitory = userResponsitory;
@@ -28,9 +30,6 @@ namespace ProjectWebShop.Auth
         public DataRespond login(AuthInfo authInfo)
         {
             DataRespond data = new DataRespond();
-            // 1. Check token if exist
-            // 2. If yes, check token is valid ( Gerneate from Serect Key, Token is expire)
-            // 3. If no, Genreate new token 
             Users user = findUser(authInfo);
             if (user != null)
             {
@@ -40,7 +39,7 @@ namespace ProjectWebShop.Auth
                     string token = generateToken(user);
                     listtk.Add(token);
                     saveToken(user.email, token);
-                    data.data = new{ token= token,email=user.email};
+                    data.data = new{ token= token,email=user.email,roles=user.roles};
                 }
                 else
                 {
@@ -119,6 +118,7 @@ namespace ProjectWebShop.Auth
         private Users getUserByEmail(String email)
         {
             return m_userResponsitory.GetUserByEmail(email);
+           // return _userResponsitory.GetUserByEmail(email);
         }
 
         public bool checkPass(string pass, string passClient)
@@ -130,16 +130,15 @@ namespace ProjectWebShop.Auth
             return false;
         }
 
-        public DataRespond checkToken(string token,string email)
+        public DataRespond checkToken(string email,string token)
         {
             DataRespond data = new DataRespond();
 
             foreach (KeyValuePair<string, string> item in m_tokens)
             {
-                if(item.Key==email && item.Value == token)
+                if (item.Key == email && item.Value == token)
                 {
                     data.success = true;
-                    data.data = token;
                     return data;
                 }
             }

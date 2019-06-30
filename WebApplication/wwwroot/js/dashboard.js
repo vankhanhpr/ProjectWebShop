@@ -1,9 +1,15 @@
 ﻿
 $(document).ready(function () {
-    //if (!checkTokenFromLocal()) {
-    //    //window.location.href = "/admin/adminlogin";
-    //}
+    if (getTokenFromLocal() != null) {
+        if (checkTokenServer() == false) {
+            window.location.href = "/admin/adminlogin";
+        }
+    }
+    else {
+        window.location.href = "/admin/adminlogin";
+    }
 });
+
 boolsh = true;
 function showListItem() {
     if (boolsh == true) {

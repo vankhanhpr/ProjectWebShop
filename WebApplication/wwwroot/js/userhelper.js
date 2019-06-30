@@ -107,6 +107,39 @@ function showFormSignIn() {
     $('#modalLogin').modal('toggle');
 }
 
+
+//login 
+function login() {
+    var email = $('#lg-inp-email').val();
+    var pass = $('#lg-inp-pass').val();
+    var model = { 'email': email, 'password': pass };
+    $.ajax({
+        url: linkserver + 'Authorization/login',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(model),
+        async: false,
+        processData: false,
+        contentType: "application/json",
+        error: function (err) {
+            bootbox.alert({
+                message: "Error :" + err.message
+            });
+            return false;
+        },
+        success: function (data) {
+            if (data.success && data.roles == 2) {
+                return true;
+            }
+            else {
+                bootbox.alert({
+                    message: data.data
+                });
+                return false;
+            }
+        }
+    });
+}
 //sign in 
 function signIn() {
     var email = $("#signin-input").val();
@@ -118,6 +151,29 @@ function signIn() {
     }
     else {
         var model = { "email": email, "password": pas.trim() };
+        $.ajax({
+            url: linkserver + 'Authorization/checkToken',
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(model),
+            async: false,
+            processData: false,
+            contentType: "application/json",
+            error: function (err) {
+                bootbox.alert({
+                    message: "Error :" + err.message
+                });
+                return false;
+            },
+            success: function (data) {
+                if (data.success) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        });
     }
 }
 

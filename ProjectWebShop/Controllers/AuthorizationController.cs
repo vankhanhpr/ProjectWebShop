@@ -21,17 +21,16 @@ namespace ProjectWebShop.Controllers
         private IAuthService m_authService;
         public AuthorizationController(IUserResponsitory userResponsitory, IConfiguration config, IAuthService auth)
         {
-            m_userResponsitory=userResponsitory;
+            m_userResponsitory = userResponsitory;
             m_config = config;
-            this.m_authService = auth;
+            m_authService = auth;
         }
         [HttpPost("login")]
         public DataRespond login([FromBody]Users user)
         {
             DataRespond data = new DataRespond();
             try
-            {
-                
+            { 
                 AuthInfo authInfo = new AuthInfo();
                 authInfo.email = user.email;
                 authInfo.password = user.password;
@@ -44,9 +43,11 @@ namespace ProjectWebShop.Controllers
             }
             return data;
         }
+
         [HttpPost("checkToken")]
-        public DataRespond checkToken([FromBody] Token token)
+        public DataRespond checkToken([FromBody]TokenRespond tokenrq)
         {
+            var token = new Token(tokenrq.json);
             DataRespond data = m_authService.checkToken(token.email, token.token);
             return data;
         }

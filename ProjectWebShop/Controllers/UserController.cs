@@ -65,7 +65,7 @@ namespace ProjectWebShop.Controllers
             }
             catch(Exception e)
             {
-                return Ok(new { data = "error" });
+                return Ok(new { data = e});
             }
         }
         [HttpGet("getUserByRole")]

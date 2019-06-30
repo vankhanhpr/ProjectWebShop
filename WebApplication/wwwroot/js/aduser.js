@@ -1,5 +1,13 @@
 ﻿$(document).ready(function () {
     showLoading();
+    if (getTokenFromLocal() != null) {
+        if (checkTokenServer() == false) {
+            window.location.href = "/admin/adminlogin";
+        }
+    }
+    else {
+        window.location.href = "/admin/adminlogin";
+    }
 });
 var bool = true;
 var formdata = new FormData();

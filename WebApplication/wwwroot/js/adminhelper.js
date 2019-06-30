@@ -8,9 +8,6 @@ var linkserver = "https://localhost:44337/api/";
 var serverfile = "https://localhost:44337/images/";
 var serverfileuser = "https://localhost:44337/user/";
 
-
-
-
 function callAjax(type, link, data, callback) {
     console.log(link);
     $.ajax({
@@ -289,13 +286,13 @@ function getTokenFromLocal() {
         return null;
     }
 }
-function checkTokenFromLocal() {
-    var model = getTokenFromLocal();
+function checkTokenServer() {
+    var token = { 'json': getTokenFromLocal().toString() };
     $.ajax({
         url: linkserver + 'Authorization/checkToken',
         type: 'POST',
         dataType: 'json',
-        data: JSON.stringify(model),
+        data: JSON.stringify(token),
         async: false,
         processData: false,
         contentType: "application/json",
@@ -306,7 +303,7 @@ function checkTokenFromLocal() {
             return false;
         },
         success: function (data) {
-            if (data.success) {
+            if (data.success && data.roles == 1) {
                 return true;
             }
             else {
@@ -315,7 +312,9 @@ function checkTokenFromLocal() {
         }
     });
 }
-
+function removeTokenLocal() {
+    localStorage.removeItem('access_token');
+}
 function showLoading() {
     $("body").append('<div class="lds-ring"><div></div><div></div><div></div><div></div></div>');
 }

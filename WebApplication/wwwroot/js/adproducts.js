@@ -1,12 +1,14 @@
-﻿//$(document).ready(function () {
-//    if (token.length < 3) {
-//        //
-//    }
-//    else {
-//         window.location.href = "/admin/adminlogin";
-//    }
-//});
-showLoading();
+﻿$(document).ready(function () {
+    showLoading();
+    if (getTokenFromLocal() != null) {
+        if (checkTokenServer() == false) {
+            window.location.href = "/admin/adminlogin";
+        }
+    }
+    else {
+        window.location.href = "/admin/adminlogin";
+    }
+});
 var lnid = 0;
 var listFile = [];
 var listFileUd = [];
