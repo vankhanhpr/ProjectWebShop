@@ -41,7 +41,7 @@ namespace ProjectWebShop.Responsitory
                 return context.Products
                                .Where(p => p.lineprid == id).ToList();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return null;
             }
@@ -81,13 +81,14 @@ namespace ProjectWebShop.Responsitory
 
 
         //for user
-        public dynamic GetProuctsHighLights()
+        public dynamic GetProductsHighLights(int pagesize,int page)
         {
-            var data = context.Products.Where(x => x.highlight == 1).Select(product => new
+            var prd = context.Products.Where(x => x.highlight == 1).Select(product => new
             {
                 product,
                 images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
-            }).Take(3);
+            }).Skip((page-1)*pagesize).Take(pagesize);
+            var data = new { prd = prd, total = GetTotaHlPr() };
             return data;
         }
 
@@ -111,13 +112,13 @@ namespace ProjectWebShop.Responsitory
             return data;
         }
 
-        public void updateToTalView(Products prd)
+        public void UpdateToTalView(Products prd)
         {
             context.Update(prd);
             context.SaveChanges();
         }
 
-        public Products getOnlyProduct(int prid)
+        public Products GetOnlyProduct(int prid)
         {
             return context.Products.Where(x => x.prid == prid).FirstOrDefault();
         }
@@ -130,6 +131,20 @@ namespace ProjectWebShop.Responsitory
                 des = context.Describeproducts.Where(d => d.prid == product.prid).FirstOrDefault()
             }).Take(4);
             return data;
+        }
+
+        public int GetTotaHlPr()
+        {
+            int total = context.Products.Where(x=>x.highlight==1).Count();
+            if( total % 3 > 0)
+            {
+                total = (total/3) + 1;
+            }
+            else
+            {
+                total = total / 3;
+            }
+            return total;
         }
     }
 }

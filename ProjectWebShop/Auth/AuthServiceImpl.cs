@@ -29,8 +29,10 @@ namespace ProjectWebShop.Auth
 
         public DataRespond login(AuthInfo authInfo)
         {
+            logout(authInfo.email);
             DataRespond data = new DataRespond();
             Users user = findUser(authInfo);
+
             if (user != null)
             {
                 if (checkPass(authInfo.password, user.password))
@@ -39,7 +41,7 @@ namespace ProjectWebShop.Auth
                     string token = generateToken(user);
                     listtk.Add(token);
                     saveToken(user.email, token);
-                    data.data = new{ token= token,email=user.email,roles=user.roles};
+                    data.data = new{ token= token,user= user};
                 }
                 else
                 {
@@ -79,9 +81,16 @@ namespace ProjectWebShop.Auth
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public void logout()
+        public void logout(string email)
         {
-            throw new NotImplementedException();
+            //foreach (KeyValuePair<string, string> item in m_tokens)
+            //{
+            //    if (item.Key == email)
+            //    {
+            //        m_tokens.Remove(email);
+            //    }
+            //}
+            m_tokens.Remove(email);
         }
 
         public void refreshToken()
@@ -107,7 +116,7 @@ namespace ProjectWebShop.Auth
             {
                 return null;
             }
-            return getUserByEmail(authInfoFromClient.email);
+            return getUserByEmail(authInfoFromClient.email,authInfoFromClient.roles);
         }
 
         private Boolean isEmpty(String str)
@@ -115,9 +124,9 @@ namespace ProjectWebShop.Auth
             return str == null || str.Length == 0;
         }
 
-        private Users getUserByEmail(String email)
+        private Users getUserByEmail(String email,int roles)
         {
-            return m_userResponsitory.GetUserByEmail(email);
+            return m_userResponsitory.GetUserByEmailRole(email,roles);
            // return _userResponsitory.GetUserByEmail(email);
         }
 
@@ -139,6 +148,7 @@ namespace ProjectWebShop.Auth
                 if (item.Key == email && item.Value == token)
                 {
                     data.success = true;
+                    data.data = m_userResponsitory.GetUserByEmail(email);
                     return data;
                 }
             }

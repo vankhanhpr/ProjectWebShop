@@ -8,7 +8,7 @@
 var formData = new FormData();
 function Login() {
     showLoading();
-    var data = { "email": $('#t-email').val(), "password": md5($('#t-pass').val()) };
+    var data = { "email": $('#t-email').val(), "password": md5($('#t-pass').val()),"roles":2 };
     $.ajax({
         url: linkserver + 'Authorization/login',
         type: 'POST',
@@ -26,7 +26,9 @@ function Login() {
         success: function (data) {
             destroyLoading();
             if (data.success) {
-                saveToken(data.data);
+                var md = { 'email': data.data.user.email, 'token': data.data.token };
+
+                saveToken(md);
                 window.location.href = "/admin";
             }
             else {
@@ -38,37 +40,6 @@ function Login() {
         }
     });
 }
-//check token
-//function checkToken(email, token) {
-//    $.ajax({
-//        url: linkserver + 'Authorization/checkToken?email=' + email + '?token=' + token,
-//        type: 'POST',
-//        dataType: 'json',
-//        data: null,
-//        async: false,
-//        processData: false,
-//        contentType: "application/json",
-//        error: function (err) {
-//            bootbox.alert({
-//                message: "Error :" + err.message
-//            });
-//            destroyLoading();
-//        },
-//        success: function (data) {
-//            destroyLoading();
-//            if (data.success) {
-//                window.location.href = "/admin";
-//            }
-//            else {
-//                bootbox.alert({
-//                    message: "" + data.data,
-//                    size: 'small'
-//                });
-//            }
-//        }
-//    });
-//}
-
 //encscript password
 var md5 = function (string) {
 

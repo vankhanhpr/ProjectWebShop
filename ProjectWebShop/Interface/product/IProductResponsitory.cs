@@ -19,11 +19,12 @@ namespace ProjectWebShop.Interface.product
         Products GetaProductById(int id);
 
         //for user
-        dynamic GetProuctsHighLights();
+        dynamic GetProductsHighLights(int pagesize, int page);
         dynamic GetProcutsMostLikely();
         dynamic GetNewProducts();
-        void updateToTalView(Products prd);
-        Products getOnlyProduct(int prid);
+        void UpdateToTalView(Products prd);
+        Products GetOnlyProduct(int prid);
         dynamic GetDesPr();
+        int GetTotaHlPr();
     }
 }

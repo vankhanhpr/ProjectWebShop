@@ -20,12 +20,12 @@ namespace ProjectWebShop.Controllers
             this._iimageProductResponsitory = iimageProductResponsitory;
         }
         [HttpGet("getProductsHighLights")]
-        public DataRespond GetPrHighLights()
+        public DataRespond GetPrHighLights(int pagesize,int page)
         {
             DataRespond data = new DataRespond();
             try
             {
-                data.data = _iproductResponsitory.GetProuctsHighLights();
+                data.data = _iproductResponsitory.GetProductsHighLights(pagesize,page);
                 data.success = true;
             }
             catch (Exception e)
@@ -76,9 +76,9 @@ namespace ProjectWebShop.Controllers
             {
                 data.success = true;
                 data.data = _iproductResponsitory.GetProductById(id);
-                var item = _iproductResponsitory.getOnlyProduct(id);
+                var item = _iproductResponsitory.GetOnlyProduct(id);
                 item.totalview = item.totalview + 1;
-                _iproductResponsitory.updateToTalView(item);
+                _iproductResponsitory.UpdateToTalView(item);
             }
             catch (Exception e)
             {

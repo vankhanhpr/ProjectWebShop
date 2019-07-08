@@ -52,6 +52,11 @@
         position: relative;
         float: right;
     }
+    .f-user-af-lg{
+        position:relative;
+        float:right;
+        display:none;
+    }
 
     .t-lg {
         color: var(--c-dt-bl);
@@ -476,7 +481,7 @@
     }
     .loader {
         color: var(--cl-progress);
-        font-size: 90px;
+        font-size: 50px;
         text-indent: -9999em;
         overflow: hidden;
         width: 1em;
@@ -595,7 +600,32 @@
     .f-lg-lu {
         width: 20%;
     }
-
+    .f-user-af-lg{
+        width:20%;
+    }
+    .img-avt-us {
+        position:relative;
+        float:left;
+        background-size: cover;
+        border-radius:50%;
+        background-image: url(/images/user/ic_avt_defaul.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 35px;
+        height: 35px;
+        margin-top:5px;
+        cursor:pointer;
+    }
+    .t-hl {
+        position:relative;
+        float:left;
+        color: var(--c-dt-bl);
+        font-size: 14px;
+        padding-left:5px;
+        width:auto;
+        max-width:60%;
+        text-align:center;
+    }
     .search_form {
         width: 20%;
     }

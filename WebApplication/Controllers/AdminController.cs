@@ -61,5 +61,9 @@ namespace WebApplication.Controllers
         {
             return View();
         }
+        public IActionResult NewOrder()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "NewOrder";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/css/ad_neworder.css">
+}
+<div class="k main-from">
+    <div class="k bd-sc-tab-layout">
+        <div class="sc-tab-layout">
+            <span class="k bnt-new-od">New order</span>
+            <span class=" k bnt-old-od">Old order</span>
+        </div>
+        <div class="k body-tab-order">
+            <div class="k f-it-order">
+                <div class="k tab-ft">
+                    <span class="k t t-not-ft">From</span>
+                    <div class="k form-group">
+                        <div class="input-group date" id="datepicker-us">
+                            <input type="text" class="form-control" id="inp-bd">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <span class="k t t-not-ft">to</span>
+                    <div class="k form-group">
+                        <div class="input-group date" id="datepicker-us">
+                            <input type="text" class="form-control" id="inp-bd">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <input type="text" class="k search-order" onkeyup="myFunction()" placeholder="Search for code..">
+                    <span class="bnt-flter">Filter</span>
+                </div>
+            </div>
+            <div class=" k bd-tab-it-od">
+                <div class="k tab-it-od">
+                    <div class="k tab-l-it-od">
+                        <div class="k tab-sml-od">
+                            <span class="k t t-note-od">Order code: </span>
+                            <span class="k t t-main-od">DEGGH738486H7FKGJk</span>
+                        </div>
+                        <div class="k tab-sml-od">
+                            <span class="k t t-note-od">Name custemer: </span>
+                            <span class="k t t-main-od">Khanh Nguyen</span>
+                        </div>
+                        <div class="k tab-sml-od">
+                            <span class="k t t-note-od">Phone number: </span>
+                            <span class="k t t-main-od">0988,989,989</span>
+                        </div>
+                        <div class="k tab-sml-od">
+                            <span class="k t t-note-od">Adress: </span>
+                            <span class="k t t-main-od">Thôn cành lá xã cành cây huyện trên mây</span>
+                        </div>
+                        <div class="k tab-sml-od">
+                            <span class="k t t-note-od">Email: </span>
+                            <span class="k t t-main-od">khanh@gmail.com</span>
+                        </div>
+                        <div class="k tab-sml-od">
+                            <span class="k t t-note-od">Total money: </span>
+                            <span class="k t t-main-od">120.000đ</span>
+                        </div>
+                        <div class="k tab-sml-od">
+                            <span class="k t t-note-od">Code discount: </span>
+                            <span class="k t t-main-od">FH4FGDKH67H</span>
+                        </div>
+                        <div class="k tab-sml-od">
+                            <span class="k t t-note-od">Note: </span>
+                            <span class="k t t-main-od">Tôi thực sự không hài lòng </span>
+                        </div>
+                    </div>
+                    <div class="k tab-r-it-od">
+                        <div class="k item-prd">
+                            <div class="k img-prd"></div>
+                            <div class="k f-dt-it">
+                                <span class="k t t-dt-od">Trà sữa hoa lài đen</span>
+                                <span class="k n-tt-prd">Total:</span>
+                                <span class="k tt-prd">5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Script{
+
+}

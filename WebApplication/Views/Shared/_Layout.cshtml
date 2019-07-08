@@ -15,11 +15,17 @@
         <div class="k f-search">
             <span class="k t t-nt-hotline">Hotline:</span>
             <span class="k t t-hotline">0969.696.696</span>
-            <div class="f-lg-lu">
+
+            <div class="f-lg-lu" id="h-f-sh-lg">
                 <span class="k t t-lg" data-toggle="modal" data-target="#modalLogin">Đăng nhập</span>
                 <span class="k t t-lg">&</span>
                 <span class="k t t-lg" data-toggle="modal" data-target="#modalSignIn">Đăng ký</span>
             </div>
+            <div class="f-user-af-lg" id="f-user-af-lg">
+                <div class="img-avt-us"></div>
+                <span class="t-hl" id="h-t-name-user"></span>
+            </div>
+
             <form class="search_form" action="/search" method="get" role="search">
                 <input type="text" class="form-control" name="query" value="" autocomplete="off" placeholder="Tìm sản phẩm">
                 <button class="btn-search" type="submit"><i class="fa fa-search h-icon-fa"></i></button>
@@ -66,7 +72,7 @@
                             </a>
                         </li>
                         <li class="k item-mn">
-                            <a class="t-link" href="/contact">
+                            <a class="t-link" href="/home/contact">
                                 <i class="fa fa-phone h-icon-fa"></i>
                                 Liên hệ
                             </a>
@@ -110,8 +116,8 @@
                             <input class="k lg-inp-email" id="lg-inp-email" type="text" />
                         </div>
                         <div class="k lg-f-hd-it">
-                            <span class="k  lg-t-email"id="lg-t-pass">Mật khẩu:</span>
-                            <input class="k lg-inp-email" type="password" />
+                            <span class="k  lg-t-email" id="lg-t-pass">Mật khẩu:</span>
+                            <input class="k lg-inp-email" id="lg-inp-pass" type="password" />
                         </div>
                         <span class="k bnt_lg-login" onclick="login()">Đăng nhập</span>
                         <span class="k gt_lg-sign" onclick="showFormSignIn()">hoặc đăng kí tài khoản</span>

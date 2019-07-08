@@ -1,0 +1,89 @@
+﻿@import url("config.css");
+:root{
+
+}
+@media only screen and (min-width:0){
+    .k{
+        position:relative;
+        float:left;
+    }
+    .t {
+        color: var(--c-dt-bl);
+        font-weight: 300;
+        font-family: Roboto,Helvetica,Arial,sans-serif;
+    }
+    .main-form{
+        width:100%;
+    }
+    .f-compalain
+    .f-input{
+        width:100%;
+    }
+    .r-ip {
+        border-radius: 4px;
+        border: 1px solid rgba(51,51,51,0.3);
+        text-align: left;
+    }
+    .r-textarea {
+        border:1px solid rgba(51,51,51,0.3);
+        border-radius:4px;
+    }
+    .bnt-sm-cp {
+        float: right;
+        padding: 7px 20px;
+        background-color: #F0AD4E;
+        border-radius: 4px;
+        cursor: pointer;
+        color: var(--c-dt-wt);
+        box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+        transition: all ease-in-out 300ms;
+    }
+        .bnt-sm-cp:hover {
+            box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
+            -webkit-transform: translate(0px, -10px) scale(1.2);
+            transform: translate(0px, -5px) scale(1.1);
+        }
+    .f-contact{
+        width:100%;
+        border-top:1px solid rgba(51,51,51,0.1);
+        padding-left:20px;
+    }
+}
+@media only screen and (min-width:1200px){
+    .main-form{
+        padding: 0 5%;
+    }
+    .t-h-cp{
+        font-size:16px;
+        width:100%;
+        padding:10px 0;
+        font-weight:600;
+        margin-bottom:20px;
+    }
+    .bd-r-input {
+        width: 100%;
+    }
+
+    .f-input {
+        margin-bottom:10px;
+    }
+    .l-t-note {
+        font-size: 16px;
+        width: 40%;
+        padding: 5px;
+    }
+    .r-ip {
+        width: 60%;
+        padding: 5px;
+    }
+    .r-textarea {
+        width:60%;
+        min-height:200px;
+
+    }
+    .f-contact .fa-envelope-o, .fa-phone-square, .fa-facebook-official, .fa-link {
+        font-size: 20px;
+        color: var(--c-dt-bl);
+        margin-right: 20px;
+    }
+}

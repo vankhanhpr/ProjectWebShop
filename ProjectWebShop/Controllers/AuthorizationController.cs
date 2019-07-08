@@ -26,7 +26,7 @@ namespace ProjectWebShop.Controllers
             m_authService = auth;
         }
         [HttpPost("login")]
-        public DataRespond login([FromBody]Users user)
+        public DataRespond login([FromBody]UserRequest user)
         {
             DataRespond data = new DataRespond();
             try
@@ -34,9 +34,35 @@ namespace ProjectWebShop.Controllers
                 AuthInfo authInfo = new AuthInfo();
                 authInfo.email = user.email;
                 authInfo.password = user.password;
+                authInfo.roles = user.roles;
                 data = m_authService.login(authInfo);
             }
             catch(Exception e)
+            {
+                data.success = false;
+                data.error = e;
+            }
+            return data;
+        }
+
+        [HttpPost("signin")]
+        public DataRespond signin([FromBody]UserRequest user)
+        {
+            DataRespond data = new DataRespond();
+            try{
+                if (!(m_userResponsitory.checkEmailExist(user.email)))
+                {
+                    data.success = false;
+                    data.data = "Email này đã được đăng kí tài khoản trước đó";
+                    return data;
+                }
+                var usud = new Users();
+                usud.email = user.email;
+                usud.password = user.password;
+                m_userResponsitory.InsertUser(usud);
+                data.success = true;
+            }
+            catch (Exception e)
             {
                 data.success = false;
                 data.error = e;
@@ -49,6 +75,23 @@ namespace ProjectWebShop.Controllers
         {
             var token = new Token(tokenrq.json);
             DataRespond data = m_authService.checkToken(token.email, token.token);
+            return data;
+        }
+
+        [HttpPost("signout")]
+        public DataRespond signout([FromBody]UserSignOut user)
+        {
+            DataRespond data = new DataRespond();
+            try
+            {
+                m_authService.logout(user.email);
+                data.success = true;
+            }
+            catch (Exception e)
+            {
+                data.success = false;
+                data.error = e;
+            }
             return data;
         }
     }

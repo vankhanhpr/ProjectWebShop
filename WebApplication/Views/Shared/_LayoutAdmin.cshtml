@@ -2,10 +2,53 @@
 <head>
     <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/font/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/ad_layout.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     @RenderSection("Css", required: false)
 </head>
 <body>
     <div class="container">
+        <div class="k f-head">
+            <div class="k hd-l-form">
+                <div class="k img-avt"></div>
+                <label class="k bnt-swt switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+
+            </div>
+            <div class="k hd-r-form">
+                <div class="h-bd-notifi-ad">
+                    <a href="/admin/useradmin">
+                        <div class="k h-f-sml-notf">
+                            <i class="fa fa-user-plus ic-h-new-user" aria-hidden="true"></i>
+                            <span class="h-t-tt-ntf">0</span>
+                        </div>
+                    </a>
+                    <a href="/admin">
+                        <div class="k h-f-sml-notf">
+                            <i class="fa fa-envelope-o ic-h-new-user" aria-hidden="true"></i>
+                            <span class="h-t-tt-ntf">0</span>
+                        </div>
+                    </a>
+                    <a href="/admin/neworder">
+                        <div class="k h-f-sml-notf">
+                            <i class="fa fa-cart-plus ic-h-new-user" aria-hidden="true"></i>
+                            <span class="h-t-tt-ntf">0</span>
+                        </div>
+                    </a>
+                    <div class="h-f-user">
+                        <div class="k h-img-avt-us"></div>
+                        <span class="k h-t-name-us"></span>
+                        <ul class="h-f-us-lout">
+                            <li onclick="signout()">Logout</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
         @RenderBody()
     </div>
 

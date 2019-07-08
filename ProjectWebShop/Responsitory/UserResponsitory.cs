@@ -20,6 +20,15 @@ namespace ProjectWebShop.Responsitory
             userEntity = context.Set<Users>();
         }
 
+        public bool checkEmailExist(string email)
+        {
+            Users us = context.Users.Where(x => x.email == email).FirstOrDefault();
+            if (us != null)
+            {
+                return false;
+            }
+            return true;
+        }
         public void DeleteUser(Users users)
         {
             Users us = GetUserByEmail(users.email);
@@ -36,7 +45,10 @@ namespace ProjectWebShop.Responsitory
         {
             return context.Users.Where(x => x.email == email).FirstOrDefault();
         }
-
+        public Users GetUserByEmailRole(string email,int roles)
+        {
+            return context.Users.Where(x => x.email == email && x.roles == roles).FirstOrDefault();
+        }
         public IEnumerable<Users> GetUserByRoles(int idrole)
         {
             return context.Users.Where(x => x.roles == idrole).ToList();

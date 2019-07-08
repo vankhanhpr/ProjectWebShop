@@ -11,7 +11,9 @@
         background-repeat: no-repeat;
         background-size: contain;
     }
-
+    .f-head{
+        display:none;
+    }
     .main-form {
         width: 100%;
         text-align: center;

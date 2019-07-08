@@ -9,6 +9,7 @@ namespace ProjectWebShop.Auth.vo
     {
         public String email { get; set; }
         public String password { get; set; }
+        public int roles { get; set; }
         public AuthInfo()
         {
 

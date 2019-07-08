@@ -34,6 +34,10 @@ namespace ProjectWebShop.Controllers
         {
             try
             {
+                if (!(_iuserResponsitory.checkEmailExist(users.email)))
+                {
+                    return Ok(new { data = "Tài khoản với email này đã tồn tại!!" });
+                }
                 var usud = new Users();
                 usud.usid = users.usid;
                 usud.fullname = users.fullname;

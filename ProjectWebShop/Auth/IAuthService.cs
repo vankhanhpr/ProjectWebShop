@@ -8,7 +8,7 @@ namespace ProjectWebShop.Auth
     {
         DataRespond login(AuthInfo authInfo);
 
-        void logout();
+        void logout(string email);
 
         void refreshToken();
 

@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjectWebShop.Interface.product;
 using ProjectWebShop.Model;
+using MailKit;
+using MailKit.Net.Smtp;
+using MimeKit;
 
 namespace ProjectWebShop.Controllers
 {
@@ -26,6 +26,7 @@ namespace ProjectWebShop.Controllers
             {
                 data.data = m_describeResponsitory.getDescriptPrById(id);
                 data.success = true;
+                
             }
             catch(Exception e)
             {
@@ -60,6 +61,7 @@ namespace ProjectWebShop.Controllers
                     m_describeResponsitory.inserDes(des);
                 }
                 data.success = true;
+              
             }
             catch(Exception e)
             {

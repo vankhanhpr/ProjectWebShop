@@ -1,15 +1,12 @@
-﻿
-$(document).ready(function () {
-    if (getTokenFromLocal() != null) {
-        if (checkTokenServer() == false) {
-            window.location.href = "/admin/adminlogin";
-        }
-    }
-    else {
-        window.location.href = "/admin/adminlogin";
-    }
+﻿$(document).ready(function () {
+    var bol = checkTokenServerAd();
+    //if (!bol) {
+    //    window.location.href = "/admin/adminlogin";
+    //}
+    //else {
+    //    //
+    //}
 });
-
 boolsh = true;
 function showListItem() {
     if (boolsh == true) {

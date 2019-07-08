@@ -21,12 +21,12 @@
 }
 @media only screen and (min-width:1200px){
     .main-form{
-        padding-left:10%;
-        padding-right:10px;
+        padding-left:5%;
+        padding-right:5%;
     }
     .bd-t-inf{
         width:100%;
-        border:1px solid rgba(51,51,51,0.12);
+        /*border:1px solid rgba(51,51,51,0.12);*/
         border-radius:3px;
         padding:10px;
     }
@@ -37,5 +37,10 @@
         font-size:var(--font-detail);
         margin-bottom:10px;
         margin-top:10px;
+    }
+    #googleMap {
+        width:100%;
+        height:500px;
+        margin-bottom:20px;
     }
 }

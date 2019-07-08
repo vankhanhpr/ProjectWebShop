@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit;
 using ProjectWebShop.Interface.invoice;
 using ProjectWebShop.Model;
 
@@ -52,6 +52,7 @@ namespace ProjectWebShop.Controllers.invoice
                     invoicers.ivid = newinv.ivid;
                     m_invoiceResponcitory.InsertInvoiceProduct(invoicers);
                 }
+                sendEmail(invoice.email,inv.codeinvoice);
                 data.success = true;
                 data.data = newinv;
             }
@@ -78,6 +79,28 @@ namespace ProjectWebShop.Controllers.invoice
                 data.error = e;
             }
             return data;
+        }
+
+        //send email to customer 
+        public void sendEmail(string email, string code)
+        {
+            var mess = new MimeMessage();
+            mess.From.Add(new MailboxAddress("KhanhShop", "donkihote2305@gmail.com"));
+            mess.To.Add(new MailboxAddress("Dotnet tranning", email));
+            mess.Subject = "Thông tin về đơn hàng của bạn trên KhanhShop";
+            mess.Body = new TextPart("Plain")
+            {
+                Text = "Chúng tôi đã ghi nhận đơn hàng của bạn. Mã đơn hàng của bạn là " + code +
+                ". Nếu có thắc mắc vui lòng liên hệ KhanhShop số 17 km17 QL27 Cukuin Dak Lak hoặc sdt: 0983975408"+
+                "Cảm ơn bạn đã mua hàng!"
+            };
+            using (var client = new SmtpClient())
+            {
+                client.Connect("smtp.gmail.com", 587, false);
+                client.Authenticate("donkihote2305@gmail.com", "");
+                client.Send(mess);
+                client.Disconnect(true);
+            }
         }
         //random code invoice 
         private static Random random = new Random();

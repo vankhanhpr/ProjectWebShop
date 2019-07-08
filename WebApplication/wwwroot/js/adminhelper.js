@@ -270,15 +270,41 @@ var md5 = function (string) {
 
 function saveToken(token) {
     if (typeof (Storage) !== "undefined") {
-        localStorage.setItem('access_token', JSON.stringify(token));
+        localStorage.setItem('access_token_admin', JSON.stringify(token));
     }
     else {
         bootbox.alert("Brower not support to storage");
     }
 }
 
+function signout() {
+    var item = strToObj(getTokenFromLocal().toString());
+    var user = { 'email': item.email };
+    $.ajax({
+        url: linkserver + 'Authorization/signout',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(user),
+        async: false,
+        processData: false,
+        contentType: "application/json",
+        error: function (err) {
+            //
+        },
+        success: function (data) {
+            if (data.success) {
+                removeTokenLocal();
+                window.location.href = "/admin/adminlogin";
+            }
+            else {
+                //
+            }
+        }
+    });
+}
+
 function getTokenFromLocal() {
-    var model = localStorage.getItem('access_token');
+    var model = localStorage.getItem('access_token_admin');
     if (model) {
         return model;
     }
@@ -286,7 +312,20 @@ function getTokenFromLocal() {
         return null;
     }
 }
-function checkTokenServer() {
+
+function strToObj(str) {//convert string to object
+    var obj = {};
+    if (str && typeof str === 'string') {
+        var objStr = str.match(/\{(.)+\}/g);
+        eval("obj =" + objStr);
+    }
+    return obj;
+}
+function checkTokenServerAd() {
+    if (getTokenFromLocal() == null || getTokenFromLocal() == '') {
+        window.location.href = "/admin/adminlogin";
+        return false;
+    }
     var token = { 'json': getTokenFromLocal().toString() };
     $.ajax({
         url: linkserver + 'Authorization/checkToken',
@@ -297,23 +336,21 @@ function checkTokenServer() {
         processData: false,
         contentType: "application/json",
         error: function (err) {
-            bootbox.alert({
-                message: "Error :" + err.message
-            });
-            return false;
+            window.location.href = "/admin/adminlogin";
         },
         success: function (data) {
-            if (data.success && data.roles == 1) {
-                return true;
+            if (data.success) {
+                $('.h-img-avt-us').css("background-image", "url(" + serverfileuser + data.data.avatar + ")");
+                $('.h-t-name-us').text(data.data.fullname);
             }
             else {
-                return false;
+                window.location.href = "/admin/adminlogin";
             }
         }
     });
 }
 function removeTokenLocal() {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('access_token_admin');
 }
 function showLoading() {
     $("body").append('<div class="lds-ring"><div></div><div></div><div></div><div></div></div>');

@@ -10,9 +10,11 @@ namespace ProjectWebShop.Interface.user
         IEnumerable<Users> GetAllUser();
         dynamic RemoveUser();
         Users GetUserByEmail(string email);
+        Users GetUserByEmailRole(string email, int roles);
         void DeleteUser(Users users);
         void UpdateUser(Users users);
         void InsertUser(Users users);
         IEnumerable<Users> GetUserByRoles(int idrole);
+        bool checkEmailExist(string email);
     }
 }

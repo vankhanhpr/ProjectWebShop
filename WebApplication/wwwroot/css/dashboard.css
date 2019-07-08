@@ -24,11 +24,7 @@
         background-color: #fff;
     }
 
-    .container {
-        width: 100%;
-        padding:0;
-    }
-
+    
     
 
     .main-form {
@@ -44,7 +40,7 @@
         background-color: var(--lc-bg-r);
     }
 
-    .img-avt {
+    /*.img-avt {
         background-image: url(/images/admin/logo.png);
         background-size: contain;
     }
@@ -110,7 +106,7 @@
         width: 100%;
         color: var(--cl-dt);
         opacity: 0.6;
-    }
+    }*/
 
     .body-form {
         width: 100%;
@@ -231,7 +227,7 @@
 }
 
 @media only screen and (min-width:1200px) {
-    .f-head {
+    /*.f-head {
         z-index: 2;
         width: 100%;
         height: 70px;
@@ -244,8 +240,8 @@
     }
     .r-form {
         width: 80%;
-    }
-    .img-avt {
+    }*/
+    /*.img-avt {
         width: 80%;
         height: 70px;
     }
@@ -253,6 +249,15 @@
         width: 18%;
         height: 20px;
         margin-top: 27px;
+    }*/
+    .l-form {
+        width: 20%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .r-form {
+        width: 80%;
     }
     .ngvt {
         font-size: var(--fs-dt);

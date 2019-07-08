@@ -149,6 +149,8 @@ function changeNumber(bool, po, price) {
         number--;
         if (number == 0) {
             number = 1;
+            $("#numb" + po).text(number);
+            return;
         }
         $("#numb" + po).text(number);
         ttmoney -= price;

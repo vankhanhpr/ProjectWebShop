@@ -10,9 +10,6 @@
     .k {
         position: relative;
         float: left;
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
     }
 
     .main-form {
