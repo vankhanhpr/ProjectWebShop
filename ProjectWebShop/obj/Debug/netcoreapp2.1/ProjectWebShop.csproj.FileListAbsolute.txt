@@ -26,5 +26,5 @@ E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.A
 E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.RazorTargetAssemblyInfo.cache
 E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.dll
 E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.pdb
-E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\ProjectWebShop.csprojAssemblyReference.cache
+E:\ASPMVC\ProjectWebShop\ProjectWebShop\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs

@@ -50,6 +50,7 @@ namespace WebApplication
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseWebSockets();
             app.UseCors(options => options.WithOrigins("https://localhost:44328").AllowAnyMethod());
             app.UseMvc(routes =>
             {

@@ -358,3 +358,22 @@ function showLoading() {
 function destroyLoading() {
     $(".lds-ring").hide();
 }
+
+function changeOrder() {
+    var x = document.getElementById("myAudio").play();
+    if (x == undefined) {
+        playPromise.then(_ => {
+            // Automatic playback started!
+            // Show playing UI.
+            // We can now safely pause video...
+            x.play();
+        })
+        .catch(error => {
+            // Auto-play was prevented
+            // Show paused UI.
+        });
+    }
+    var tt = $('.h-t-tt-ntf').text();
+    var newtt = parseInt(tt) + 1;
+    $('.h-t-tt-ntf').text(newtt);
+}

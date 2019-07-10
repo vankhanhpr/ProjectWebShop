@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Linq;
+using System.Net.WebSockets;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
+using Newtonsoft.Json;
 using ProjectWebShop.Interface.invoice;
 using ProjectWebShop.Model;
+using ProjectWebShop.WebSockets;
 
 namespace ProjectWebShop.Controllers.invoice
 {
@@ -13,13 +20,15 @@ namespace ProjectWebShop.Controllers.invoice
     public class InvoiceController : Controller
     {
         private IInvoiceResponsitory m_invoiceResponcitory;
-        public InvoiceController(IInvoiceResponsitory invoiceResponcitory)
+        private ObjectHandler m_objectHandler { get; set; }
+        public InvoiceController(IInvoiceResponsitory invoiceResponcitory,ObjectHandler objectHandler)
         {
             m_invoiceResponcitory = invoiceResponcitory;
+            m_objectHandler = objectHandler;
         }
         //insert invoice
         [HttpPost("InsertInvoive")]
-        public DataRespond InsertInvoive([FromForm] InvoiceRequest invoice)
+        public async Task<IActionResult> InsertInvoiveAsync([FromForm] InvoiceRequest invoice)
         {
             DataRespond data = new DataRespond();
             try
@@ -52,7 +61,8 @@ namespace ProjectWebShop.Controllers.invoice
                     invoicers.ivid = newinv.ivid;
                     m_invoiceResponcitory.InsertInvoiceProduct(invoicers);
                 }
-                sendEmail(invoice.email,inv.codeinvoice);
+                await sendInvoidBySocket(newinv);
+                //sendEmail(invoice.email,inv.codeinvoice);
                 data.success = true;
                 data.data = newinv;
             }
@@ -61,7 +71,7 @@ namespace ProjectWebShop.Controllers.invoice
                 data.success = false;
                 data.error = e;
             }
-            return data;
+            return Ok(new { data });
         }
         //get invoice by id
         [HttpGet("GetInvoicebyId")]
@@ -109,6 +119,23 @@ namespace ProjectWebShop.Controllers.invoice
             const string chars = "abcdefghiklmnopqrstwz0123456789";
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        //emit data using socket.io
+        public async Task sendInvoidBySocket(Invoices invoice)
+        {
+            var context = ControllerContext.HttpContext;
+            var isSocketRequest = context.WebSockets.IsWebSocketRequest;
+            if (isSocketRequest)
+            {
+                WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
+            }
+            else
+            {
+                context.Response.StatusCode = 400;
+            }
+            var inv = new { data = invoice, success = true,key="invoice" };
+           await m_objectHandler.SendMessageToAllAsync(inv);
         }
     }
 }

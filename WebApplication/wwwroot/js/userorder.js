@@ -204,18 +204,22 @@ function getDistrictByProvince(obj, bool) {
 //order 
 function toOrder() {
     var data = checkOrder();
+    if (!data) {
+        return;
+    }
     $.ajax({
         type: "POST",
         url: linkserver + "invoice/InsertInvoive",
         data: data,
         processData: false,
         contentType: false,
+        dataType: "json",
         cache: false,
         enctype: 'multipart/form-data',
         success: function (data) {
-            if (data.success) {
+            if (data.data.success) {
                 deleteIt();
-                window.location.href = "/order/ordersuccess?ivid=" + data.data.ivid;
+                window.location.href = "/order/ordersuccess?ivid=" + data.data.data.ivid;
             }
         },
         error: function (err) {
@@ -226,7 +230,7 @@ function toOrder() {
 //check order
 function checkOrder() {
     //check name
-    var bool = false;
+    var bool = true;
     var nameclient = $("#t-name-client").val().trim();
     if (nameclient == "" || nameclient == null) {
         changeColorElement("t-name-client", true);
@@ -234,17 +238,14 @@ function checkOrder() {
     }
     else {
         changeColorElement("t-name-client", false);
-        bool = true;
     }
     //check gender
     if (gender == -1) {
         changeColorElement("f-input-gender", true);
         bool = false;
-
     }
     else {
         changeColorElement("f-input-gender", false);
-        bool = true;
     }
     //check phone number
     var phonenumber = $("#phone-numb").val().trim();
@@ -254,7 +255,6 @@ function checkOrder() {
     }
     else {
         changeColorElement("phone-numb", false);
-        bool = true;
     }
     //check email
     var email = $("#email").val().trim();
@@ -264,7 +264,6 @@ function checkOrder() {
     }
     else {
         changeColorElement("email", false);
-        bool = true;
     }
     //check adress delivery
     var adrclient = $("#adress-client").val().trim();
@@ -274,7 +273,6 @@ function checkOrder() {
     }
     else {
         changeColorElement("adress-client", false);
-        bool = true;
     }
 
     //check address delivery 
@@ -284,17 +282,15 @@ function checkOrder() {
     }
     else {
         changeColorElement("f-input-address", false);
-        bool = true;
     }
     //other address
     var otheraddress = $("#other-adress").val().trim();
     if (otheraddress == "" || adrclient == null) {
         changeColorElement("other-adress", true);
-        bool = false;
+       // bool = false;
     }
     else {
         changeColorElement("other-adress", false);
-        bool = true;
     }
     //check time delivery
     if (timeinwork == null) {
@@ -303,7 +299,6 @@ function checkOrder() {
     }
     else {
         changeColorElement("f-input-timedl", false);
-        bool = true;
     }
     //check typy pays f-input-pay
     if (typepay == null) {
@@ -312,10 +307,9 @@ function checkOrder() {
     }
     else {
         changeColorElement("f-input-pay", false);
-        bool = true;
     }
     if (!bool) {
-        return;
+        return false;
     }
     var formData = new FormData();
     formData.append("namecustomer", nameclient);

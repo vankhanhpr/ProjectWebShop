@@ -27,6 +27,7 @@ using ProjectWebShop.Responsitory;
 using ProjectWebShop.Responsitory.discount;
 using ProjectWebShop.Responsitory.invoice;
 using ProjectWebShop.Responsitory.unit;
+using ProjectWebShop.WebSockets;
 using WebApiMyShop.Data;
 using WebApiMyShop.Interface;
 
@@ -55,18 +56,12 @@ namespace ProjectWebShop
                new PhysicalFileProvider(
                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/user")));//image user
 
-           // services.AddSingleton<IAuthService, AuthServiceImpl>();
-
-
             services.AddTransient<ILineProductResponsitory, LineProductResponsitory>();//prodcut
             services.AddTransient<IProductResponsitory, ProductResponsitory>();//prodcut
             services.AddTransient<IImageProductResponsitory, ImageProductResponsitory>();//imageproduct
             services.AddTransient<IEvaluateResponsitory, EvaluateResponsitory>();//evaluate
             services.AddScoped<IUserResponsitory , UserResponsitory>();//login
             services.AddScoped<IAuthService, AuthServiceImpl>();
-            //services.AddSingleton<    >(service=>
-            //new AuthServiceImpl(
-            //service.GetService<IUserResponsitory>(),service.GetService<IConfiguration>()));
 
             services.AddTransient<IProvinceResponsitory, ProvinceResponsitory>();
             services.AddTransient<IDistrictResponsitory, DistrictResponsitory>();
@@ -93,14 +88,14 @@ namespace ProjectWebShop
                 };
             });
 
-
-            //services.AddSingleton<IAuthService, AuthServiceImpl>();
-            services.AddMvc();//.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddWebSocketManager();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             app.UseStaticFiles();//show image
             app.UseDefaultFiles();//show image
+            app.UseWebSockets();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -121,8 +116,14 @@ namespace ProjectWebShop
             app.UseAuthentication();//add token
             app.UseDeveloperExceptionPage();//filter user
             app.UseMvcWithDefaultRoute();///filter user
-
-
+            var wsOptions = new WebSocketOptions()//websocket
+            {
+                KeepAliveInterval = TimeSpan.FromSeconds(60),
+                ReceiveBufferSize = 4 * 1024
+            };
+            app.UseWebSockets(wsOptions);
+            //app.MapWebSocketManager("/admin",serviceProvider.GetService<ChatRoomHandler>());
+            app.MapWebSocketManager("/admin",serviceProvider.GetService<ObjectHandler>());
         }
     }
 }

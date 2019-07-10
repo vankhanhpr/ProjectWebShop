@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\node_modules - Copy %282%29\**" />
+    <Content Remove="wwwroot\lib\node_modules - Copy %282%29\**" />
+    <EmbeddedResource Remove="wwwroot\lib\node_modules - Copy %282%29\**" />
+    <None Remove="wwwroot\lib\node_modules - Copy %282%29\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />

@@ -5,7 +5,8 @@
     <link rel="stylesheet" type="text/css" href="~/css/ad_layout.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    @RenderSection("Css", required: false)
+   
+        @RenderSection("Css", required: false)
 </head>
 <body>
     <div class="container">
@@ -49,6 +50,9 @@
                 </div>
             </div>
         </div>
+
+        @*audio*@
+        <audio src="/audio/audio_notify.mp3" id="myAudio"></audio>
         @RenderBody()
     </div>
 
@@ -60,6 +64,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap-datetimepicker.js"></script>
     <script src="~/lib/js/bootbox.min.js"></script>
     <script src="~/js/adminhelper.js"></script>
+    <script src="~/lib/node_modules1/socket.io-client/dist/socket.io.js"></script>
+    <script src="~/js/adsocket.io.js"></script>
     @RenderSection("Script", required: false)
 
 </body>
