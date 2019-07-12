@@ -25,6 +25,8 @@ namespace ProjectWebShop.Model
         public string codediscount { get; set; }
         public string note { get; set; }
         public int usid { get; set; }
+        public int status { get; set; }
+        public int isread { get; set; }
         public List<string> invoiceproduct { get; set; }
     }
 }

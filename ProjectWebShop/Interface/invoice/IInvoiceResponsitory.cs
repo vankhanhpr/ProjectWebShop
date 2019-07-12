@@ -13,5 +13,11 @@ namespace ProjectWebShop.Interface.invoice
         dynamic GetInvoiceByUser(int usid);
         dynamic GetInvoiceById(int ivid);
         void InsertInvoiceProduct(InvoiceProduct invoiceProduct);
+        dynamic GetNewInvoiceActive(int active);
+        dynamic GetFirstInvoice(string code);
+        void UpdateInvoice(Invoices inv);
+        Invoices GetInvoid(int inv);
+        dynamic FilterInvoiceByDay(DateTime std,DateTime eday);
+
     }
 }

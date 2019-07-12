@@ -31,7 +31,7 @@ namespace ProjectWebShop.WebSockets
             if (socket.State != WebSocketState.Open)
                 return;
 
-            await socket.SendAsync(buffer: new ArraySegment<byte>(Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(new {data = message }))),
+            await socket.SendAsync(buffer: new ArraySegment<byte>(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(new {data = message }))),
                                    messageType: WebSocketMessageType.Text,
                                    endOfMessage: true,
                                    cancellationToken: CancellationToken.None);

@@ -1,52 +1,74 @@
 ﻿var wsUri = "wss://localhost:44337/admin";
 
-function init() {
-    websocket = new WebSocket(wsUri);
-    websocket.onopen = function (evt) {
-        onOpen(evt);
-    };
-    websocket.onclose = function (evt) {
-        onClose(evt);
-    };
-    websocket.onmessage = function (evt) {
-        onMessage(evt);
-    };
-    websocket.onerror = function (evt) {
-        onError(evt);
-    };
-}
-
-function onOpen(evt) {
-    writeToScreen("CONNECTED");
-    // doSend("WebSocket rocks");
-}
-
-function onClose(evt) {
-    writeToScreen("DISCONNECTED");
-}
-
-function onMessage(evt) {
-    writeToScreen('onMessage');
-    console.log(evt);
-    changeOrder();
-    if (evt.data.success && evt.data.key == "invoice") {
-        changeOrder();
+var singleton = (function () {
+    var instance;
+    function init() {
+        websocket = new WebSocket(wsUri);
+        websocket.onopen = function (evt) {
+            console.log("CONECTED");
+        };
+        websocket.onclose = function (evt) {
+            console.log("DISCONECTED");
+        };
+        websocket.onmessage = function (evt) {
+            console.log(evt);
+            var obj = strToObj(evt.data);
+            if (obj.data.success && obj.data.key == "invoice") {
+                changeOrder();
+                if (window.location.href == "https://localhost:44328/admin/neworder") {
+                    addInvoidSocket(obj);
+                }
+            }
+            if (obj.data.success && obj.data.key == "newuser") {
+                changeEmailUser(0);
+            }
+            if (obj.data.success && obj.data.key == "newemail") {
+                changeEmailUser(1);
+            }
+        };
+        websocket.onerror = function (evt) {
+            websocket = new WebSocket(wsUri);//connect again
+        };
     }
-    //websocket.close();
-}
+    return {
+        getInstance: function () {
+            if (!instance) {
+                instance = init();
+            }
+            return instance;
+        }
+    };
+})();
 
-function onError(evt) {
-    writeToScreen('onError');
-    onOpen();
-}
+//function onOpen(evt) {
+//    writeToScreen("CONNECTED");
+//}
 
-function doSend(message) {
-    writeToScreen("SENT: " + message);
-    websocket.send(message);
-}
+//function onClose(evt) {
+//    writeToScreen("DISCONNECTED");
+//}
 
-function writeToScreen(message) {
-    console.log(message);
-}
+//function onMessage(evt) {
+//    writeToScreen('onMessage');
+//    console.log(evt);
+//    changeOrder();
+//    if (evt.data.success && evt.data.key == "invoice") {
+//        changeOrder();
+//    }
+//}
 
-window.addEventListener("load", init, false);
+//function onError(evt) {
+//    writeToScreen('onError');
+//    onOpen();
+//}
+
+//function doSend(message) {
+//    writeToScreen("SENT: " + message);
+//    websocket.send(message);
+//}
+
+//function writeToScreen(message) {
+//    console.log(message);
+//}
+
+window.addEventListener("load", singleton.getInstance(), false);

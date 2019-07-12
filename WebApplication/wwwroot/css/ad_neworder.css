@@ -86,17 +86,23 @@
         float: right;
         box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
     }
-    .bd-tab-it-od{
+    .f-ap-it-iv {
         width:100%;
-        border:1px solid rgba(51,15,51,0.1);
-        border-radius:4px;
     }
-    .tab-it-od{
-        width:100%;
+    .bd-tab-it-od, .bd-tab-itold-od {
+        width: 100%;
+        border: 1px solid rgba(51,15,51,0.1);
+        border-bottom: none;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    }
+    
+    .tab-it-od {
+        width: 100%;
     }
     .tab-l-it-od, .tab-r-it-od {
         width: 50%;
-        padding: 5px;
+        padding: 5px 20px;
     }
     .tab-sml-od{
         width:100%;
@@ -118,7 +124,6 @@
         padding: 5px 0;
     }
     .img-prd{
-        background-image:url(/images/admin/tea.jpg);
         background-size:cover;
         background-repeat:no-repeat;
         background-position:center;
@@ -148,6 +153,17 @@
         border: 1px solid rgba(51,51,51,0.4);
         border-radius: 4px;
     }
+    .bnt-success-it {
+        color: var(--c-dt-wt);
+        text-align: center;
+        font-weight: 600;
+        cursor: pointer;
+        background-color: var(--cl-or);
+        border-radius: 4px;
+        position: relative;
+        float: right;
+        box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+    }
 }
 @media only screen and (min-width:1200px){
     .main-from{
@@ -161,13 +177,19 @@
         margin-top:20px;
         padding:10px;
     }
+
     .form-group {
         width: 20%;
     }
-    .t-not-ft{
-        width:auto;
-        padding:0 5px;
-        font-size:var(--fsall);
+    .bd-tab-it-od, .bd-tab-itold-od {
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        background-color: rgba(51,51,51,0.05);
+    }
+    .t-not-ft {
+        width: auto;
+        padding: 0 5px;
+        font-size: var(--fsall);
     }
     .search-order{
         margin-left:20px;
@@ -177,13 +199,14 @@
         padding: 3px 15px;
         margin-top: 10px;
     }
+
     .t-note-od {
-        font-size:var(--fsall);
-        padding:5px 0;
+        font-size: var(--fsall);
+        padding: 5px 0;
     }
     .tab-r-it-od {
-        min-height: 310px;
-        overflow: scroll;
+        max-height: 310px;
+        overflow: auto;
     }
     .t-main-od {
         font-size: var(--fsall);
@@ -204,5 +227,10 @@
     .tt-prd {
         padding: 1px 10px;
         margin-top: 3px;
+    }
+    .bnt-success-it {
+        font-size: var(--fsall);
+        padding: 3px 15px;
+        margin-top: 10px;
     }
 }

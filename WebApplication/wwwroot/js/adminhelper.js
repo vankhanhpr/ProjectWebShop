@@ -373,7 +373,21 @@ function changeOrder() {
             // Show paused UI.
         });
     }
-    var tt = $('.h-t-tt-ntf').text();
-    var newtt = parseInt(tt) + 1;
-    $('.h-t-tt-ntf').text(newtt);
+    var tt = parseInt($('#view-new-od').text());
+    var newtt = tt + 1;
+    $('#view-new-od').text(newtt);
+}
+
+function changeEmailUser(key) {
+    var total = 0;
+    if (key == 0) {//user
+        total = parseInt($('#add-new-us').text());
+        var ntt = total + 1;
+        $('#add-new-us').text(ntt);
+    }
+    else {//for email
+        total = parseInt($('#add-new-email').text());
+        var nttuser = total + 1;
+        $('#add-new-email').text(nttuser);
+    }
 }

@@ -73,17 +73,6 @@ active int,
 foreign key (roles) references roles(roleid),
 foreign key (active) references activity(actid)
 );
-Create table Invoice(
-ivid int AUTO_INCREMENT primary key,
-namecustomer nvarchar(100),
-quantitum int ,
-totalmoney double ,
-money double ,
-discount double,
-note nvarchar(300),
-prid int,
-foreign key (prid) references products(prid)
-);
 Create table invoices(
 ivid int AUTO_INCREMENT primary key,
 namecustomer nvarchar(100),

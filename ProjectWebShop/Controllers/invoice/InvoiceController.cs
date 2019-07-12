@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
@@ -21,7 +22,7 @@ namespace ProjectWebShop.Controllers.invoice
     {
         private IInvoiceResponsitory m_invoiceResponcitory;
         private ObjectHandler m_objectHandler { get; set; }
-        public InvoiceController(IInvoiceResponsitory invoiceResponcitory,ObjectHandler objectHandler)
+        public InvoiceController(IInvoiceResponsitory invoiceResponcitory, ObjectHandler objectHandler)
         {
             m_invoiceResponcitory = invoiceResponcitory;
             m_objectHandler = objectHandler;
@@ -50,7 +51,10 @@ namespace ProjectWebShop.Controllers.invoice
                 inv.note = invoice.note;
                 inv.usid = invoice.usid;
                 inv.codeinvoice = RandomString(20);
-                Invoices newinv= m_invoiceResponcitory.InsetInvoice(inv);
+                inv.status = 0;//don't acvite
+                inv.isread = 0;//don't view
+                inv.createday = DateTime.Now;
+                Invoices newinv = m_invoiceResponcitory.InsetInvoice(inv);
 
                 foreach (var i in invoice.invoiceproduct)
                 {
@@ -61,7 +65,8 @@ namespace ProjectWebShop.Controllers.invoice
                     invoicers.ivid = newinv.ivid;
                     m_invoiceResponcitory.InsertInvoiceProduct(invoicers);
                 }
-                await sendInvoidBySocket(newinv);
+                var invsocket =m_invoiceResponcitory.GetFirstInvoice(newinv.codeinvoice);
+                await sendInvoidBySocket(invsocket);
                 //sendEmail(invoice.email,inv.codeinvoice);
                 data.success = true;
                 data.data = newinv;
@@ -83,7 +88,7 @@ namespace ProjectWebShop.Controllers.invoice
                 data.success = true;
                 data.data = m_invoiceResponcitory.GetInvoiceById(id);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 data.success = false;
                 data.error = e;
@@ -101,7 +106,7 @@ namespace ProjectWebShop.Controllers.invoice
             mess.Body = new TextPart("Plain")
             {
                 Text = "Chúng tôi đã ghi nhận đơn hàng của bạn. Mã đơn hàng của bạn là " + code +
-                ". Nếu có thắc mắc vui lòng liên hệ KhanhShop số 17 km17 QL27 Cukuin Dak Lak hoặc sdt: 0983975408"+
+                ". Nếu có thắc mắc vui lòng liên hệ KhanhShop số 17 km17 QL27 Cukuin Dak Lak hoặc sdt: 0983975408" +
                 "Cảm ơn bạn đã mua hàng!"
             };
             using (var client = new SmtpClient())
@@ -122,7 +127,7 @@ namespace ProjectWebShop.Controllers.invoice
         }
 
         //emit data using socket.io
-        public async Task sendInvoidBySocket(Invoices invoice)
+        public async Task sendInvoidBySocket(dynamic invoice)
         {
             var context = ControllerContext.HttpContext;
             var isSocketRequest = context.WebSockets.IsWebSocketRequest;
@@ -134,8 +139,69 @@ namespace ProjectWebShop.Controllers.invoice
             {
                 context.Response.StatusCode = 400;
             }
-            var inv = new { data = invoice, success = true,key="invoice" };
-           await m_objectHandler.SendMessageToAllAsync(inv);
+            var inv = new { data = invoice, success = true, key = "invoice" };
+            await m_objectHandler.SendMessageToAllAsync(inv);
+        }
+
+        //get invoice by active
+        [HttpGet("GetIvByActive")]
+        public DataRespond GetInvoidByActive(int active)
+        {
+            DataRespond data = new DataRespond();
+            try
+            {
+                data.data= m_invoiceResponcitory.GetNewInvoiceActive(active);
+                data.success = true;
+
+            }
+            catch(Exception e)
+            {
+                data.success = false;
+                data.error = e;
+            }
+            return data;
+
+        }
+
+        [HttpPost("UpdateInvoice")]
+        public DataRespond UpdateInvoice([FromBody]InvoiceRequest invupdate)
+        {
+            DataRespond data = new DataRespond();
+            try
+            {
+                Invoices inv = m_invoiceResponcitory.GetInvoid(invupdate.ivid);
+                inv.status = 1;
+                inv.isread = 1;
+                m_invoiceResponcitory.UpdateInvoice(inv);
+                data.success = true;
+                data.data = "Update success";
+            }
+            catch(Exception e)
+            {
+                data.error = e;
+                data.success = false;
+            }
+            return data;
+        }
+
+        //filter by day
+        [HttpPost("filterByDay")]
+        public DataRespond filterIvByDay([FromBody]InvoiceFilter inv)
+        {
+            DataRespond data = new DataRespond();
+            try
+            {
+                DateTime stday = DateTime.ParseExact(inv.startday, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime eday = DateTime.ParseExact(inv.endday, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                data.data = m_invoiceResponcitory.FilterInvoiceByDay(stday,eday);
+                data.success = true;
+            }
+            catch(Exception e)
+            {
+                data.error = e;
+                data.success = false;
+            }
+            return data;
         }
     }
 }

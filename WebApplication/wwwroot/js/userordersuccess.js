@@ -28,7 +28,7 @@ function bindingOrderById(data) {
 function getMoreProduct(callback) {
     $.ajax({
         type: "get",
-        url: linkserver + "productuser/getProductsHighLights",
+        url: linkserver + "productuser/getProductsHighLights?pagesize=3&page=1",
         data: null,
         dataType: 'json',
         contentType: "application/json",
@@ -43,8 +43,8 @@ function getMoreProduct(callback) {
 getMoreProduct(bindingPrdMore);
 function bindingPrdMore(data) {
     if (data.success) {
-        for (var i in data.data) {
-            var it = data.data[i].product;
+        for (var i in data.data.prd) {
+            var it = data.data.prd[i].product;
             $(".bd-item-more").append('<a href="/product/product?prid=' + it.prid +'"><div class="k bd-f-moer-prd">' +
                 '<div class= "k img-prd-more"style="background-image:url(' + serverfile + it.image + ')" ></div>' +
                 '<div class="k f-name-pr-more">' +
