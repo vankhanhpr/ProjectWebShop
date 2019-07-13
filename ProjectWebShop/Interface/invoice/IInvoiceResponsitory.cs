@@ -18,6 +18,6 @@ namespace ProjectWebShop.Interface.invoice
         void UpdateInvoice(Invoices inv);
         Invoices GetInvoid(int inv);
         dynamic FilterInvoiceByDay(DateTime std,DateTime eday);
-
+        dynamic FilterBySearchBox(string dtfilter);
     }
 }

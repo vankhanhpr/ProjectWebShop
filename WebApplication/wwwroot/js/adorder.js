@@ -1,7 +1,7 @@
 ﻿
 getInvoidFrSv(0, bindingNewInvoidFrSv);
 getInvoidFrSv(1, bindingOldInvoidFrSv);
-
+var istab = true;
 function getInvoidFrSv(active, callback) {
     $.ajax({
         type: "get",
@@ -78,8 +78,8 @@ function addInvoidSocket(data) {
 
 }
 function bindingNewInvoidFrSv(data) {
+    $(".bd-tab-it-od").remove();
     if (data.success && data.data.length > 0) {
-        $(".bd-tab-it-od").remove();
         for (var i in data.data) {
             var item = data.data[i].invoi;
             var view = '';
@@ -144,8 +144,8 @@ function bindingNewInvoidFrSv(data) {
 }
 
 function bindingOldInvoidFrSv(data) {
+    $(".bd-tab-itold-od").remove();
     if (data.success && data.data.length > 0) {
-        $(".bd-tab-itold-od").remove();
         for (var i in data.data) {
             var item = data.data[i].invoi;
 
@@ -212,10 +212,20 @@ function changeTab(bool) {
     if (bool) {
         $("#f-ap-it-iv").show();
         $("#f-ap-it-oldiv").hide();
+        $(".bnt-old-od").css('background-color','white');
+        $(".bnt-new-od").css('background-color', '#ef7147');
+        $("#view-new-od").text("0");
+        getInvoidFrSv(0, bindingNewInvoidFrSv);
+        istab = true;
     }
     else {
         $("#f-ap-it-oldiv").show();
         $("#f-ap-it-iv").hide();
+        $(".bnt-new-od").css('background-color', 'white');
+        $(".bnt-old-od").css('background-color', '#ef7147');
+
+        getInvoidFrSv(1, bindingOldInvoidFrSv);
+        istab = false;
     }
 }
 
@@ -242,12 +252,12 @@ function successOrder(id) {
 }
 
 
-function filterOrder() {
-    var startday = $("#datepicker-stday").val();
-    var endday = $("#datepicker-endday").val();
+function filterOrder(callback) {
+    var startday = $("#startday").val();
+    var endday = $("#endday").val();
     var data = { "startday": startday, "endday": endday };
     $.ajax({
-        url: linkserver + 'invoice/UpdateInvoice',
+        url: linkserver + 'invoice/filterByDay',
         type: 'POST',
         dataType: 'json',
         data: JSON.stringify(data),
@@ -260,10 +270,38 @@ function filterOrder() {
             });
         },
         success: function (data) {
-            getInvoidFrSv(0, bindingNewInvoidFrSv);
-            getInvoidFrSv(1, bindingOldInvoidFrSv);
+            callback(data);
         }
     });
+}
+function filterOrderBySearchBox(callback) {
+    var data = { "filterBy": $(".search-order").val() };
+    $.ajax({
+        url: linkserver + 'invoice/FilterBySearchBox',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(data),
+        async: false,
+        processData: false,
+        contentType: "application/json",
+        error: function (err) {
+            bootbox.alert({
+                message: "Error :" + err.message
+            });
+        },
+        success: function (data) {
+            callback(data);
+        }
+    });
+}
+
+function bindingDataFilter(data) {
+    if (istab) {
+        bindingNewInvoidFrSv(data);
+    }
+    else {
+        bindingOldInvoidFrSv(data);
+    }
 }
 
 $(document).ready(function () {

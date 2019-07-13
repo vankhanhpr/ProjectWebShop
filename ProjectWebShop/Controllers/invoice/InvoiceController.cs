@@ -203,5 +203,23 @@ namespace ProjectWebShop.Controllers.invoice
             }
             return data;
         }
+
+        //filter by search box
+        [HttpPost("FilterBySearchBox")]
+        public DataRespond FilterBySearchBox([FromBody]InvoiceFilter inv)
+        {
+            DataRespond data = new DataRespond();
+            try
+            {
+                data.success = true;
+                data.data = m_invoiceResponcitory.FilterBySearchBox(inv.filterBy);
+            }
+            catch(Exception e)
+            {
+                data.success = false;
+                data.error = e;
+            }
+            return data;
+        }
     }
 }

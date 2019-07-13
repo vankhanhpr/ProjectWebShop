@@ -2,6 +2,7 @@
 using ProjectWebShop.Interface.invoice;
 using ProjectWebShop.Model;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApiMyShop.Data;
@@ -17,9 +18,36 @@ namespace ProjectWebShop.Responsitory.invoice
             envoiceEntity = context.Set<Invoices>();
         }
 
+        public dynamic FilterBySearchBox(string dtfilter)
+        {
+            var filterby = dtfilter.Trim().ToLowerInvariant();
+   
+            var invoice = context.Invoices.Select(invoi => new
+            {
+                invoi,
+                invoiceproduct = from invoidprd in context.InvoiceProduct
+                                 where invoi.ivid == invoidprd.ivid
+                                 join product in context.Products
+                                 on invoidprd.prid equals product.prid
+                                 select new { invoidprd, product }
+            }).ToList().AsQueryable().Where(m => m.invoi.codeinvoice.ToLowerInvariant().Contains(filterby)
+                                || m.invoi.namecustomer.ToLowerInvariant().Contains(filterby)
+                                //|| m.invoi.adressdelviver.ToLowerInvariant().Contains(filterby)
+                                //|| m.invoi.ivid.ToString().ToLowerInvariant().Contains(filterby)
+                                || m.invoi.phonenumber.ToLowerInvariant().Contains(filterby)
+                                //|| m.invoi.email.ToLowerInvariant().Contains(filterby)
+                                //|| m.invoi.province.ToLowerInvariant().Contains(filterby)
+                                //|| m.invoi.adress.ToLowerInvariant().Contains(filterby)
+                                //|| m.invoi.codediscount.ToLowerInvariant().Contains(filterby)
+                                //|| m.invoi.usid.ToString().ToLowerInvariant().Contains(filterby)
+                                //|| m.invoi.codediscount.ToLowerInvariant().Contains(filterby)
+                               );
+            return invoice;
+        }
+
         public dynamic FilterInvoiceByDay(DateTime std, DateTime eday)
         {
-            var invoice = context.Invoices.Where(x => x.createday >std && x.createday<eday ).Select(invoi => new
+            var invoice = context.Invoices.Where(x => x.createday >=std && x.createday<=eday ).Select(invoi => new
             {
                 invoi,
                 invoiceproduct = from invoidprd in context.InvoiceProduct

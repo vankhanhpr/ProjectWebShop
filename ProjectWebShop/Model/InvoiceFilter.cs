@@ -9,5 +9,6 @@ namespace ProjectWebShop.Model
     {
         public string startday { get; set; }
         public string endday { get; set; }
+        public string filterBy { get; set; } = "";
     }
 }

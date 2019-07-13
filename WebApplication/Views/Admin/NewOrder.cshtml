@@ -18,7 +18,7 @@
                     <span class="k t t-not-ft">From</span>
                     <div class="k form-group">
                         <div class="input-group date" id="datepicker-stday">
-                            <input type="text" class="form-control" id="inp-bd">
+                            <input type="text" class="form-control" id="startday">
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -27,14 +27,14 @@
                     <span class="k t t-not-ft">to</span>
                     <div class="k form-group">
                         <div class="input-group date" id="datepicker-endday">
-                            <input type="text" class="form-control" id="inp-bd">
+                            <input type="text" class="form-control" id="endday">
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
                         </div>
                     </div>
-                    <input type="text" class="k search-order" onkeyup="myFunction()" placeholder="Search for code..">
-                    <span class="bnt-flter"onclick="filterOrder()">Filter</span>
+                    <input type="text" class="k search-order" onkeyup="filterOrderBySearchBox(bindingDataFilter)" placeholder="Search for code..">
+                    <span class="bnt-flter"onclick="filterOrder(bindingDataFilter)">Filter</span>
                 </div>
             </div>
 
