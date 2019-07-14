@@ -145,12 +145,12 @@ namespace ProjectWebShop.Controllers.invoice
 
         //get invoice by active
         [HttpGet("GetIvByActive")]
-        public DataRespond GetInvoidByActive(int active)
+        public DataRespond GetInvoidByActive(int active,int page,int pagesize)
         {
             DataRespond data = new DataRespond();
             try
             {
-                data.data= m_invoiceResponcitory.GetNewInvoiceActive(active);
+                data.data= m_invoiceResponcitory.GetNewInvoiceActive(active, page, pagesize);
                 data.success = true;
 
             }

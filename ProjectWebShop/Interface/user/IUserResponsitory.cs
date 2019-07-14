@@ -14,7 +14,8 @@ namespace ProjectWebShop.Interface.user
         void DeleteUser(Users users);
         void UpdateUser(Users users);
         void InsertUser(Users users);
-        IEnumerable<Users> GetUserByRoles(int idrole);
-        bool checkEmailExist(string email);
+        IEnumerable<Users> GetUserByRoles(int idrole, int page, int pagesize);
+        bool CheckEmailExist(string email);
+        IEnumerable<Users> FilterBySearchBox(int role,string filter);
     }
 }

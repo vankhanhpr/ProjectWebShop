@@ -101,7 +101,7 @@ namespace ProjectWebShop.Responsitory.invoice
         }
 
         //get invoice by active
-        public dynamic GetNewInvoiceActive(int active)
+        public dynamic GetNewInvoiceActive(int active,int page,int pagesize)
         {
             var invoice = context.Invoices.Where(x => x.status == active).Select(invoi => new
             {
@@ -111,7 +111,7 @@ namespace ProjectWebShop.Responsitory.invoice
                                  join product in context.Products
                                  on invoidprd.prid equals product.prid
                                  select new { invoidprd, product }
-            }).ToList();             
+            }).ToList().Skip(page*pagesize).Take(pagesize);             
             return invoice;
         }
 

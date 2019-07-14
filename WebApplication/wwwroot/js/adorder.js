@@ -1,18 +1,19 @@
-﻿
-getInvoidFrSv(0, bindingNewInvoidFrSv);
-getInvoidFrSv(1, bindingOldInvoidFrSv);
+﻿var page = 0;
+getInvoidFrSv(0, bindingNewInvoidFrSv,true);
+getInvoidFrSv(1, bindingOldInvoidFrSv,true);
+
 var istab = true;
-function getInvoidFrSv(active, callback) {
+function getInvoidFrSv(active, callback,bol) {
     $.ajax({
         type: "get",
-        url: linkserver + "invoice/getivbyactive?active=" + active,
+        url: linkserver + "invoice/getivbyactive?active=" + active +"&page="+page+"&pagesize=5",
         data: null,
         dataType: 'json',
         contentType: "application/json",
         error: function (err) {
             callback(err);
         },
-        success: function (data) {
+        success: function (data,bol) {
             callback(data);
         }
     });
@@ -77,8 +78,10 @@ function addInvoidSocket(data) {
         '</div>');
 
 }
-function bindingNewInvoidFrSv(data) {
-    $(".bd-tab-it-od").remove();
+function bindingNewInvoidFrSv(data, bol) {
+    if (bol) {
+        $(".bd-tab-it-od").remove();
+    }
     if (data.success && data.data.length > 0) {
         for (var i in data.data) {
             var item = data.data[i].invoi;
@@ -143,8 +146,10 @@ function bindingNewInvoidFrSv(data) {
     }
 }
 
-function bindingOldInvoidFrSv(data) {
-    $(".bd-tab-itold-od").remove();
+function bindingOldInvoidFrSv(data, bol) {
+    if (bol) {
+        $(".bd-tab-itold-od").remove();
+    }
     if (data.success && data.data.length > 0) {
         for (var i in data.data) {
             var item = data.data[i].invoi;
@@ -209,6 +214,7 @@ function bindingOldInvoidFrSv(data) {
 }
 
 function changeTab(bool) {
+    page = 0;
     if (bool) {
         $("#f-ap-it-iv").show();
         $("#f-ap-it-oldiv").hide();
@@ -341,3 +347,23 @@ $(document).ready(function () {
         }
     });
 });
+
+
+//lazyload invoice
+$(window).scroll(function () {
+    if ($(window).scrollTop() + $(window).height() === $(document).height()) {
+        if (istab) {
+            page = page + 1;
+            getInvoidFrSv(0, bindingNewInvoidFrSv,false);
+        }
+        else {
+            page = page + 1;
+            getInvoidFrSv(0, bindingNewInvoidFrSv,false);
+        }
+    }
+});
+//$(window).scroll(function () {
+//    if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+//        alert("near bottom!");
+//    }
+//});

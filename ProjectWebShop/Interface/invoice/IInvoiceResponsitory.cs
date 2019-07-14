@@ -13,7 +13,7 @@ namespace ProjectWebShop.Interface.invoice
         dynamic GetInvoiceByUser(int usid);
         dynamic GetInvoiceById(int ivid);
         void InsertInvoiceProduct(InvoiceProduct invoiceProduct);
-        dynamic GetNewInvoiceActive(int active);
+        dynamic GetNewInvoiceActive(int active, int page, int pagesize);
         dynamic GetFirstInvoice(string code);
         void UpdateInvoice(Invoices inv);
         Invoices GetInvoid(int inv);

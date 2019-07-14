@@ -1,18 +1,21 @@
-﻿//$(document).ready(function () {
-//    showLoading();
-//    if (getTokenFromLocal() != null) {
-//        if (checkTokenServer() == false) {
-//            window.location.href = "/admin/adminlogin";
-//        }
-//    }
-//    else {
-//        window.location.href = "/admin/adminlogin";
-//    }
-//});
+﻿$(document).ready(function () {
+    var bol = checkTokenServerAd();
+});
 var bool = true;
 var formdata = new FormData();
 var formdataUd = new FormData();
 var sex = -1;
+var page = 0;
+var role = 1;//admin
+getUserByRole(role, page, true, bindingUserByRole);//get user
+//lazyload user
+$(window).scroll(function () {
+    if ($(window).scrollTop() + $(window).height() === $(document).height()) {
+        page = page + 1;
+        getUserByRole(role, page, false, bindingUserByRole);//get user
+    }
+});
+//show form
 function showFormCreateUs() {
     formdata = new FormData();
     if (bool) {
@@ -28,13 +31,29 @@ function showFormCreateUs() {
         $(".bnt-add-f").addClass("fa-plus");
     }
 }
-getUserByRole(1);//get user
-function getUserByRole(roleid) {
-    callAjax(tp.get, "user/getUserByRole?roleid=" + roleid, null, bindingUserByRole);
+
+function getUserByRole(roleid,page,bol,callback ) {
+    $.ajax({
+        type: "GET",
+        url: linkserver + "user/getUserByRole?roleid=" + roleid + "&page=" + page + "&pagesize=10",
+        data: null,
+        dataType: 'json',
+        contentType: "application/json",
+        error: function (err) {
+            // callback(err);
+            bootbox.alert("Error");
+        },
+        success: function (data) {
+            callback(data,bol);
+        }
+    });
+    //callAjax(tp.get, "user/getUserByRole?roleid=" + roleid + "&page=" + page+"&pagesize=1", null, bindingUserByRole);
 }
-function bindingUserByRole(data) {
+function bindingUserByRole(data,bol) {
     if (data != null) {
-        $(".bd-inf-user").remove();
+        if (bol) {//not lazyload
+            $(".bd-inf-user").remove();
+        }
         for (var user = 0; user < data.length; user++) {
             var stt = user + 1;
             $('.bd-body-us').append('<div class="k body-user bd-inf-user">' +
@@ -155,7 +174,8 @@ function insertUser() {
             success: function (data) {
                 if (data.data == "success") {
                     bootbox.alert("Insert user success!");
-                    getUserByRole(1);
+                    page = 0;
+                    getUserByRole(role, page, true, bindingUserByRole);
                     resetFormIs();
                 }
                 else {
@@ -196,10 +216,14 @@ function changeRoles(obj) {
     var value = obj.value;
 
     if (value === '1') {
-        getUserByRole(1);//get user
+        role = 1;
+        page = 0;
+        getUserByRole(role, page, true, bindingUserByRole);//get user
     }
     else {
-        getUserByRole(2);//get user
+        role = 2;
+        page = 0;
+        getUserByRole(role, page, true, bindingUserByRole);//get user
     }
 }
 
@@ -325,7 +349,8 @@ function gotoUpdate() {
             success: function (data) {
                 if (data.data == "success") {
                     bootbox.alert("Update user success!");
-                    getUserByRole(1);
+                    page = 0;
+                    getUserByRole(role, page, true, bindingUserByRole);
                     $('#myModalUser').modal('toggle');
                 }
                 else {

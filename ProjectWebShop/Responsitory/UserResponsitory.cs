@@ -20,7 +20,7 @@ namespace ProjectWebShop.Responsitory
             userEntity = context.Set<Users>();
         }
 
-        public bool checkEmailExist(string email)
+        public bool CheckEmailExist(string email)
         {
             Users us = context.Users.Where(x => x.email == email).FirstOrDefault();
             if (us != null)
@@ -36,6 +36,17 @@ namespace ProjectWebShop.Responsitory
             context.SaveChanges();
         }
 
+        public IEnumerable<Users> FilterBySearchBox(int role,string filter)
+        {
+            var filterby = filter.Trim().ToLowerInvariant();
+            return context.Users.ToList().AsQueryable().Where(m=>
+                                        m.usid.ToString().ToLowerInvariant().Contains(filterby)
+                                        || m.fullname.ToLowerInvariant().Contains(filterby)
+                                        || m.phone.ToString().ToLowerInvariant().Contains(filterby)
+                                        || m.address.ToString().ToLowerInvariant().Contains(filterby)
+                                        );
+        }
+
         public IEnumerable<Users> GetAllUser()
         {
             return context.Users.ToList();
@@ -49,9 +60,9 @@ namespace ProjectWebShop.Responsitory
         {
             return context.Users.Where(x => x.email == email && x.roles == roles).FirstOrDefault();
         }
-        public IEnumerable<Users> GetUserByRoles(int idrole)
+        public IEnumerable<Users> GetUserByRoles(int idrole,int page,int pagesize)
         {
-            return context.Users.Where(x => x.roles == idrole).ToList();
+            return context.Users.Where(x => x.roles == idrole).ToList().Skip(page*pagesize).Take(10);
         }
 
         public void InsertUser(Users users)

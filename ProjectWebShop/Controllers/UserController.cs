@@ -34,7 +34,7 @@ namespace ProjectWebShop.Controllers
         {
             try
             {
-                if (!(_iuserResponsitory.checkEmailExist(users.email)))
+                if (!(_iuserResponsitory.CheckEmailExist(users.email)))
                 {
                     return Ok(new { data = "Tài khoản với email này đã tồn tại!!" });
                 }
@@ -73,9 +73,9 @@ namespace ProjectWebShop.Controllers
             }
         }
         [HttpGet("getUserByRole")]
-        public IEnumerable<Users> GetUserByRole(int roleid)
+        public IEnumerable<Users> GetUserByRole(int roleid, int page, int pagesize)
         {
-            return _iuserResponsitory.GetUserByRoles(roleid);
+            return _iuserResponsitory.GetUserByRoles(roleid,page,pagesize);
         }
         //random image 
         private static Random random = new Random();
@@ -151,6 +151,23 @@ namespace ProjectWebShop.Controllers
                 return Ok(new { data = "error" });
 
             }
+        }
+        //filter 
+        [HttpPost("FilterUserBySearchBox")]
+        public DataRespond FilterUBySearchBox([FromBody] UserFilter ft)
+        {
+            DataRespond data = new DataRespond();
+            try
+            {
+                data.data = _iuserResponsitory.FilterBySearchBox(ft.roles,ft.filter);
+                data.success = true;
+            }
+            catch(Exception e)
+            {
+                data.success = false;
+                data.error = e;
+            }
+            return data;
         }
     }
 }
