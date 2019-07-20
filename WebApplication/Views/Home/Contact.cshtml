@@ -5,32 +5,37 @@
 @section Css{
     <link rel="stylesheet" type="text/css" href="~/css/user_contact.css">
 }
-    <div class="k main-form">
-        <div class="k f-compalain">
-            <span class="k t t-h-cp">Nhận thông tin phản ánh</span>
-            <div class="k bd-r-input">
-                <div class="k f-input">
-                    <span class="k t l-t-note">Tiêu đề</span>
-                    <input type="text" class="k r-ip" />
-                </div>
-                <div class="k f-input">
-                    <span class="k t l-t-note">Nội dung phản ánh</span>
-                    <textarea class="k t r-textarea"></textarea>
-                </div>
-                <div class="k f-input">
-                    <span class="k t bnt-sm-cp">Gửi</span>
-                </div>
+<div class="k main-form">
+    <div class="k f-compalain">
+        <span class="k t t-h-cp">Nhận thông tin phản ánh</span>
+        <div class="k bd-r-input">
+            <div class="k f-input">
+                <span class="k t l-t-note">Tiêu đề</span>
+                <input type="text" class="k r-ip"  id="tt-complain"/>
+            </div>
+            <div class="k f-input">
+                <span class="k t l-t-note">Số điện thoại của bạn: </span>
+                <input type="text" class="k r-ip"id="phone-client" maxlength="10"/>
+            </div>
+            <div class="k f-input">
+                <span class="k t l-t-note">Nội dung phản ánh</span>
+                <textarea class="k t r-textarea" id="conten-complain"></textarea>
+            </div>
+            <div class="k f-input">
+                <span class="k t bnt-sm-cp"onclick="insertComplain()">Gửi</span>
             </div>
         </div>
-        <div class="k f-contact">
-            <span class="k t t-h-cp">Liên hệ với chúng tôi</span>
-            <h4>Shop Lửa Hồng</h4>
-            <h4><i class="fa fa-link" aria-hidden="true"></i><a href="https://quanluahong.com">LuaHong Corp</a></h4>
-            <h4><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="https://gmail.com">khanhnv@hcmute.edu.vn</a></h4>
-            <h4><i class="fa fa-phone-square" aria-hidden="true"></i><a>0983.975.408</a></h4>
-            <h4><i class="fa fa-facebook-official" aria-hidden="true"></i><a href="https://facebook.com/atun.1865">https://facebook.com/atun.1865</a></h4>
-        </div>
     </div>
+    <div class="k f-contact">
+        <span class="k t t-h-cp">Liên hệ với chúng tôi</span>
+        <h4>Shop Lửa Hồng</h4>
+        <h4><i class="fa fa-link" aria-hidden="true"></i><a href="https://quanluahong.com">LuaHong Corp</a></h4>
+        <h4><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="https://gmail.com">khanhnv@hcmute.edu.vn</a></h4>
+        <h4><i class="fa fa-phone-square" aria-hidden="true"></i><a>0983.975.408</a></h4>
+        <h4><i class="fa fa-facebook-official" aria-hidden="true"></i><a href="https://facebook.com/atun.1865">https://facebook.com/atun.1865</a></h4>
+    </div>
+</div>
 @section Scripts{
+    <script src="~/js/usercontact.js"></script>
 
 }

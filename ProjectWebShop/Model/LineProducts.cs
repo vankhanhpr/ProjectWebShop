@@ -13,5 +13,6 @@ namespace ProjectWebShop.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int lineprid { get; set; }
         public string linename { get; set; }
+        public int status { get; set; }
     }
 }

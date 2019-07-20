@@ -18,14 +18,18 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ProjectWebShop.Auth;
+using ProjectWebShop.Interface.compalin;
 using ProjectWebShop.Interface.invoice;
 using ProjectWebShop.Interface.lineproduct;
 using ProjectWebShop.Interface.product;
+using ProjectWebShop.Interface.register;
 using ProjectWebShop.Interface.unit;
 using ProjectWebShop.Interface.user;
 using ProjectWebShop.Responsitory;
+using ProjectWebShop.Responsitory.complain;
 using ProjectWebShop.Responsitory.discount;
 using ProjectWebShop.Responsitory.invoice;
+using ProjectWebShop.Responsitory.register;
 using ProjectWebShop.Responsitory.unit;
 using ProjectWebShop.WebSockets;
 using WebApiMyShop.Data;
@@ -68,6 +72,8 @@ namespace ProjectWebShop
             services.AddTransient<IInvoiceResponsitory, InvoiceResponsitory>();
             services.AddTransient<IDescribeResponsitory, DescribeResponsitory>();
             services.AddTransient<IDiscountResponsitory, DiscountResponsitory>();
+            services.AddTransient<IRegisterResponsitory, RegisterResponsitory>();
+            services.AddTransient<IComplainResponsitory, ComplainResponsitory>();
 
             services.AddCors();
             services.AddIdentity<ApplicationUser, IdentityRole>()

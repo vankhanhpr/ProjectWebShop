@@ -25,5 +25,6 @@ namespace ProjectWebShop.Model
         public DateTime mnday { get; set; }
         public DateTime createday { get; set; }
         public DateTime expirydate { get; set; }
+        public int status { get; set; }
     }
 }

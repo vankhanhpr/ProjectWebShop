@@ -9,9 +9,11 @@
 }
 <div class="k main-form">
     <div class="bg-tt">
-        <a href="/admin"><span class="k t-gt-home">Home</span></a>
+        <a href="/admin"><span class="k t-gt-home">Custom events</span></a>
+        <i class="fa fa-plus-square" id="bnt-show-t-add-ev" aria-hidden="true" onclick="showFormAddEv()"></i>
+        <input class="inp-search" type="text" id="input-search" onkeyup="filterEventBySearchBox(this,bindingEvent)" placeholder="Search for names.." title="Type of name">
     </div>
-    <div class="k f-add-event">
+    <div class="k f-add-event" id="tab-addnew-ev">
         <div class="k f-it-ev">
             <span class="k l-text-note">Name of the event</span>
             <input type="text" class="input-t" id="name-ev" />
@@ -48,7 +50,7 @@
             </div>
         </div>
         <div class="k f-it-ev">
-            <span class="k bnt-insert-ev" onclick="insertEvent()">Success</span>
+            <span class="k bnt-insert-ev" onclick="insertEvent()">Add Event</span>
         </div>
         <span class="k error-day">** Start date must be less than the end date</span>
     </div>

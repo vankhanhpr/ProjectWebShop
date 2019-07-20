@@ -1,13 +1,6 @@
 ﻿$(document).ready(function () {
     showLoading();
-    if (getTokenFromLocal() != null) {
-        if (checkTokenServer() == false) {
-            window.location.href = "/admin/adminlogin";
-        }
-    }
-    else {
-        window.location.href = "/admin/adminlogin";
-    }
+    var bol = checkTokenServerAd();
 });
 var lnid = 0;
 var listFile = [];
@@ -20,8 +13,8 @@ var listLnPr = [];
 //get lines products
 callAjax(tp.get, "lineproduct/GetAllLineProduct", null, bindingGetAllLnPr);
 function bindingGetAllLnPr(data) {
-    if (data) {
-        $(".bd-prd").remove();
+    $(".bd-prd").remove();
+    if (data && data.length > 0) {
         for (var i in data) {
             listLnPr.push(data[i]);
             $("#f-ln-prd").append('<div class="k bd-prd" onclick= "filterLinePr(' + data[i].lineprid + ')">' +
@@ -36,6 +29,9 @@ function bindingGetAllLnPr(data) {
         lnid = data[0].lineprid;
         document.getElementById('ip-name-ctl').value = '';
     }
+    else {
+        destroyLoading();
+    }
 }
 function filterLinePr(id) {
     showLoading();
@@ -44,8 +40,8 @@ function filterLinePr(id) {
 }
 //products by line products
 function bindingPdtByLine(data) {
-    if (data) {
-        $(".item-pr-form").remove();
+    $(".item-pr-form").remove();
+    if (data && data.length>0  ) {
         for (var i in data) {
             $("#f-it-products").append('<div class="k item-pr-form">' +
                 '<div class= "k img-pdt"style="background-image:url(' + serverfile + data[i].image + ')" ></div>' +
@@ -64,8 +60,9 @@ function bindingPdtByLine(data) {
                 '</div>' +
                 '</div>');
         }
-        destroyLoading();
+        
     }
+    destroyLoading();
 }
 function formatDate(date) {
     var hours = date.getHours();

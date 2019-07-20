@@ -459,3 +459,28 @@ var md5 = function (string) {
 
     return temp.toLowerCase();
 }
+//user register by email
+function registerEmail() {
+    var data = { "email": $("#email-customer").val() };
+    $.ajax({
+        url: linkserver + 'register/InsertRegister',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(data),
+        async: false,
+        processData: false,
+        contentType: "application/json",
+        error: function (err) {
+            bootbox.alert({
+                message: "Có lỗi xảy ra, xin vui lòng thử lại sau"
+            });
+        },
+        success: function (data) {
+            if (data.success) {
+                bootbox.alert({
+                    message: "" + data.data
+                });
+            }
+        }
+    });
+}

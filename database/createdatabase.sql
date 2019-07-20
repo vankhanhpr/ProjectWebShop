@@ -5,7 +5,8 @@ use mydatabase;
 
 Create table lineproducts(
 lineprid int primary key not null  AUTO_INCREMENT,
-linename nvarchar(500)
+linename nvarchar(500),
+status bit
 );
 
 create table products (
@@ -21,6 +22,7 @@ create table products (
  image nvarchar(200),
  mnday datetime,
  expirydate datetime,
+ status bit,
  foreign key (lineprid) references lineproducts(lineprid)
 );
 create table imageproducts(
@@ -108,7 +110,7 @@ title nvarchar(1000),
 prid int,
 stt bit,
 foreign key (prid) references products(prid)
-)
+);
 
 Create table discount (
  discountid int not null primary key Auto_increment ,
@@ -120,4 +122,13 @@ Create table discount (
  startday datetime,
  endday datetime,
  note nvarchar(1000)
-)
+);
+Create  table register(
+	regid int not null primary key auto_increment,
+     email nvarchar(200) not null,
+     status bit ,
+     note nvarchar(200)
+);
+//add colum 
+ALTER TABLE products
+  ADD status bit;

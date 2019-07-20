@@ -1,0 +1,50 @@
+﻿@import url("adminconfig.css");
+:root{
+
+}
+@media only screen and (min-width:0){
+    .k{
+        position:relative;
+        float:left;
+    }
+    .main-form{
+        width:100%;
+        padding:0 5%;
+    }
+    .f-it-rg{
+        width:100%;
+    }
+    .bd-it{
+        border:1px solid rgba(51,51,51,0.2);
+        border-radius:4px;
+
+    }
+    .f-it{
+        width:100%;
+
+    }
+    .tt-register{
+        width:100%;
+        text-align:center;
+        color:var(--c-dt-bl);
+        font-weight:600;
+        background-color:rgba(51,51,51,0.2);
+    }
+}
+@media only screen and (min-width:1200px){
+    .f-it-rg{
+        border:1px solid rgba(51,51,51,0.12);
+    }
+    .bd-it{
+        width:100%;
+        margin-bottom:10px;
+    }
+    .f-it{
+        min-height:80px;
+    }
+    .tt-register {
+        height: 50px;
+        font-size:var(--font-title);
+        padding-top:15px;
+    }
+}

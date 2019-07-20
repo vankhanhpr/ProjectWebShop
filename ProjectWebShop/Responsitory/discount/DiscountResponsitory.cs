@@ -42,9 +42,20 @@ namespace ProjectWebShop.Responsitory.discount
             context.SaveChanges();
         }
 
-        public IEnumerable<Discount> GetAllDiscount()
+        public IEnumerable<Discount> FilterDiscount(string filter)
         {
-            return context.Discount.OrderBy(x => x.endday).ToList();
+            var filterby = filter.Trim().ToLowerInvariant();
+            return context.Discount.ToList().AsQueryable().Where(m=>
+                            m.discountid.ToString().ToLowerInvariant().Contains(filterby)
+                            ||m.eventname.ToLowerInvariant().Contains(filterby)
+                            ||m.percent.ToString().ToLowerInvariant().Contains(filterby)
+                            ||m.code.ToLowerInvariant().Contains(filterby)
+            );
+        }
+
+        public IEnumerable<Discount> GetAllDiscount(int page,int pagesize)
+        {
+            return context.Discount.OrderBy(x => x.endday).ToList().Skip(page*pagesize).Take(pagesize);
         }
 
         public Discount GetDisCountByCode(string code)

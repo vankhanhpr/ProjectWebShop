@@ -337,6 +337,7 @@ function checkTokenServerAd() {
         contentType: "application/json",
         error: function (err) {
             window.location.href = "/admin/adminlogin";
+            removeTokenLocal();  
         },
         success: function (data) {
             if (data.success) {

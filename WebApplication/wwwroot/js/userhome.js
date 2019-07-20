@@ -85,7 +85,7 @@ function bindingHLpr(data) {
         $(".it-fvr-hl").remove();
         for (var i in lsthlpr) {
             var item = lsthlpr[i];
-            $("#bd-pr-favorite").append('<div class="k db-it-prd-hl it-fvr-hl">' +
+            $("#bd-pr-favorite").append('<div class="k db-it-prd db-it-prd-hl it-fvr-hl">' +
                 '<div class= "k main-it">' +
                 '<div class="k bd-img-highlight" style="background-image:url(' + serverfile + item.product.image + ')">' +
                 '<div class="k img-product"></div>' +

@@ -21,12 +21,12 @@ namespace ProjectWebShop.Controllers.discount
         }
 
         [HttpGet("GetAllDiscount")]
-        public DataRespond GetAllDiscount()
+        public DataRespond GetAllDiscount(int page,int pagesize)
         {
             DataRespond data = new DataRespond();
             try
             {
-                data.data = m_idiscountResponsitory.GetAllDiscount();
+                data.data = m_idiscountResponsitory.GetAllDiscount(page,pagesize);
                 data.success = true;
             }
             catch(Exception e)
@@ -108,6 +108,23 @@ namespace ProjectWebShop.Controllers.discount
             {
                 data.error = e;
                 data.success = false;
+            }
+            return data;
+        }
+
+        [HttpPost("FilterDiscountBySearchBox")]
+        public DataRespond FilterDiscountBySearchBox(DiscountFilter ds)
+        {
+            DataRespond data = new DataRespond();
+            try
+            {
+                data.success = true;
+                data.data = m_idiscountResponsitory.FilterDiscount(ds.filter);
+            }
+            catch(Exception e)
+            {
+                data.success = false;
+                data.error = e;
             }
             return data;
         }

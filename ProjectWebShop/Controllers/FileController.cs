@@ -39,11 +39,6 @@ namespace ProjectWebShop.Controllers
             // 1. get Token from Header
             // 2. Call validateToken from AuthService
             // 3.
-
-            // String tokenFromHeader;
-
-            // Boolean isValidToken = authService.validateToken(tokenFromHeader);
-
             if (file == null || file.Length == 0)
                 return Ok("file not selected");
             var x = file.GetFilename().Split(".");//cut jpg/png...
@@ -114,6 +109,7 @@ namespace ProjectWebShop.Controllers
                 prod.oldprice = pd.oldprice;
                 prod.image = nameimg;
                 prod.highlight = pd.highlight;
+                prod.status = 0;
                 DateTime mnday = DateTime.ParseExact(pd.mnday, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 prod.mnday = mnday;
                 DateTime expirydate = DateTime.ParseExact(pd.expirydate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -171,6 +167,7 @@ namespace ProjectWebShop.Controllers
                 newitem.totallike = pd.totallike;
                 newitem.highlight = pd.highlight;
                 newitem.oldprice = pd.oldprice;
+                newitem.status = 0;
                 DateTime mnday = DateTime.ParseExact(pd.mnday, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 newitem.mnday = mnday;
                 DateTime expirydate = DateTime.ParseExact(pd.expirydate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -253,14 +250,16 @@ namespace ProjectWebShop.Controllers
                     return Ok("Product not found");
                 }
                 Products pf = _iproductResponsitory.GetaProductById(id);
-                IEnumerable<ImageProducts> listimg = _iimageProductResponsitory.GetAllImgByPrid(pf.prid);
-                foreach (var img in listimg)
-                {
-                    deleteImg(img.image);
-                    _iimageProductResponsitory.DeleteImg(img.imgid);
-                }
-                deleteImg(pf.image);
-                _iproductResponsitory.DeleteProduct(id);
+                //IEnumerable<ImageProducts> listimg = _iimageProductResponsitory.GetAllImgByPrid(pf.prid);
+                //foreach (var img in listimg)
+                //{
+                //    deleteImg(img.image);
+                //    _iimageProductResponsitory.DeleteImg(img.imgid);
+                //}
+                //deleteImg(pf.image);
+                //_iproductResponsitory.DeleteProduct(id);
+                pf.status = 1;
+                _iproductResponsitory.UpdateProduct(pf);
                 return Ok(new { data = "Remove success" });
             }
             catch (Exception e)

@@ -27,6 +27,7 @@ namespace ProjectWebShop.Controllers
         {
             if (ln!=null)
             {
+                ln.status = 0;//enable
                 _ilnproductResponsitory.SaveLineProduct(ln);
                 return Ok(new { data = "success" });
             }
@@ -40,7 +41,9 @@ namespace ProjectWebShop.Controllers
         {
             try
             {
-                _ilnproductResponsitory.DeleteLineProduct(catid);
+                LineProducts newln = _ilnproductResponsitory.GetLineById(catid);
+                newln.status = 1;
+                _ilnproductResponsitory.UpdateLineProduct(newln);
                 return Ok(new { data = "Success" });
             }
             catch(Exception e)

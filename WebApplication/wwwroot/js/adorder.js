@@ -1,4 +1,8 @@
-﻿var page = 0;
+﻿$(document).ready(function () {
+    showLoading();
+    var bol = checkTokenServerAd();
+});
+var page = 0;
 getInvoidFrSv(0, bindingNewInvoidFrSv,true);
 getInvoidFrSv(1, bindingOldInvoidFrSv,true);
 
@@ -13,8 +17,8 @@ function getInvoidFrSv(active, callback,bol) {
         error: function (err) {
             callback(err);
         },
-        success: function (data,bol) {
-            callback(data);
+        success: function (data) {
+            callback(data,bol);
         }
     });
 }
@@ -144,6 +148,7 @@ function bindingNewInvoidFrSv(data, bol) {
 
         }
     }
+    destroyLoading();
 }
 
 function bindingOldInvoidFrSv(data, bol) {
@@ -251,8 +256,8 @@ function successOrder(id) {
             });
         },
         success: function (data) {
-            getInvoidFrSv(0, bindingNewInvoidFrSv);
-            getInvoidFrSv(1, bindingOldInvoidFrSv);
+            getInvoidFrSv(0, bindingNewInvoidFrSv,true);
+            getInvoidFrSv(1, bindingOldInvoidFrSv,true);
         }
     });
 }
@@ -347,8 +352,6 @@ $(document).ready(function () {
         }
     });
 });
-
-
 //lazyload invoice
 $(window).scroll(function () {
     if ($(window).scrollTop() + $(window).height() === $(document).height()) {
@@ -362,8 +365,3 @@ $(window).scroll(function () {
         }
     }
 });
-//$(window).scroll(function () {
-//    if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-//        alert("near bottom!");
-//    }
-//});

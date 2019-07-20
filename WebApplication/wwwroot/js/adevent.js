@@ -1,9 +1,11 @@
-﻿getAllEvent();
+﻿var page = 0;
+var pagesize = 16;
+getAllEvent(bindingEvent,true);
 //get event
-function getAllEvent() {
+function getAllEvent(callback,bol) {
     $.ajax({
         type: "get",
-        url: linkserver + "Discount/GetAllDiscount",
+        url: linkserver + "Discount/GetAllDiscount?page=" + page + "&pagesize=" + pagesize,
         data: null,
         dataType: 'json',
         contentType: "application/json",
@@ -16,50 +18,7 @@ function getAllEvent() {
         },
         success: function (data) {
             if (data.success) {
-                $(".bd-f-bd-ev").remove();
-                for (var i in data.data) {
-                    var item = data.data[i];
-                    var discount = "";
-                    if (item.money == 0) {
-                        discount = item.percent + " %";
-                    }
-                    else {
-                        discount = formatNumber(item.money) + " vnđ";
-                    }
-                    var stt = "Enable";
-                    if (parseDate(currentDate()).getTime() > parseDate(formatDate(new Date(item.endday))).getTime()) {
-                        stt = "Disble";
-                    }
-                    $(".f-all-event").append('<div class="k bd-f-bd-ev">' +
-                        '<div class= "k f-body-ev">' +
-                        '<div class="k f-it-bd-ev">' +
-                        '<span class="k t-le-te">Event name: </span>' +
-                        '<span class="k t-ev">' + item.eventname + '</span>' +
-                        '</div>' +
-                        '<div class="k f-it-bd-ev">' +
-                        '<span class="k t-le-te">Code: </span>' +
-                        '<span class="k t-ev" id="code">' + item.code + '</span>' +
-                        '</div>' +
-                        '<div class="k f-it-bd-ev">' +
-                        '<span class="k t-le-te">Discount: </span>' +
-                        '<span class="k t-ev">' + discount + '</span>' +
-                        '</div>' +
-                        '<div class="k f-it-bd-ev">' +
-                        '<span class="k t-le-te">Start day: </span>' +
-                        '<span class="k t-ev">' + formatDate(new Date(item.startday)) + '</span>' +
-                        '</div>' +
-                        '<div class="k f-it-bd-ev">' +
-                        '<span class="k t-le-te">End day: </span>' +
-                        '<span class="k t-ev">' + formatDate(new Date(item.endday)) + '</span>' +
-                        '</div>' +
-                        '<div class="k f-it-bd-ev">' +
-                        '<span class="k t-le-te">Status: </span>' +
-                        '<span class="k t-ev" id="status">' + stt + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>');
-                    emtyForm();
-                }
+                callback(data,bol);
             }
             else {
                 bootbox.alert({
@@ -70,6 +29,65 @@ function getAllEvent() {
             }
         }
     });
+}
+
+//lazyload user
+$(window).scroll(function () {
+    if ($(window).scrollTop() + $(window).height() === $(document).height()) {
+        page = page + 1;
+        getAllEvent(bindingEvent,false);
+    }
+});
+
+function bindingEvent(data, bol) {
+    if (bol) {
+        $(".bd-f-bd-ev").remove();
+    }
+    if (data.success && data.data.length>0) {
+        for (var i in data.data) {
+            var item = data.data[i];
+            var discount = "";
+            if (item.money == 0) {
+                discount = item.percent + " %";
+            }
+            else {
+                discount = formatNumber(item.money) + " vnđ";
+            }
+            var stt = "Enable";
+            if (parseDate(currentDate()).getTime() > parseDate(formatDate(new Date(item.endday))).getTime()) {
+                stt = "Disble";
+            }
+            $(".f-all-event").append('<div class="k bd-f-bd-ev">' +
+                '<div class= "k f-body-ev">' +
+                '<div class="k f-it-bd-ev">' +
+                '<span class="k t-le-te">Event name: </span>' +
+                '<span class="k t-ev">' + item.eventname + '</span>' +
+                '</div>' +
+                '<div class="k f-it-bd-ev">' +
+                '<span class="k t-le-te">Code: </span>' +
+                '<span class="k t-ev" id="code">' + item.code + '</span>' +
+                '</div>' +
+                '<div class="k f-it-bd-ev">' +
+                '<span class="k t-le-te">Discount: </span>' +
+                '<span class="k t-ev">' + discount + '</span>' +
+                '</div>' +
+                '<div class="k f-it-bd-ev">' +
+                '<span class="k t-le-te">Start day: </span>' +
+                '<span class="k t-ev">' + formatDate(new Date(item.startday)) + '</span>' +
+                '</div>' +
+                '<div class="k f-it-bd-ev">' +
+                '<span class="k t-le-te">End day: </span>' +
+                '<span class="k t-ev">' + formatDate(new Date(item.endday)) + '</span>' +
+                '</div>' +
+                '<div class="k f-it-bd-ev">' +
+                '<span class="k t-le-te">Status: </span>' +
+                '<span class="k t-ev" id="status">' + stt + '</span>' +
+                '</div>' +
+                '</div>' +
+                '</div>');
+            emtyForm();
+        }
+    }
 }
 function currentDate() {
     var today = new Date();
@@ -194,7 +212,7 @@ function updateEvent() {
     //
 }
 
-//
+//date time picker
 $(document).ready(function () {
     $('#datepicker-startday').datetimepicker({
         format: 'DD/MM/YYYY',
@@ -294,4 +312,43 @@ function changeKeyPress(obj) {
 function covertToString(str) {
     var strint = str.replace(/,/g, '');
     return strint;
+}
+
+//show form add the event
+var bolshowf = true;
+function showFormAddEv() {
+    if (bolshowf) {
+        $("#tab-addnew-ev").show(300);
+        bolshowf = false;
+        $("#bnt-show-t-add-ev").removeClass("fa-plus-square");
+        $("#bnt-show-t-add-ev").addClass("fa-minus-square");
+    }
+    else {
+        $("#tab-addnew-ev").hide(300);
+        bolshowf = true;
+        $("#bnt-show-t-add-ev").removeClass("fa-minus-square");
+        $("#bnt-show-t-add-ev").addClass("fa-plus-square");
+    }
+}
+
+//filter event 
+function filterEventBySearchBox(obj, callback) {
+    var data = { "filter": $(obj).val() };
+    $.ajax({
+        url: linkserver + 'discount/FilterDiscountBySearchBox',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(data),
+        async: false,
+        processData: false,
+        contentType: "application/json",
+        error: function (err) {
+            bootbox.alert({
+                message: "Error :" + err.message
+            });
+        },
+        success: function (data) {
+            callback(data);
+        }
+    });
 }

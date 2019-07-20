@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectWebShop.Model;
+using ProjectWebShop.Model.complain;
 using ProjectWebShop.Model.discount;
+using ProjectWebShop.Model.register;
 using ProjectWebShop.Model.units;
 using WebApiMyShop.Models;
 
@@ -24,5 +26,7 @@ namespace WebApiMyShop.Data
         public DbSet<InvoiceProduct> InvoiceProduct { get; set; }
         public DbSet<Describeproducts> Describeproducts { get; set; }
         public DbSet<Discount> Discount { get; set; }
+        public DbSet<Register> Register { get; set; }
+        public DbSet<Complain> Complain { get; set; }
     }
 }

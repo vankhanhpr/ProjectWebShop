@@ -204,8 +204,8 @@
                     <span class="k t tt-ft">ĐĂNG KÍ NHẬN TIN</span>
                     <div class="k f-dt-ft">
                         <span class="k t t-inf">Đăng kí nhận thông tin khuyển mãi và món ăn mới</span>
-                        <input class="form-email" type="email" id="mail" placeholder="Email của bạn">
-                        <span class="k bnt_submit">ĐĂNG KÝ</span>
+                        <input class="form-email" type="email" id="email-customer" placeholder="Email của bạn">
+                        <span class="k bnt_submit" onclick="registerEmail()">ĐĂNG KÝ</span>
                     </div>
                 </div>
             </div>
@@ -217,8 +217,9 @@
 
     <script src="~/lib/jquery/moment.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap-datetimepicker.js"></script>
-    <script src="~/js/userhelper.js"></script>
     <script src="~/lib/js/bootbox.min.js"></script>
+    <script src="~/js/userhelper.js"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

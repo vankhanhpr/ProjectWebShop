@@ -24,7 +24,7 @@ namespace ProjectWebShop.Responsitory
         }
         public IEnumerable<LineProducts> GetAllLine()
         {
-            return context.LineProducts.ToList();
+            return context.LineProducts.Where(m=>m.status==0).ToList();
         }
         public LineProducts GetLineById(int id)
         {

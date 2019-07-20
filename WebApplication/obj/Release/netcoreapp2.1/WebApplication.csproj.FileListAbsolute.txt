@@ -44,3 +44,4 @@ E:\ASPMVC\ProjectWebShop\WebApplication\obj\Release\netcoreapp2.1\WebApplication
 E:\ASPMVC\ProjectWebShop\WebApplication\obj\Release\netcoreapp2.1\WebApplication.csproj.CopyComplete
 E:\ASPMVC\ProjectWebShop\WebApplication\obj\Release\netcoreapp2.1\Razor\Views\Admin\NewOrder.g.cshtml.cs
 E:\ASPMVC\ProjectWebShop\WebApplication\obj\Release\netcoreapp2.1\WebApplication.csprojAssemblyReference.cache
+E:\ASPMVC\ProjectWebShop\WebApplication\obj\Release\netcoreapp2.1\Razor\Views\Admin\AdminRegister.g.cshtml.cs

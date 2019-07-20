@@ -50,7 +50,7 @@ namespace ProjectWebShop.Controllers
         {
             DataRespond data = new DataRespond();
             try{
-                if (!(m_userResponsitory.checkEmailExist(user.email)))
+                if (!(m_userResponsitory.CheckEmailExist(user.email)))
                 {
                     data.success = false;
                     data.data = "Email này đã được đăng kí tài khoản trước đó";

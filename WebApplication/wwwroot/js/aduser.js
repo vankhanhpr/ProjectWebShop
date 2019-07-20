@@ -226,6 +226,29 @@ function changeRoles(obj) {
         getUserByRole(role, page, true, bindingUserByRole);//get user
     }
 }
+//filter user by search box
+function filterUserBySearchBox(obj,callback) {
+    var data = { "roles": role, "filter": $(obj).val() };
+    $.ajax({
+        url: linkserver + 'user/FilterUserBySearchBox',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(data),
+        async: false,
+        processData: false,
+        contentType: "application/json",
+        error: function (err) {
+            bootbox.alert({
+                message: "Error :" + err.message
+            });
+        },
+        success: function (data) {
+            if (data.success) {
+                callback(data.data, true);
+            }
+        }
+    });
+}
 
 //reset form after inset user
 function resetFormIs() {

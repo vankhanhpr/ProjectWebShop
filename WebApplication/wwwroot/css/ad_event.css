@@ -1,6 +1,6 @@
 ﻿@import url("adminconfig.css");
-:root{
-
+:root {
+    --cl-or: #ef7147;
 }
 @media only screen and (min-width:0){
     .main-form{
@@ -18,9 +18,32 @@
         margin: 10px 5px;
         cursor: pointer;
     }
-    .f-add-event{
-        width:100%;
-        border:1px solid rgba(51,51,51,0.12);
+    .fa-plus-square, .fa-minus-square {
+        position: relative;
+        float: left;
+        font-size: 20px;
+        color: var(--cl-or);
+        cursor: pointer;
+    }
+    .inp-search {
+        position: relative;
+        float: right;
+        border: 1px solid rgba(51,51,51,0.2);
+        padding: 5px;
+        border-radius: 4px;
+        background-image: url(/images/admin/ic_search.png);
+        background-repeat: no-repeat;
+        background-size: 23px 21px;
+        background-position: 3px;
+        padding: 5px;
+        padding-left: 30px;
+    }
+    #tab-addnew-ev {
+        display:none;
+    }
+    .f-add-event {
+        width: 100%;
+        border: 1px solid rgba(51,51,51,0.12);
     }
     .l-text-note{
         color:var(--c-dt-bl);
@@ -80,15 +103,16 @@
         color:orangered;
     }
     .bnt-insert-ev {
-        color: var(--c-dt-bl);
-        background-color: #fbedbb;
+        color: var(--c-dt-wt);
+        background-color: #F0AD4E;
         padding: 5px;
-        width:50%;
-        text-align:center;
-        margin-left:20px;
-        font-weight:600;
-        border-radius:3px;
-        cursor:pointer;
+        width: 50%;
+        text-align: center;
+        margin-left: 20px;
+        font-weight: 600;
+        border-radius: 3px;
+        cursor: pointer;
+        box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
     }
     .error-day{
         width:100%;
@@ -110,8 +134,16 @@
         font-size:var(--font-detail);
         margin-top:3px;
     }
-    .f-body-ev{
-        padding:15px 10px;
+    .fa-plus-square, .fa-minus-square {
+        margin-top: 15px;
+        margin-left: 5px;
+    }
+    .inp-search {
+        margin-right: 10px;
+        margin-top:10px;
+    }
+    .f-body-ev {
+        padding: 15px 10px;
     }
     .input-t {
         padding: 5px;

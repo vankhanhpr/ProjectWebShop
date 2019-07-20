@@ -168,14 +168,15 @@
     .h-f-us-lout {
         position: absolute;
         bottom: -30px;
-        left: 0;
-        right: 0;
+        right: 10px;
+        text-align: center;
         margin: auto;
         border: 1px solid rgba(51,51,51,0.1);
         background-color: rgba(255,255,255,0.8);
         list-style-type: none;
         border-radius: 4px;
-        display:none;
+        display: none;
+        padding: 0 10px;
     }
     .h-f-user:hover .h-f-us-lout {
         display:block;

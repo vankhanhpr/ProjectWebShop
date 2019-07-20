@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "AdminRegister";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/css/ad_register.css">
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+}
+<div class="k main-form">
+    <div class="k f-it-rg">
+        <div class="k bd-it">
+            <div class="k f-it">
+                <span class="k tt-register">Email register</span>
+                <table id="tb-register">
+                    <tr>
+                        <th>Email</th>
+                        <th>Time</th>
+                        <th>ID</th>
+                        <th>Active</th>
+                    </tr>
+                    @*<tr>
+                        <td>Alfreds Futterkiste</td>
+                        <td>Maria Anders</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                    </tr>*@
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Script{
+    <script src="~/js/adregister.js"></script>
+}

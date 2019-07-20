@@ -22,7 +22,7 @@ namespace ProjectWebShop.Responsitory
             //    .Join(context.ImageProducts, product => product.prid,
             //    images => images.prid, (product, images) => new { product, images });
 
-            var pdt = context.Products.Select(product => new
+            var pdt = context.Products.Where(m=>m.status==0).Select(product => new
             {
                 product,
                 images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
@@ -39,7 +39,7 @@ namespace ProjectWebShop.Responsitory
             try
             {
                 return context.Products
-                               .Where(p => p.lineprid == id).ToList();
+                               .Where(p => p.lineprid == id && p.status==0).ToList();
             }
             catch (Exception e)
             {
@@ -50,7 +50,7 @@ namespace ProjectWebShop.Responsitory
         }
         public dynamic GetProductById(int id)
         {
-            var pdt = context.Products.Where(x => x.prid == id).Select(product => new
+            var pdt = context.Products.Where(x => x.prid == id && x.status==0).Select(product => new
             {
                 product,
                 images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
@@ -83,7 +83,7 @@ namespace ProjectWebShop.Responsitory
         //for user
         public dynamic GetProductsHighLights(int pagesize,int page)
         {
-            var prd = context.Products.Where(x => x.highlight == 1).Select(product => new
+            var prd = context.Products.Where(x => x.highlight == 1 && x.status==0).Select(product => new
             {
                 product,
                 images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
@@ -94,7 +94,7 @@ namespace ProjectWebShop.Responsitory
 
         public dynamic GetProcutsMostLikely()
         {
-            var data = context.Products.OrderBy(x => x.totallike).Select(product => new
+            var data = context.Products.Where(m => m.status == 0).OrderBy(x => x.totallike).Select(product => new
             {
                 product,
                 images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
@@ -104,7 +104,7 @@ namespace ProjectWebShop.Responsitory
 
         public dynamic GetNewProducts()
         {
-            var data = context.Products.OrderBy(x => x.createday).Select(product => new
+            var data = context.Products.Where(m=>m.status==0).OrderBy(x => x.createday).Select(product => new
             {
                 product,
                 images = context.ImageProducts.Where(image => image.prid == product.prid).ToList()
@@ -125,7 +125,7 @@ namespace ProjectWebShop.Responsitory
 
         public dynamic GetDesPr()
         {
-            var data = context.Products.OrderBy(x => x.createday).Select(product => new
+            var data = context.Products.Where(m=>m.status==0).OrderBy(x => x.createday).Select(product => new
             {
                 product,
                 des = context.Describeproducts.Where(d => d.prid == product.prid).FirstOrDefault()
